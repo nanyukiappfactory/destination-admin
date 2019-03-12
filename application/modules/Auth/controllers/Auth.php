@@ -1,4 +1,5 @@
-<?php
+<?php if(!defined('BASEPATH')) exit('No direct access script allowed');
+    
     class Auth extends MX_Controller
     {
         function __construct()
