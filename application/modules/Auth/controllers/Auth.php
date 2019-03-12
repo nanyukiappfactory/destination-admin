@@ -13,7 +13,8 @@ if(!defined('BASEPATH')) exit('No direct access script allowed');
 
         public function index()
         {
-            echo 'kibaki';
+            // $data['content'] = 'cecilia was herre';
+            // $this->load->view('admin/layouts/layout', $data);
             $this->form_validation->set_rules('admin_name', '', 'required');
             $this->form_validation->set_rules('admin_password', '', 'required');
 

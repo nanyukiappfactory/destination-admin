@@ -6,10 +6,10 @@
     <meta name="generator" content="Jekyll v3.8.5">
     <title>Destination Laikipia</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/dashboard/">
+   
 
     <!-- Bootstrap core CSS -->
-<link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="<?php echo base_url();?>assets/custom/themes/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
     <style>
@@ -29,5 +29,5 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/custom/themes/vendor/bootstrap/css/dashboard.css" rel="stylesheet">
   </head>
