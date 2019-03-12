@@ -13,6 +13,11 @@ class Admin extends MX_Controller
         }
     }
 
+    public function index()
+    {
+        echo 'code igniter';
+    }
+
 }
 
 ?>
