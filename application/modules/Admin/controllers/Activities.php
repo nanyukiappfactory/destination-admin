@@ -10,7 +10,7 @@ require_once "./application/modules/admin/controllers/Admin.php";
             parent:: __construct();
         }
 
-        public function index()
+        public function all_activities()
         {
             $this->load->view('layouts/layout');       
         }
