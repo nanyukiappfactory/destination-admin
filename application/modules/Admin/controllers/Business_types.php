@@ -12,7 +12,7 @@
 
         public function index()
         {
-            $data['content'] = $this->load->view('business_type/all_business_type', TRUE);
+            $data['content'] = $this->load->view('business_type/all_business_type');
             $this->load->view('admin/layouts/layout', $data); 
         }
 
