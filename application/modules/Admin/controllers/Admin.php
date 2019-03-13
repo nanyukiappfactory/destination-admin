@@ -15,7 +15,8 @@ class Admin extends MX_Controller
 
     public function index()
     { 
-       redirect('test');
+     
+       $this->load->view('layouts/layout');
     }
 
 }
