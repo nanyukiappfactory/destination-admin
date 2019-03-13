@@ -15,8 +15,8 @@ class Proprietors extends admin
     }
     public function index()
     {
+        // var_dump($this->session->flashdata('error'));die();
         $v_data['title'] = "Proprietors";
-        $v_data['content'] = 'many values';
         $data['content'] = $this->load->view('admin/proprietor/all_proprietors',$v_data, TRUE);
         $this->load->view('admin/layouts/layout', $data);
 
@@ -29,7 +29,8 @@ class Proprietors extends admin
         $this->form_validation->set_rules('national_id', 'National Id', 'required');
         $this->form_validation->set_rules('business_reg_id', 'Business Reg Id', 'required');
 
-        if ($this->form_validation->run()) {
+        if ($this->form_validation->run()) 
+        {
             $proprietor_id = $this->proprietors_model->add_proprietor();
 
             if ($proprietor_id) {
@@ -41,6 +42,7 @@ class Proprietors extends admin
             }
         }
         if (validation_errors()) {
+            
             $this->session->set_flashdata('error', validation_errors());
         }
 
