@@ -5,7 +5,7 @@
 			<div class="sidebar-sticky">
 				<ul class="nav flex-column">
 					<li class="nav-item">
-						<a class="nav-link active" href="<?php echo base_url();?>/activities/all-activities>"
+						<a class="nav-link active" href="<?php echo base_url();?>activities/all-activities">					
 							<span data-feather="home"></span>
 							Activities <span class="sr-only">(current)</span>
 						</a>
@@ -21,7 +21,8 @@
 						<span data-feather="users"></span>
 							Proprietors
 						</a>
-					</li>								
+					</li>	
+												
 				</ul>				
 				</ul>
 			</div>

@@ -19,6 +19,12 @@ class Admin extends MX_Controller
        $this->load->view('layouts/layout');
     }
 
+    public function admin_logout()
+    {
+        $this->session->sess_destroy();
+        redirect("login");
+    }
+
 }
 
 ?>

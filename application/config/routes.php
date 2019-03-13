@@ -59,6 +59,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['dashboard'] = 'admin/admin/index';
 $route['login'] = 'auth/auth';
 $route['test'] = 'admin/test/index';
+$route['admin/logout'] = 'admin/admin/admin_logout';
 
 /**
  * routes for sidebar items
