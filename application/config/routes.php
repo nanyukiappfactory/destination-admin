@@ -68,4 +68,10 @@ $route['activities/all-activities'] = 'admin/activities/index';
 $route['business-types/all-business-types'] = 'admin/business_types/index';
 $route['proprietors/all-proprietors'] = 'admin/proprietors/index';
 
+/**
+ * proprietor routes
+ */
+$route['proprietors/add-proprietors'] = 'admin/proprietors/add_proprietor';
+
+
 
