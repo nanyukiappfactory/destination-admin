@@ -63,8 +63,8 @@ $route['test'] = 'admin/test/index';
 /**
  * routes for sidebar items
  */
-$route['dashboard/all-activities'] = 'admin/activities/index';
-$route['dashboard/all-business-types'] = 'admin/business_types/index';
-$route['dashboard/all-proprietors'] = 'admin/proprietors/index';
+$route['activities/all-activities'] = 'admin/activities/index';
+$route['business-types/all-business-types'] = 'admin/business_types/index';
+$route['proprietors/all-proprietors'] = 'admin/proprietors/index';
 
-$route['test'] = 'admin/test/index';
+
