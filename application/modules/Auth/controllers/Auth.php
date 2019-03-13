@@ -11,7 +11,6 @@ class Auth extends MX_Controller
 
     public function index()
     {
-  
         // $this->load->view('admin/layouts/layout', $data);
         $this->form_validation->set_rules('admin_username', 'inputUsername', 'required');
         $this->form_validation->set_rules('admin_password', 'inputPassword', 'required');
