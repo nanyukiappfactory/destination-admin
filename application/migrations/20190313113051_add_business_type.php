@@ -59,13 +59,13 @@ class Migration_Add_business_type extends CI_Migration
                 'null' => false
             ),
         ));
-        $this->dbforge->add_key('business_id', true);
-        $this->dbforge->create_table('business_id');
+        $this->dbforge->add_key('business_type_id', true);
+        $this->dbforge->create_table('business_type');
     }
 
     public function down()
     {
-        $this->dbforge->drop_table('business');
+        $this->dbforge->drop_table('business_type');
     }
 }
 ?>
