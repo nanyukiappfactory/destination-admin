@@ -14,9 +14,8 @@ class Admin extends MX_Controller
     }
 
     public function index()
-    { 
-     
-       $this->load->view('layouts/layout');
+    {     
+       redirect('activities/all-activities');
     }
 
     public function admin_logout()

@@ -14,7 +14,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<?php echo form_open(base_url() . 'proprietor/add-proprietors'); ?>
+			<?php echo form_open(base_url() . 'proprietors/add-proprietors'); ?>
 			<div class="modal-body">
 
 				<div class="form-group">

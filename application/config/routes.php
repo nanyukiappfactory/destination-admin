@@ -61,17 +61,22 @@ $route['login'] = 'auth/auth';
 $route['test'] = 'admin/test/index';
 $route['admin/logout'] = 'admin/admin/admin_logout';
 
-/**
- * routes for sidebar items
+
+/*
+ * activities routes
  */
-$route['activities/all-activities'] = 'admin/activities/index';
+$route['activities/add-activity'] = 'admin/activities/add_activity';
+$route['activities/all-activities'] = 'admin/activities/all_activities';
+
+
+/*
+ * business-types routes
+ */
 $route['business-types/all-business-types'] = 'admin/business_types/index';
-$route['proprietors/all-proprietors'] = 'admin/proprietors/index';
+$route['business-types/add-business-types'] = 'admin/business_types/add_business_type';
 
-/**
- * proprietor routes
+/*
+ * propietors routes
  */
+$route['proprietors/all-proprietors'] = 'admin/proprietors/index';
 $route['proprietors/add-proprietors'] = 'admin/proprietors/add_proprietor';
-
-
-

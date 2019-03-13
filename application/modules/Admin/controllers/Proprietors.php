@@ -4,6 +4,7 @@ require_once "./application/modules/admin/controllers/Admin.php";
 
 class Proprietors extends admin {
    function __construct() {
+       
        parent::__construct();
        $this->load->model('proprietors_model');
    }
