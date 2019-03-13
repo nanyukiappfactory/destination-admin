@@ -12,6 +12,4 @@
 		<?php $this->load->view('admin/layouts/footer');?>
 
 	</body>
-
-	
 </html>
