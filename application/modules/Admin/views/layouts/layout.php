@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
 
 	<?php $this->load->view('admin/layouts/header');?>
     <body>

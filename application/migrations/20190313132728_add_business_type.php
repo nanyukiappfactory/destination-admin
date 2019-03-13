@@ -49,7 +49,7 @@ class Migration_Add_business_type extends CI_Migration
                 'null' => false,
                 'onupdate' => 'CURRENT_TIMESTAMP'
             ),          
-            'creation_on'=>array(
+            'created_on'=>array(
                 'type' => 'DATETIME',
                 'null' => true
             ),        

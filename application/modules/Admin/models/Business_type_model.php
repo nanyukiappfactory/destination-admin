@@ -12,7 +12,6 @@ class Business_type_model extends CI_Model
             'deleted' => 0,
             'modified_on' => date('Y/m/d'),
             'created_on' => date('Y/m/d')
-
         );
 
         if($this->db->insert('business_type', $data))
