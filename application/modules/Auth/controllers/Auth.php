@@ -11,6 +11,7 @@ class Auth extends MX_Controller
 
     public function index()
     {
+  
         // $this->load->view('admin/layouts/layout', $data);
         $this->form_validation->set_rules('admin_username', 'inputUsername', 'required');
         $this->form_validation->set_rules('admin_password', 'inputPassword', 'required');
@@ -22,7 +23,7 @@ class Auth extends MX_Controller
             if ($this->auth_model->validate_administrator($admin_username, $admin_password) == true) {
                 redirect('dashboard');
             } else {
-                //$this->session->set_flashdata('error', 'Incorrect Username or Password');
+                $this->session->set_flashdata('error', 'Incorrect Username or Password');
             }
         }
         $this->load->view('login_layout');
