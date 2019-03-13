@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $this->load->view('admin/layouts/header');?>
+	<?php $this->load->view('admin/layouts/header');?>
 
-<link  href="<?php echo base_url();?>assets/custom/themes/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="<?php echo base_url();?>assets/custom/themes/vendor/bootstrap/css/dashboard.css" rel="stylesheet">
-<body>
-<div>
-<?php $this->load->view('admin/layouts/navigation');?>
-</div>
-<?php $this->load->view('admin/layouts/sidebar');?>
+	<link  href="<?php echo base_url();?>assets/custom/themes/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>assets/custom/themes/vendor/bootstrap/css/dashboard.css" rel="stylesheet">
+	
+	<body>
+		<div>
+			<?php $this->load->view('admin/layouts/navigation');?>
+		</div>
+		<?php $this->load->view('admin/layouts/sidebar');?>
 
-<?php echo $content;?>
-<?php $this->load->view('admin/layouts/footer');?>
+		<?php echo $content;?>
+		
+		<?php $this->load->view('admin/layouts/footer');?>
 
-
-    
-</body>
+	</body>
 </html>

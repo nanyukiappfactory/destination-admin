@@ -28,12 +28,8 @@ class Auth extends MX_Controller
                 redirect('dashboard');
             } else {
                 $this->session->set_flashdata('error', 'Incorrect Username or Password');
-                redirect('login');
             }
         }
-        else
-        {
-            $this->load->view('login_layout');
-        }
+        $this->load->view('login_layout');
     }
 }
