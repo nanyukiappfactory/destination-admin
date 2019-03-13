@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <div class="title-block">
-	<button type="button" class="btn btn-oval btn-primary" data-toggle="modal" data-target="#addProprietorModal">Add
+	<button type="button" class="btn btn-sm mt-2 mb-2 btn-outline-secondary" data-toggle="modal" data-target="#addProprietorModal">Add
 		Proprietor</button>
 </div>
 <!-- Modal -->

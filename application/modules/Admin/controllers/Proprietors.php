@@ -15,8 +15,9 @@ class Proprietors extends admin
     }
     public function index()
     {
-        $data['content'] = "Proprietors";
-        $data['content'] = $this->load->view('admin/proprietor/all_proprietors');
+        $v_data['title'] = "Proprietors";
+        $v_data['content'] = 'many values';
+        $data['content'] = $this->load->view('admin/proprietor/all_proprietors',$v_data, TRUE);
         $this->load->view('admin/layouts/layout', $data);
 
     }
