@@ -61,13 +61,13 @@ $route['login'] = 'auth/auth';
 $route['test'] = 'admin/test/index';
 $route['admin/logout'] = 'admin/admin/admin_logout';
 
-/**
- * routes for sidebar items
- */
+
 /*
  * activities routes
  */
+$route['activities/add-activity'] = 'admin/activities/add_activity';
 $route['activities/all-activities'] = 'admin/activities/index';
+
 
 /*
  * business-types routes
@@ -77,5 +77,4 @@ $route['business-types/all-business-types'] = 'admin/business_types/index';
 /*
  * propietors routes
  */
-
 $route['proprietors/all-proprietors'] = 'admin/proprietors/index';

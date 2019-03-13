@@ -12,7 +12,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <?php echo form_open(base_url()."administration/activities"); ?>
+      <?php echo form_open(base_url()."activities/add-activity"); ?>
         <div class="modal-body">
             <div class="form-group">
                 <label class="control-label">Name</label>
