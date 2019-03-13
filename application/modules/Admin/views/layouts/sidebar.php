@@ -1,4 +1,4 @@
-<link href="<?php echo base_url();?>assets/custom/themes/vendor/bootstrap/css/dashboard.css" rel="stylesheet">
+
 <div class="container-fluid">
 	<div class="row">
 		<nav class="col-md-2 d-none d-md-block bg-light sidebar">

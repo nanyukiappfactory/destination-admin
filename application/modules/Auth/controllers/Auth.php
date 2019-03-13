@@ -6,15 +6,8 @@ class Auth extends MX_Controller
     {
         parent::__construct();
 
-<<<<<<< HEAD
-        public function index()
-        {
-            $this->form_validation->set_rules('admin_name', '', 'required');
-            $this->form_validation->set_rules('admin_password', '', 'required');
-=======
         $this->load->model('auth_model');
     }
->>>>>>> fe34edc15d0f87f6a2d1b438e0b8125393b7b0f4
 
     public function index()
     {
