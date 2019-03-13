@@ -1,8 +1,8 @@
 <?php
-
+if (!defined('BASEPATH')) { exit('No direct access script allowed'); }
     class Auth_model extends CI_Model
     {
-        public function validate_administrator($usernaem, $password)
+        public function validate_administrator($username, $password)
         {
             if($username == "admin" && $password == md5(123456))
             {
@@ -18,7 +18,6 @@
                 return FALSE;
             }
         }
-
         public function check_login_status()
         {
             if($this->session->userdata('login_status'))

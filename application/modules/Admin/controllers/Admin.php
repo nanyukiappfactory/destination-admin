@@ -13,6 +13,12 @@ class Admin extends MX_Controller
         }
     }
 
+    public function index()
+    { 
+     
+       $this->load->view('layouts/layout');
+    }
+
 }
 
 ?>

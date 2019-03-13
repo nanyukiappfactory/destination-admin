@@ -1,7 +1,7 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     
-    <?php $this->load->view('layouts/header'); ?>
+    <?php $this->load->view('admin/layouts/header'); ?>
 <body>
     
     <?php $this->load->view('login'); ?>
