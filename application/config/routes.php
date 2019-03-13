@@ -65,8 +65,8 @@ $route['admin/logout'] = 'admin/admin/admin_logout';
 /*
  * activities routes
  */
-$route['activities/add-activity'] = 'admin/activities/add_activity';
 $route['activities/all-activities'] = 'admin/activities/all_activities';
+$route['activities/add-activity'] = 'admin/activities/add_activity';
 
 
 /*

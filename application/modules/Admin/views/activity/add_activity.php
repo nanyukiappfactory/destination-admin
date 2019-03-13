@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <div class="title-block">
-    <button type="button" id="add_button_activities" class="btn btn-sm mt-2 mb-2" data-toggle="modal" data-target="#exampleModal">Add Activity</button>
+<button type="button" class="btn btn-sm mt-2 mb-2 btn-outline-secondary"" data-toggle="modal" data-target="#exampleModal">Add Activity</button>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
