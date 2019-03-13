@@ -1,8 +1,4 @@
 <?php
-require_once "./application/modules/admin/controllers/Admin.php";
-if (!defined('BASEPATH')) {
-    exit('No direct access script allowed');
-}
 
 class Auth extends MX_Controller
 {

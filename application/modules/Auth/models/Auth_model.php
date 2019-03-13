@@ -1,5 +1,5 @@
 <?php
-
+if (!defined('BASEPATH')) { exit('No direct access script allowed'); }
     class Auth_model extends CI_Model
     {
         public function validate_administrator($username, $password)
