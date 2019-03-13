@@ -1,23 +1,33 @@
-<?php $this->load->view('business_type/add_business_type');?>
+<?php $this->load->view('activity/add_activity');?>
 <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
-            <tr>
-              <th>#</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-            </tr>
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
           </thead>
           <tbody>
             <tr>
-              <td><?php echo $here[0];?></td>
-              <td><?php echo $here[1];?></td>
-              <td><?php echo $here[2];?></td>
-              <td><?php echo $here[3];?></td>
-            </tr>
-           
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>          
           </tbody>
         </table>
       </div>
