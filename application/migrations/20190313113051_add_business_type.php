@@ -20,38 +20,52 @@ class Migration_Add_business_type extends CI_Migration
                 'null' => false
             ),
             'business_type_status'=>array(
-
+                'type' => 'VARCHAR',
+                'constraint' => '50',
+                'null' => false
             ),
             'deleted'=>array(
-
+                'type' => 'TINYINT',
+                'constraint' => '1',
+                'null'=>false,
+                'default'=>'0'
             ),
             'deleted_on'=>array(
-
+                'type' => 'DATETIME',
+                'null' => true
             ),
             'deleted_by'=>array(
-
+                'type' => 'INT',
+                'constraint' => '11',
+                'null' => true
             ),
             'modified_by'=>array(
-
-            ),
-            
+                'type' => 'INT',
+                'constraint' => '11',
+                'null' => true
+            ),    
             'modified_on'=>array(
-
-            ),
-            
+                'type' => 'TIMESTAMP',
+                'null' => false,
+                'onupdate' => 'CURRENT_TIMESTAMP'
+            ),          
             'creation_on'=>array(
-
-            ),
-            
+                'type' => 'DATETIME',
+                'null' => true
+            ),        
             'created_by'=>array(
-
+                'type' => 'INT',
+                'constraint' => '11',
+                'null' => false
             ),
         ));
+        $this->dbforge->add_key('business_id', true);
+        $this->dbforge->create_table('business_id');
     }
 
     public function down()
     {
-
+        $this->dbforge->drop_table('business');
     }
 }
 ?>
