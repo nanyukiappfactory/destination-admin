@@ -1,5 +1,5 @@
 <?php
-!defined('BASEPATH') or exit('no direct script access allowed');
+defined('BASEPATH') or exit('no direct script access allowed');
 
 class Migration_Add_proprietor extends CI_Migration
 {
