@@ -9,7 +9,6 @@ class Proprietors extends admin
 {
     public function __construct()
     {
-
         parent::__construct();
         $this->load->model('proprietors_model');
     }
@@ -34,14 +33,10 @@ class Proprietors extends admin
             $proprietor_id = $this->proprietors_model->add_proprietor();
 
             if ($proprietor_id) {
-                $this->session->set_flashdata('success', 'Proprietor Id' . $proprietor_id . 'added');
-             
-
+                $this->session->set_flashdata('success', 'Proprietor Id'.'' . $proprietor_id .''. 'added');
             } else {
                 $this->session->set_flashdata('error', 'proprietor not added');
-
             }
-            redirect('admin/Proprietors/index')  ; 
         }
         if (validation_errors()) {
             
@@ -55,7 +50,7 @@ class Proprietors extends admin
 
          $this->load->view("layouts/layout", $data);
     
-    
+
        
 
     }
