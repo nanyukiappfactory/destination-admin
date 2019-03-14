@@ -24,7 +24,8 @@
 		</div>
 	</div>
 	<div class=''>
-		<button type="submit" class="btn btn-primary">Save</button>
+		<?php echo anchor("/admin/Proprietors/", "Close", "class='btn btn-info mt-2 mb-2 '")?>
+		<button type="submit" class="btn btn-info">Save</button>
 	</div>
 <?php echo form_close(); ?>
 
