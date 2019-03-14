@@ -1,4 +1,4 @@
-<?php $this->load->view('business_type/add_business_type');?>
+<?php echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
 <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -21,6 +21,6 @@
         </table>
       </div>
     </main>
-    </div>
+  </div>
 </div>
     

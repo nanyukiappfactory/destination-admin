@@ -34,6 +34,7 @@
                 {
                     $this->session->set_flashdata('error', 'Unable to save Business Type. Try Again!');
                 }
+                redirect('business-types/all-business-types');
             }
             else
             {
@@ -42,7 +43,14 @@
                     $this->session->set_flashdata('error', validation_errors());
                 }
             }
-            redirect('business-types/all-business-types');
+
+            $data = array(
+                "title" => "Add Business Type",
+                "content" => $this->load->view('business_type/add_business_type', NULL, TRUE),
+            );
+
+            $this->load->view("layouts/layout", $data);
+
         }
     }
     
