@@ -34,7 +34,7 @@ class Proprietors extends admin
             $proprietor_id = $this->proprietors_model->add_proprietor();
 
             if ($proprietor_id) {
-                $this->session->set_flashdata('success', 'Proprietor Id' . $proprietor_id . 'added');
+                $this->session->set_flashdata('success', 'Proprietor Id'.'' . $proprietor_id .''. 'added');
              
 
             } else {
