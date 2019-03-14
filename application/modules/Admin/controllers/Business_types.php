@@ -12,8 +12,8 @@
 
         public function index()
         {
-            $arr = array('1', '12', 'sam', '1992');
-            $v_data['here'] = $arr;
+            $v_data['business_type'] = $this->business_type_model->all_business_types();;
+            
             $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
             $this->load->view('admin/layouts/layout', $data); 
         }
