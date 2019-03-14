@@ -11,9 +11,19 @@
 			$error = $this->session->flashdata('error');
 			if(!empty($error))
 			{?>
-				<div><?php echo $error;?></div>
+				<div class="alert alert-danger"><?php echo $error;?></div>
 			<?php }
 		?>
+		<?php 
+			$success = $this->session->flashdata('success');
+			if(!empty($success))
+			{?>
+				<div class="alert alert-success"><?php echo $success;?></div>
+			<?php }
+		?> 
+			
+		<?php $this->session->set_flashdata('success', 'Welcome back Admin');?>
+
 		<?php echo $content;?>
 		
 		<?php $this->load->view('admin/layouts/footer');?>

@@ -14,6 +14,7 @@
         {
             $v_data['business_type'] = $this->business_type_model->all_business_types();;
             
+            $data['title'] = 'Business Type';
             $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
             $this->load->view('admin/layouts/layout', $data); 
         }
@@ -44,5 +45,5 @@
             redirect('business-types/all-business-types');
         }
     }
-
+    
 ?>
