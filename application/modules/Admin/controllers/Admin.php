@@ -15,6 +15,8 @@ class Admin extends MX_Controller
 
     public function index()
     {     
+        
+        $this->session->set_flashdata('success', 'Welcome back Admin');
        redirect('activities/all-activities');
     }
 

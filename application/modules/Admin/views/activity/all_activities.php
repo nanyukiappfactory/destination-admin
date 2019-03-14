@@ -1,5 +1,6 @@
 <?php $this->load->view('activity/add_activity');?>
 
+
 <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
           <thead>
