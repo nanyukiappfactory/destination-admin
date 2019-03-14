@@ -1,4 +1,5 @@
 <?php $this->load->view('activity/add_activity');?>
+
 <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -13,7 +14,7 @@
             <th>Phone</th>
             <th>Email</th>
             <th>Actions</th>
-        </tr>
+          </tr>
           </thead>
           <tbody>
             <tr>
