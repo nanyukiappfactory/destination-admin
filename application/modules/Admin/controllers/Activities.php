@@ -50,6 +50,10 @@ require_once "./application/modules/admin/controllers/Admin.php";
                     $this->session->set_flashdata('error', validation_errors());
                 }
             }
+            $data = array(
+                "title" => "Add activity",
+                "content" => $this->load->view('activities/add_activity', NULL, TRUE)
+            );
         }
     }
         ?>
