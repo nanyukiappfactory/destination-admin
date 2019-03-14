@@ -35,11 +35,13 @@ class Proprietors extends admin
 
             if ($proprietor_id) {
                 $this->session->set_flashdata('success', 'Proprietor Id' . $proprietor_id . 'added');
+             
 
             } else {
                 $this->session->set_flashdata('error', 'proprietor not added');
 
             }
+            redirect('admin/Proprietors/index')  ; 
         }
         if (validation_errors()) {
             
@@ -53,7 +55,7 @@ class Proprietors extends admin
 
          $this->load->view("layouts/layout", $data);
     
-
+    
        
 
     }
