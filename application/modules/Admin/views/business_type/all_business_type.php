@@ -3,19 +3,18 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
+              <th>No</th>
+              <th>Business Type Name</th>
+              <th>Business Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><?php echo $here[0];?></td>
-              <td><?php echo $here[1];?></td>
-              <td><?php echo $here[2];?></td>
-              <td><?php echo $here[3];?></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
            
           </tbody>
