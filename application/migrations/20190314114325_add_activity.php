@@ -1,7 +1,7 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class Migration_Add_activities extends CI_Migration{
+    class Migration_Add_activity extends CI_Migration{
 
     public function up()
     {
@@ -83,11 +83,11 @@
             )
         ));
         $this->dbforge->add_key('activity_id', true);
-        $this->dbforge->create_table('activities');
+        $this->dbforge->create_table('activity');
     }
     public function down()
     {
-        $this->dbforge->drop_table('activities');
+        $this->dbforge->drop_table('activity');
     }
         
 }

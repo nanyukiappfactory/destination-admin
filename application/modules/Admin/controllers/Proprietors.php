@@ -45,8 +45,16 @@ class Proprietors extends admin
             
             $this->session->set_flashdata('error', validation_errors());
         }
+       
+        $data = array(
+            "title" => "add proprietor",
+            "content" => $this->load->view('proprietor/add_proprietor', NULL ,true)
+        );
 
-        redirect('proprietors/all-proprietors');
+         $this->load->view("layouts/layout", $data);
+    
+
+       
 
     }
 }

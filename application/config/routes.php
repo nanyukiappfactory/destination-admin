@@ -80,3 +80,4 @@ $route['business-types/add-business-types'] = 'admin/business_types/add_business
  */
 $route['proprietors/all-proprietors'] = 'admin/proprietors/index';
 $route['proprietors/add-proprietors'] = 'admin/proprietors/add_proprietor';
+$route['proprietors/close-form'] = 'admin/proprietors/close_form';
