@@ -18,11 +18,10 @@
 			$success = $this->session->flashdata('success');
 			if(!empty($success))
 			{?>
-				<div class="alert alert-success"><?php echo $success;?></div>
+				<div id="welcome_message" class="alert alert-success"><?php echo $success;?></div>
 			<?php }
 		?> 
-			
-		<?php $this->session->set_flashdata('success', 'Welcome back Admin');?>
+	
 
 		<?php echo $content;?>
 		
