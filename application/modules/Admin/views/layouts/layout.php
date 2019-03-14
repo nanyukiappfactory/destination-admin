@@ -21,7 +21,6 @@
 				<div id="welcome_message" class="alert alert-success"><?php echo $success;?></div>
 			<?php }
 		?> 
-	
 
 		<?php echo $content;?>
 		
