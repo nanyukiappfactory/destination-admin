@@ -4,6 +4,7 @@ class Proprietors_model extends CI_Model
 {
     public function add_proprietor()
     {
+
         $data = array(
             'first_name' => $this->input->post('first_name'), 
             'last_name' => $this->input->post('last_name'),
