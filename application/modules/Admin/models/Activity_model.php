@@ -1,7 +1,7 @@
 <?php 
 class Activity_Model extends CI_Model
 {   
-    protected $table = "activities";
+    protected $table = "activity";
 
     public function save_activity()
     {   
@@ -21,7 +21,7 @@ class Activity_Model extends CI_Model
             'created_on' => date('Y/m/d')
         );
 
-        if($this->db->insert('activities', $data))
+        if($this->db->insert('activity', $data))
         {
             $insert_id = $this->db->insert_id();
             return  $insert_id;
