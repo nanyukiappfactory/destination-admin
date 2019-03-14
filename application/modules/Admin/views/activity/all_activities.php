@@ -14,7 +14,7 @@
             <th>Phone</th>
             <th>Email</th>
             <th>Actions</th>
-        </tr>
+          </tr>
           </thead>
           <tbody>
             <tr>
