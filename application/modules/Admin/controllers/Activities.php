@@ -25,7 +25,7 @@ require_once "./application/modules/admin/controllers/Admin.php";
             $this->form_validation->set_rules('activity_name', 'Name', 'required');       
             $this->form_validation->set_rules('activity_date', 'Date', 'required');
             $this->form_validation->set_rules('activity_phone', 'Phone', 'required');
-            $this->form_validation->set_rules('activity_email', 'Email', 'required');
+            $this->form_validation->set_rules('activity_email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('activity_longitude', 'Longitude', 'required');
             $this->form_validation->set_rules('activity_latitude', 'Latitude', 'required');
             $this->form_validation->set_rules('activity_description', 'Description', 'required');
