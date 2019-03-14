@@ -1,6 +1,6 @@
 
       <?php echo form_open(base_url()."activities/add-activity"); ?>
-        <div class="modal-body">
+        <div class="">
             <div class="form-group">
                 <label class="control-label">Name</label>
                 <input type="text" class="form-control boxed" name="activity_name">
@@ -24,7 +24,7 @@
                 <textarea class="textarea_editor form-control border-radius-0" name="activity_description" placeholder="Enter text ..."></textarea>
             </div>
         </div>    
-        <div class="modal-footer">
+        <div class="">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-success">Save</button>
         </div>

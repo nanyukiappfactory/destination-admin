@@ -14,9 +14,10 @@ require_once "./application/modules/admin/controllers/Admin.php";
 
         public function all_activities()
         {
-            $arr = array('1', '12', 'sam', '1992');
-            $v_data['here'] = $arr ;
-            $data['content'] = $this->load->view('activity/all_activities', $v_data, TRUE);
+            $data = array(
+                "title" => "activities",
+                "content" => $this->load->view('activity/all_activities', NULL, TRUE )
+            );
             $this->load->view('layouts/layout', $data);       
         }
         public function add_activity()
@@ -51,9 +52,13 @@ require_once "./application/modules/admin/controllers/Admin.php";
                 }
             }
             $data = array(
-                "title" => "Add activity",
-                "content" => $this->load->view('activities/add_activity', NULL, TRUE)
+                "title" => "add activity",
+                "content" => $this->load->view('activity/add_activity', NULL ,true)
             );
+    
+             $this->load->view("layouts/layout", $data);
+        
+           
         }
     }
         ?>

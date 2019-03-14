@@ -1,5 +1,5 @@
 
-<?php echo form_open($this->uri->uri_string()); ?>
+<?php echo form_open(base_url() . 'proprietors/add-proprietors'); ?>
 	<div class=''>
 
 		<div class="form-group">
@@ -24,7 +24,8 @@
 		</div>
 	</div>
 	<div class=''>
-		<button type="submit" class="btn btn-info" >Save</button>
+		<button type="button" class="btn btn-secondary" >Close</button>
+		<button type="submit" class="btn btn-primary">Save</button>
 	</div>
 <?php echo form_close(); ?>
 
