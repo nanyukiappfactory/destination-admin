@@ -22,6 +22,7 @@ class Migration_Add_business_type extends CI_Migration
             'business_type_status'=>array(
                 'type' => 'VARCHAR',
                 'constraint' => '50',
+                'default'=>'1',
                 'null' => false
             ),
             'deleted'=>array(
