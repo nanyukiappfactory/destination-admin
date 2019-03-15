@@ -43,7 +43,8 @@ class Proprietors extends admin
 		$v_data["links"]=$this->pagination->create_links();
 
 		$v_data['proprietors']=$this->proprietors_model->get_all_proprietors($where, $limit_per_page, $order, $order_method, $page * $limit_per_page);
-		$v_data['order_method']=$order_method;
+        $v_data['order_method']=$order_method;
+        $v_data['order'] = $order;
 		$v_data['counter']=$page * $limit_per_page;
 		//Assign view as string with no data to var $content
 		$data['content'] = $this->load->view('proprietor/all_proprietors', $v_data, TRUE);
@@ -154,9 +155,5 @@ class Proprietors extends admin
         );
 
          $this->load->view("layouts/layout", $data);
-    
-    
-       
-
     }
 }

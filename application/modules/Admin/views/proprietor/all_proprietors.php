@@ -4,6 +4,40 @@
         <thead>
             <tr>
 
+                <th>No.</th>
+				<th>First Name
+				<?php if($order_method == "ASC"){?>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+				<?php }
+				else{ ?>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+				<?php }?>
+				</th>
+				<th>Last Name
+				<?php if($order_method == "ASC"){?>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+				<?php }
+				else{ ?>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+				<?php }?></th>
+				<th>Phone Number</th>
+				<th>National ID
+				<?php if($order_method == "ASC"){?>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+				<?php }
+				else{ ?>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+				<?php }?></th>
+				<th>Business Reg ID</th>
+				<th>Status
+				<?php if($order_method == "ASC"){?>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+				<?php }
+				else{ ?>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+				<?php }?></th>
+					
+                <th colspan="4">Actions</th>
 
             <tr>
 
