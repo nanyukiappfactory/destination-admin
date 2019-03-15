@@ -14,9 +14,13 @@ class Activities extends admin
 
     public function all_activities()
     {
+       $v_data = array(
+           "activities" => $this->activity_model->all_activities()
+       );
+        
         $data = array(
             "title" => "activities",
-            "content" => $this->load->view('activity/all_activities', null, true),
+            "content" => $this->load->view('activity/all_activities', $v_data, true)
         );
         $this->load->view('layouts/layout', $data);
     }
