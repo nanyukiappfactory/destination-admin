@@ -1,6 +1,5 @@
 <?php echo anchor("/admin/activities/add_activity", "Add Activity", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
 
-
 <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
           <thead>
