@@ -3,6 +3,13 @@ class Activity_Model extends CI_Model
 {   
     protected $table = "activity";
 
+    public function all_activities()
+    {
+        $this->db->select('*');
+        $this->db->from('activity');
+        $this->db->where('deleted = 0');
+        return $this->db->get();
+    }
     public function save_activity()
     {   
         $data = array(

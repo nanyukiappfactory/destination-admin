@@ -26,5 +26,27 @@ class Proprietors_model extends CI_Model
         }
 
     }
+    public function get_all_proprietors($where, $limit, $order, $order_method, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('proprietor');
+        $this->db->where('deleted = 0' . $where );
+        $this->db->limit($limit, $start);
+        $this->db->order_by($order, $order_method);
+        return $this->db->get();
+    }
+    public function all_proprietors()
+    {
+        $this->db->select('*');
+        $this->db->from('proprietor');
+        $this->db->where('deleted = 0');
+        return $this->db->get();
+    }
+    public function count_proprietors()
+    {
+        $this->db->where('deleted = 0');
+        $query = $this->db->get('proprietor')->num_rows();
+        return $query;
+    }
 }
 ?>
