@@ -17,7 +17,7 @@ class Activities extends admin
         $where = 'deleted = 0 ';
 
          // init params
-         $limit_per_page = 2;
+         $limit_per_page = 5;
          $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
 
          // get current page records
