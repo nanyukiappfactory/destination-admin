@@ -10,10 +10,28 @@
             $this->load->model('business_type_model');
         }
 
-        public function index()
+        public function index($order = 'business_type.created_on', $order_method = 'DESC')
         {
-            $v_data['business_type'] = $this->business_type_model->all_business_types();;
-            
+            $where = 'deleted = 0';
+            $limit_per_page = 5;
+            $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
+
+            $config['base_url'] = base_url(). 'business-types/all-business-types/'.$order . '/'.$order_method;
+            $config['total_rows'] = $this->business_type_model->countAll();
+            $config['per_page'] = $limit_per_page;
+            $config['uri_segment'] = 5;
+            $config['numlinks'] = 2;
+            $config['use_page_numbers'] = TRUE;
+            $config['reuse_query_string'] = TRUE;
+
+            $this->pagination->initialize($config);
+
+            $v_data['links'] = $this->pagination->create_links(); 
+
+            $v_data['business_types'] = $this->business_type_model->get_business_types($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);
+            $v_data['order_method'] = $order_method;
+            $v_data['counter'] = $page * $limit_per_page;
+
             $data['title'] = 'Business Type';
             $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
             $this->load->view('admin/layouts/layout', $data); 

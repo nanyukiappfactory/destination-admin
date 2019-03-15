@@ -89,6 +89,7 @@
 		<?php $this->load->view('proprietor/view_proprietor', $v_data)?>
 		<button type="button" class="btn btn-sm btn-info"><i class="fa fa fa-edit" ></i></button>
         <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
+		<button type="button" class="btn btn-sm btn-warning"><i class="fas fa-thumbs-down"></i></button>
 			</td>
 			<?php
 					
