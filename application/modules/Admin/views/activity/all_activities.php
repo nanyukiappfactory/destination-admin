@@ -5,13 +5,46 @@
           <thead>
           <tr>
             <th>No.</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Status</th>
+            <th>Name<?php
+            if($order_method == "ASC")
+            {?>
+              <a href="<?php echo base_url();?>activities/all-activities/activity.activity_name/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+            <?php }
+            else{?>
+              <a href="<?php echo base_url();?>activities/all-activities/activity.activity_name/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+            <?php }?></th>
+            <th>Date<?php
+                if($order_method == "ASC"){?>
+                    <a href="<?php echo base_url();?>activities/all-activities/activity.activity_date/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+                <?php }
+                else{ ?>
+                    <a href="<?php echo base_url();?>activities/all-activities/activity.activity_date/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+                <?php }?>
+            </th>
+            <th>Status<?php
+            if($order_method == "ASC"){?>
+                <a href="<?php echo base_url();?>activities/all-activities/activity.activity_status/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+            <?php }
+            else{ ?>
+                <a href="<?php echo base_url();?>activities/all-activities/activity.activity_status/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+            <?php }?>
+            </th>
             <th>Longitude</th>
             <th>Latitude</th>
-            <th>Phone</th>
-            <th>Email</th>
+            <th>Phone<?php
+            if($order_method == "ASC"){?>
+                <a href="<?php echo base_url();?>activities/all-activities/activity.activity_phone/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+            <?php }
+            else{ ?>
+                <a href="<?php echo base_url();?>activities/all-activities/activity.activity_phone/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+            <?php }?></th>
+            <th>Email<?php
+            if($order_method == "ASC"){?>
+                <a href="<?php echo base_url();?>activities/all-activities/activity.activity_email/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+            <?php }
+            else{ ?>
+                <a href="<?php echo base_url();?>activities/all-activities/activity.activity_email/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+            <?php }?></th>
             <th>Actions</th>
           </tr>
           </thead>
@@ -19,7 +52,7 @@
 
          <?php
           if (is_array($activities->result())) {
-              $count = 0;
+              $count = $counter;
               foreach ($activities->result() as $activity) {
                   $v_data['activity_modal'] = $activity;
                   $count++;
@@ -31,7 +64,7 @@
 
                 <td>
                     <?php
-                if ($activity->activity_status == 1) {?>
+                        if ($activity->activity_status == 1) {?>
                             <span class="badge badge-pill badge-success">Active</span>
                         <?php } else {?>
                             <span class="badge badge-pill badge-warning">Inactive</span>
@@ -50,6 +83,11 @@
               }?>
           </tbody>
         </table>
+        <div class="p-3" id="pagination-links">
+									<?php if (isset($links)) { ?>
+										<?php echo $links ?>
+									<?php } ?>
+								</div>
       </div>
     </main>
     </div>
