@@ -12,12 +12,33 @@ class Activities extends admin
         $this->load->model('activity_model');
     }
 
-    public function all_activities()
+    public function all_activities($order = 'activity.created_on', $order_method = 'DESC')
     {
-       $v_data = array(
-           "activities" => $this->activity_model->all_activities()
-       );
-        
+        $where = 'deleted = 0 ';
+
+         // init params
+         $limit_per_page = 5;
+         $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
+
+         // get current page records
+              
+         $config['base_url'] = base_url() . 'activities/all-activities/'.$order . '/'.$order_method;
+         $config['total_rows'] = $this->activity_model->countAll();
+         $config['per_page'] = $limit_per_page;
+         $config["uri_segment"] = 5;
+          
+         // custom paging configuration
+         $config['num_links'] = 2;
+         $config['use_page_numbers'] = TRUE;
+         $config['reuse_query_string'] = TRUE;
+         $this->pagination->initialize($config);
+                 
+         // build paging links
+         $v_data["links"] = $this->pagination->create_links();
+         $v_data["activities"] = $this->activity_model->get_activities($where, $order, $order_method, $limit_per_page, $page*$limit_per_page);
+         $v_data['order_method'] = $order_method;
+         $v_data['counter'] = $page * $limit_per_page;
+
         $data = array(
             "title" => "activities",
             "content" => $this->load->view('activity/all_activities', $v_data, true)

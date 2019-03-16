@@ -80,17 +80,9 @@
 
   
   #add_button_activities {
-    background-color: #85CE36;
     color: white;
   }
 
-  div#pagination-links a, strong {
-    padding-right: 20px;
-    color: white;
-    align-content: center;
-    border: 2px solid #FFFFFF;
-    background-color: #85CE36;
-  }
   .sidebar-nav {
     background-color: #3A4651;
     color: white;
@@ -102,7 +94,6 @@
   }
 
   .sidebar-nav a:focus {
-    background-color: #85CE36;
     color: white;
   }
 

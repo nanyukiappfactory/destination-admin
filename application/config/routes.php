@@ -67,6 +67,8 @@ $route['admin/logout'] = 'admin/admin/admin_logout';
  */
 $route['activities/all-activities'] = 'admin/activities/all_activities';
 $route['activities/add-activity'] = 'admin/activities/add_activity';
+$route['activities/all-activities/(:any)/(:any)'] = 'admin/activities/all_activities/$1/$2';
+$route['activities/all-activities/(:any)/(:any)/(:num)'] = 'admin/activities/all_activities/$1/$2/$3';
 
 
 /*
@@ -74,6 +76,8 @@ $route['activities/add-activity'] = 'admin/activities/add_activity';
  */
 $route['business-types/all-business-types'] = 'admin/business_types/index';
 $route['business-types/add-business-types'] = 'admin/business_types/add_business_type';
+$route['business-types/all-business-types/(:any)/(:any)'] = 'admin/business_types/index/$1/$2';
+$route['business-types/all-business-types/(:any)/(:any)/(:num)'] = 'admin/business_types/index/$1/$2/$3';
 
 /*
  * propietors routes
