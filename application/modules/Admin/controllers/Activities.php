@@ -14,7 +14,7 @@ class Activities extends admin
 
     public function all_activities($order = 'activity.created_on', $order_method = 'DESC')
     {
-        $where = 'deleted = 0 ';
+         $where = 'deleted = 0 ';
 
          // init params
          $limit_per_page = 5;
@@ -38,10 +38,11 @@ class Activities extends admin
          $v_data["activities"] = $this->activity_model->get_activities($where, $order, $order_method, $limit_per_page, $page*$limit_per_page);
          $v_data['order_method'] = $order_method;
          $v_data['counter'] = $page * $limit_per_page;
-
-        $data = array(
+         $v_data['route'] = 'activities';
+         $search_options = array();
+         $data = array(
             "title" => "activities",
-            "content" => $this->load->view('activity/all_activities', $v_data, true)
+            "content" => $this->load->view('activity/all_activities', $v_data, TRUE)
         );
         $this->load->view('layouts/layout', $data);
     }
