@@ -18,7 +18,7 @@ class Proprietors extends admin
 
         $where = '';
         if ($this->session->userdata('proprietors_search_params')) {
-            $where = $this->session->userdata('proprietors_search_params');
+            $where .= $this->session->userdata('proprietors_search_params');
         }
 
         // init params

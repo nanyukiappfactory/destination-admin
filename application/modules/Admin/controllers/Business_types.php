@@ -33,9 +33,10 @@
             $v_data['counter'] = $page * $limit_per_page;
 
             $data['title'] = 'Business Type';
+            
+            $v_data['route'] = 'business-types';
             $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
 
-            $data['route'] = 'business-types';
             
             $business_type_name = array();
             $status_array = array();
@@ -79,7 +80,7 @@
             }
     
             array_push($search_options, array('status_array_search_param', $status_array, 'Status'));
-            array_push($search_options, array('business_type_name_search_param', $business_type_name, 'Business Type Name'));
+            array_push($search_options, array('business_types_name_search_param', $business_type_name, 'Business Type Name'));
     
             $data['title'] = 'Business Types';
             $data['search_options'] = $search_options;
@@ -89,7 +90,7 @@
 
         public function add_business_type()
         {
-            $this->form_validation->set_rules('business_type_name', 'Name', 'required');
+            $this->form_validation->set_rules('business_types_name', 'Name', 'required');
 
             if($this->form_validation->run() == TRUE)
             {
@@ -125,7 +126,7 @@
         {
             $sql_search_condition = '';
 
-            $business_type_name = $this->input->post('business_type_name_search_param');
+            $business_type_name = $this->input->post('business_types_name_search_param');
             $status_array = $this->input->post('status_array_search_param') == NULL ? 'null' : $this->input->post('status_array_search_param');
 
             if($business_type_name != NULL && !empty($business_type_name))
