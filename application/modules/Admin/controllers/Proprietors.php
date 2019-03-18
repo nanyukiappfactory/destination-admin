@@ -9,46 +9,11 @@ class Proprietors extends admin
 {
     public function __construct()
     {
-
         parent::__construct();
         $this->load->model('proprietors_model');
     }
-    public function index($order = 'proprietor.created_on', $order_method = 'DESC')
+    public function search_parameters()
     {
-
-        $where = '';
-        if ($this->session->userdata('proprietors_search_params')) {
-            $where .= $this->session->userdata('proprietors_search_params');
-        }
-
-        // init params
-        $limit_per_page = 4;
-        $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
-
-        // get current page records
-
-        $config['base_url'] = base_url() . 'proprietors/all-proprietors/' . $order . '/' . $order_method;
-        $config['total_rows'] = $this->proprietors_model->count_proprietors();
-        $config['per_page'] = $limit_per_page;
-        $config["uri_segment"] = 5;
-
-        // custom paging configuration
-        $config['num_links'] = 2;
-        $config['use_page_numbers'] = true;
-        $config['reuse_query_string'] = true;
-
-        $this->pagination->initialize($config);
-
-        // build paging links
-        $v_data["links"] = $this->pagination->create_links();
-
-        $v_data['proprietors'] = $this->proprietors_model->get_all_proprietors($where, $limit_per_page, $order, $order_method, $page * $limit_per_page);
-        $v_data['order_method'] = $order_method;
-        $v_data['order'] = $order;
-        $v_data['counter'] = $page * $limit_per_page;
-        //Assign view as string with no data to var $content
-        $data['content'] = $this->load->view('proprietor/all_proprietors', $v_data, true);
-        //check and change order method
         $data['route'] = 'proprietors';
         $first_name = array();
         $status_array = array();
@@ -109,9 +74,48 @@ class Proprietors extends admin
         array_push($search_options, array('business_id_search_param', $business_reg_id, 'Business Reg ID'));
 
         $data['title'] = 'Proprietors';
+        $data['content'] = $this->load->view('proprietor/all_proprietors',NULL, true);
         $data['search_options'] = $search_options;
         $this->load->view('admin/layouts/layout', $data);
+    }
+    public function index($order = 'proprietor.created_on', $order_method = 'DESC')
+    {
 
+        $where = '';
+        if ($this->session->userdata('proprietors_search_params')) {
+            $where .= $this->session->userdata('proprietors_search_params');
+        }
+
+        // init params
+        $limit_per_page = 4;
+        $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
+
+        // get current page records
+
+        $config['base_url'] = base_url() . 'proprietors/all-proprietors/' . $order . '/' . $order_method;
+        $config['total_rows'] = $this->proprietors_model->count_proprietors();
+        $config['per_page'] = $limit_per_page;
+        $config["uri_segment"] = 5;
+
+        // custom paging configuration
+        $config['num_links'] = 2;
+        $config['use_page_numbers'] = true;
+        $config['reuse_query_string'] = true;
+
+        $this->pagination->initialize($config);
+
+        // build paging links
+        $v_data["links"] = $this->pagination->create_links();
+
+        $v_data['proprietors'] = $this->proprietors_model->get_all_proprietors($where, $limit_per_page, $order, $order_method, $page * $limit_per_page);
+        $v_data['order_method'] = $order_method;
+        $v_data['order'] = $order;
+        $v_data['counter'] = $page * $limit_per_page;
+        //Assign view as string with no data to var $content
+        $data['content'] = $this->load->view('proprietor/all_proprietors', $v_data, true);
+        //check and change order method
+
+        $this->search_parameters();
     }
 
     public function add_proprietor()
@@ -140,42 +144,47 @@ class Proprietors extends admin
         }
 
         $data = array(
+            "route" => 'null',
+            "search_options" => NULL,
             "title" => "add proprietor",
             "content" => $this->load->view('proprietor/add_proprietor', null, true),
         );
 
         $this->load->view("layouts/layout", $data);
     }
-    public function search_proprietor() 
+    public function search_proprietor()
     {
         $sql_search_condition = '';
         $national_id = $this->input->post('national_id_search_param');
         $name = $this->input->post('name_search_param');
         $business_id = $this->input->post('business_id_search_param');
-        $status = $this->input->post('status_search_param') == NULL ? 'null' : $this->input->post('status_search_param');
+        $status = $this->input->post('status_search_param') == null ? 'null' : $this->input->post('status_search_param');
 
-        if($national_id != NULL && !empty($national_id))
-        {
-            $sql_search_condition .= ' AND proprietor.national_id = "'. $national_id . '"';
+        if ($national_id != null && !empty($national_id)) {
+            $sql_search_condition .= ' AND proprietor.national_id = "' . $national_id . '"';
         }
-        if($name != NULL && !empty($name))
-        {
-            $sql_search_condition .= ' AND proprietor.first_name = "'. $name . '"';
-        
+        if ($name != null && !empty($name)) {
+            $sql_search_condition .= ' AND proprietor.first_name = "' . $name . '"';
+
         }
-        if($business_id != NULL && !empty($business_id))
-        {
-            $sql_search_condition .= ' AND proprietor.business_reg_id = "'. $business_id . '"';
-        } 
-        if($status != 'null' )
-        {
-            $sql_search_condition .= ' AND proprietor.proprietor_status = '. $status;
+        if ($business_id != null && !empty($business_id)) {
+            $sql_search_condition .= ' AND proprietor.business_reg_id = "' . $business_id . '"';
         }
-       
-		//set serach sessions
+        if ($status != 'null') {
+            $sql_search_condition .= ' AND proprietor.proprietor_status = ' . $status;
+        }
+
+        //set serach sessions
         $this->session->set_userdata('proprietors_search_params', $sql_search_condition);
         // echo($sql_search_condition);die();
         redirect('proprietors/all-proprietors');
-        
+
+    }
+    
+	public function close_search() {
+		$this->session->unset_userdata('proprietors_search_params');
+		redirect('proprietors/all-proprietors');
 	}
+    
+    
 }
