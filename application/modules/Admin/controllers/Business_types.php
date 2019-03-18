@@ -35,8 +35,7 @@
 
             $v_data['business_types'] = $this->business_types_model->get_business_types($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);
             $v_data['order_method'] = $order_method;
-            $v_data['counter'] = $page * $limit_per_page;          
-            $v_data['search_options'] = $search_options;
+            $v_data['counter'] = $page * $limit_per_page;
             $v_data['route'] = 'business-types';
 
             $data['title'] = 'Business Type';
@@ -79,10 +78,13 @@
     
             array_push($search_options, array('status_array_search_params', $status_array, 'Status'));
             array_push($search_options, array('business_types_name_search_params', $business_type_name, 'Business Type Name'));
-                        
+                      
+            $v_data['search_options'] = $search_options;
+
             $data['title'] = 'Business Types';
 
             $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
+            
             $this->load->view('admin/layouts/layout', $data); 
         }
 
@@ -119,7 +121,7 @@
             $this->load->view("layouts/layout", $data);
         }
 
-        public function search_proprietor() 
+        public function search_business_types() 
         {
             $sql_search_condition = '';
 
@@ -133,7 +135,7 @@
 
             if($status_array != 'null' )
             {
-                $sql_search_condition .= ' AND business_type.business_type_status = '. $business_type_status;
+                $sql_search_condition .= ' AND business_type.business_type_status = '. $status_array;
             }
         
             //set serach sessions

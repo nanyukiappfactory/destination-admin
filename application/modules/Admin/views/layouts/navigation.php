@@ -13,14 +13,14 @@
                   <option value="<?php echo $search_option['id'];?>"><?php echo $search_option['name'];?></option>
               <?php } ?>
               </select>
-        <?php }
-      ?>
-      <button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
-      <?php if($this->session->userdata($route.'_search_params')){?>
-          <a href="<?php echo base_url();?><?php echo $route;?>/close-search" class="btn btn-outline-danger my-2 my-sm-0 ml-sm-2"><i class="fas fa-times"></i></a>
-      <?php }?>
-      <a class="nav-link" href="<?php echo base_url();?>admin/logout">Sign out</a>
-  <?php echo  form_close();?>
+              <?php }
+            ?>
+            <button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
+            <?php if($this->session->userdata($route.'_search_params')){?>
+                <a href="<?php echo base_url();?><?php echo $route;?>/close-search" class="btn btn-outline-danger my-2 my-sm-0 ml-sm-2"><i class="fas fa-times"></i></a>
+            <?php }?>
+            <a class="nav-link" href="<?php echo base_url();?>admin/logout">Sign out</a>
+        <?php echo  form_close();?>
     
     </li>
   </ul>
