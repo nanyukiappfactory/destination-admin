@@ -7,7 +7,7 @@
         {
             parent:: __construct();
 
-            $this->load->model('business_type_model');
+            $this->load->model('business_types_model');
         }
 
         public function index($order = 'business_type.created_on', $order_method = 'DESC')
@@ -17,7 +17,7 @@
             $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
 
             $config['base_url'] = base_url(). 'business-types/all-business-types/'.$order . '/'.$order_method;
-            $config['total_rows'] = $this->business_type_model->countAll();
+            $config['total_rows'] = $this->business_types_model->countAll();
             $config['per_page'] = $limit_per_page;
             $config['uri_segment'] = 5;
             $config['numlinks'] = 2;
@@ -28,21 +28,21 @@
 
             $v_data['links'] = $this->pagination->create_links(); 
 
-            $v_data['business_types'] = $this->business_type_model->get_business_types($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);
+            $v_data['business_types'] = $this->business_types_model->get_business_types($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);
             $v_data['order_method'] = $order_method;
             $v_data['counter'] = $page * $limit_per_page;
 
             $data['title'] = 'Business Type';
             $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
 
-            $data['route'] = 'business_types';
+            $data['route'] = 'business-types';
             
             $business_type_name = array();
             $status_array = array();
             $check_duplicate = array();
             $search_options = array();
 
-            foreach ($this->business_type_model->all_business_types()->result() as $value) {
+            foreach ($this->business_types_model->all_business_types()->result() as $value) {
 
                 $status_value = '';
     
@@ -93,7 +93,7 @@
 
             if($this->form_validation->run() == TRUE)
             {
-                $business_type_id = $this->business_type_model->save_business_type();
+                $business_type_id = $this->business_types_model->save_business_type();
                 if($business_type_id)
                 {
                     $this->session->set_flashdata('success', 'Business ID: ' . $business_type_id . ' saved');
