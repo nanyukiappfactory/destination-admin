@@ -7,7 +7,7 @@
         {
             parent:: __construct();
 
-            $this->load->model('business_type_model');
+            $this->load->model('business_types_model');
         }
 
         public function index($order = 'business_type.created_on', $order_method = 'DESC')
@@ -17,7 +17,7 @@
             $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
 
             $config['base_url'] = base_url(). 'business-types/all-business-types/'.$order . '/'.$order_method;
-            $config['total_rows'] = $this->business_type_model->countAll();
+            $config['total_rows'] = $this->business_types_model->countAll();
             $config['per_page'] = $limit_per_page;
             $config['uri_segment'] = 5;
             $config['numlinks'] = 2;
@@ -25,24 +25,23 @@
             $config['reuse_query_string'] = TRUE;
 
             $this->pagination->initialize($config);
-
-            $v_data['links'] = $this->pagination->create_links(); 
-
-            $v_data['business_types'] = $this->business_type_model->get_business_types($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);
-            $v_data['order_method'] = $order_method;
-            $v_data['counter'] = $page * $limit_per_page;
-
-            $data['title'] = 'Business Type';
-            $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
-
-            $data['route'] = 'business_types';
             
             $business_type_name = array();
             $status_array = array();
             $check_duplicate = array();
             $search_options = array();
 
-            foreach ($this->business_type_model->all_business_types()->result() as $value) {
+            $v_data['links'] = $this->pagination->create_links(); 
+
+            $v_data['business_types'] = $this->business_types_model->get_business_types($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);
+            $v_data['order_method'] = $order_method;
+            $v_data['counter'] = $page * $limit_per_page;          
+            $v_data['search_options'] = $search_options;
+            $v_data['route'] = 'business-types';
+
+            $data['title'] = 'Business Type';
+
+            foreach ($this->business_types_model->all_business_types()->result() as $value) {
 
                 $status_value = '';
     
@@ -78,22 +77,22 @@
                 ));
             }
     
-            array_push($search_options, array('status_array_search_param', $status_array, 'Status'));
-            array_push($search_options, array('business_type_name_search_param', $business_type_name, 'Business Type Name'));
-    
+            array_push($search_options, array('status_array_search_params', $status_array, 'Status'));
+            array_push($search_options, array('business_types_name_search_params', $business_type_name, 'Business Type Name'));
+                        
             $data['title'] = 'Business Types';
-            $data['search_options'] = $search_options;
 
+            $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
             $this->load->view('admin/layouts/layout', $data); 
         }
 
         public function add_business_type()
         {
-            $this->form_validation->set_rules('business_type_name', 'Name', 'required');
+            $this->form_validation->set_rules('business_types_name', 'Name', 'required');
 
             if($this->form_validation->run() == TRUE)
             {
-                $business_type_id = $this->business_type_model->save_business_type();
+                $business_type_id = $this->business_types_model->save_business_type();
                 if($business_type_id)
                 {
                     $this->session->set_flashdata('success', 'Business ID: ' . $business_type_id . ' saved');
@@ -118,15 +117,14 @@
             );
 
             $this->load->view("layouts/layout", $data);
-
         }
 
         public function search_proprietor() 
         {
             $sql_search_condition = '';
 
-            $business_type_name = $this->input->post('business_type_name_search_param');
-            $status_array = $this->input->post('status_array_search_param') == NULL ? 'null' : $this->input->post('status_array_search_param');
+            $business_type_name = $this->input->post('business_types_name_search_params');
+            $status_array = $this->input->post('status_array_search_params') == NULL ? 'null' : $this->input->post('status_array_search_params');
 
             if($business_type_name != NULL && !empty($business_type_name))
             {
@@ -141,7 +139,12 @@
             //set serach sessions
             $this->session->set_userdata('business_types_search_params', $sql_search_condition);
             redirect('business-types/all-business-types');
-            
+        }
+
+        public function close_search()
+        {
+            $this->session->unset_userdata('business_types_search_params');
+            redirect('business-types/all-business-types');
         }
     }
     

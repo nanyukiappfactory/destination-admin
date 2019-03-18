@@ -1,8 +1,25 @@
 <div>
-	<?php echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
+	<?php echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>    
+  <?php echo form_open(base_url() . $route.'/search-' . $route, array("class" => "form-inline my-2 my-lg-0"));?>
+      <?php 
+          foreach($search_options as $search_option_array)
+              {?>
+              <select class="form-control custom-select2 p-3" name="<?php echo $search_option_array[0];?>">
+                  <option value="">Select <?php echo $search_option_array[2]; ?></option>
+                <?php foreach ($search_option_array[1] as $key => $search_option) {
+                  ?>
+                  <option value="<?php echo $search_option['id'];?>"><?php echo $search_option['name'];?></option>
+              <?php } ?>
+              </select>
+        <?php }
+      ?>
+      <button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
+      <?php if($this->session->userdata($route.'_search_params')){?>
+          <a href="<?php echo base_url();?><?php echo $route;?>/close-search" class="btn btn-outline-danger my-2 my-sm-0 ml-sm-2"><i class="fas fa-times"></i></a>
+      <?php }?>
+  <?php echo  form_close();?>
 </div>
 
-<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
 <div class="table-responsive">
 	<table class="table table-striped table-sm">
 		<thead>

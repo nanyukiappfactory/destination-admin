@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Business_type_model extends CI_Model
+class Business_types_model extends CI_Model
 {
     public function save_business_type()
     {   
@@ -25,7 +25,7 @@ class Business_type_model extends CI_Model
             return FALSE;
         }
     }
-
+    
     public function all_business_types()
     {
         $this->db->select("*");
