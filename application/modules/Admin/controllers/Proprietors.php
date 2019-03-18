@@ -13,6 +13,7 @@ class Proprietors extends admin
         parent::__construct();
         $this->load->model('proprietors_model');
     }
+    
     public function index($order = 'proprietor.created_on', $order_method = 'DESC')
     {
 
@@ -148,6 +149,7 @@ class Proprietors extends admin
 
         $this->load->view("layouts/layout", $data);
     }
+
     public function search_proprietor() 
     {
         $sql_search_condition = '';
