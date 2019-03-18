@@ -67,6 +67,8 @@ $route['admin/logout'] = 'admin/admin/admin_logout';
  */
 $route['activities/all-activities'] = 'admin/activities/all_activities';
 $route['activities/add-activity'] = 'admin/activities/add_activity';
+$route['activities/all-activities/(:any)/(:any)'] = 'admin/activities/all_activities/$1/$2';
+$route['activities/all-activities/(:any)/(:any)/(:num)'] = 'admin/activities/all_activities/$1/$2/$3';
 
 
 /*
@@ -84,4 +86,4 @@ $route['proprietors/all-proprietors'] = 'admin/proprietors/index';
 $route['proprietors/all-proprietors/(:any)/(:any)'] = 'admin/proprietors/index/$1/$2';
 $route['proprietors/all-proprietors/(:any)/(:any)/(:num)'] = 'admin/proprietors/index/$1/$2/$3';
 $route['proprietors/add-proprietors'] = 'admin/proprietors/add_proprietor';
-$route['proprietors/close-form'] = 'admin/proprietors/close_form';
+$route['proprietors/search-proprietors'] = 'admin/proprietors/index';

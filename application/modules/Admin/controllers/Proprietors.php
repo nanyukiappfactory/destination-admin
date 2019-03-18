@@ -148,4 +148,36 @@ class Proprietors extends admin
 
         $this->load->view("layouts/layout", $data);
     }
+    public function search_proprietor() 
+    {
+        $sql_search_condition = '';
+        $national_id = $this->input->post('national_id_search_param');
+        $name = $this->input->post('name_search_param');
+        $business_id = $this->input->post('business_id_search_param');
+        $status = $this->input->post('status_search_param') == NULL ? 'null' : $this->input->post('status_search_param');
+
+        if($national_id != NULL && !empty($national_id))
+        {
+            $sql_search_condition .= ' AND proprietor.national_id = "'. $national_id . '"';
+        }
+        if($name != NULL && !empty($name))
+        {
+            $sql_search_condition .= ' AND proprietor.first_name = "'. $name . '"';
+        
+        }
+        if($business_id != NULL && !empty($business_id))
+        {
+            $sql_search_condition .= ' AND proprietor.business_reg_id = "'. $business_id . '"';
+        } 
+        if($status != 'null' )
+        {
+            $sql_search_condition .= ' AND proprietor.proprietor_status = '. $status;
+        }
+       
+		//set serach sessions
+        $this->session->set_userdata('proprietors_search_params', $sql_search_condition);
+        // echo($sql_search_condition);die();
+        redirect('proprietors/all-proprietors');
+        
+	}
 }

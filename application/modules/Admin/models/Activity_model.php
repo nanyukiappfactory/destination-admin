@@ -10,6 +10,21 @@ class Activity_Model extends CI_Model
         $this->db->where('deleted = 0');
         return $this->db->get();
     }
+    public function get_activities($where, $order, $order_method, $limit, $start)
+    {
+        $this->db->select('*');
+        $this->db->from('activity');      
+        $this->db->limit($limit, $start);   
+        $this->db->order_by($order, $order_method);
+        $this->db->where($where);
+        return $this->db->get();
+    }
+    public function countAll()
+    {   
+        $this->db->where('deleted = 0');
+        return $this->db->get($this->table)->num_rows(); 
+    }
+
     public function save_activity()
     {   
         $data = array(

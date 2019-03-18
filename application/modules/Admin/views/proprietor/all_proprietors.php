@@ -6,37 +6,38 @@
 
                 <th>No.</th>
 				<th>First Name
-				<?php if($order_method == "ASC"){?>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
-				<?php }
-				else{ ?>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
-				<?php }?>
+					<?php if($order_method == "ASC"){?>
+						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+					<?php }
+					else{ ?>
+						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+					<?php }?>
 				</th>
 				<th>Last Name
-				<?php if($order_method == "ASC"){?>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
-				<?php }
-				else{ ?>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
-				<?php }?></th>
+					<?php if($order_method == "ASC"){?>
+						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+					<?php }
+					else{ ?>
+						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+					<?php }?></th>
 				<th>Phone Number</th>
 				<th>National ID
-				<?php if($order_method == "ASC"){?>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
-				<?php }
-				else{ ?>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
-				<?php }?></th>
+					<?php if($order_method == "ASC"){?>
+						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+					<?php }
+					else{ ?>
+						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+					<?php }?>
+				</th>
 				<th>Business Reg ID</th>
 				<th>Status
-				<?php if($order_method == "ASC"){?>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
-				<?php }
-				else{ ?>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
-				<?php }?></th>
-					
+					<?php if($order_method == "ASC"){?>
+						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
+					<?php }
+					else{ ?>
+						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
+					<?php }?></th>
+						
                 <th colspan="4">Actions</th>
 
             <tr>
@@ -82,25 +83,22 @@
 				<span class="badge badge-pill badge-warning">Inactive</span>
 				<?php } ?>
 			</td>
-			
-		<tr>
-        <td>
-		<button type="button" class="btn btn-sm btn-info"><i class="fa fa-eye" data-toggle="modal" data-target="#exampleModalLabel<?php echo $proprietor->proprietor_id;?>"></i></button>
-		<?php $this->load->view('proprietor/view_proprietor', $v_data)?>
-		<button type="button" class="btn btn-sm btn-info"><i class="fa fa fa-edit" ></i></button>
-        <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash" ></i></button>
-		<button type="button" class="btn btn-sm btn-warning"><i class="fas fa-thumbs-down"></i></button>
+		
+			<td>
+			<button type="button" class="btn btn-sm btn-info"><i class="fa fa-eye" data-toggle="modal" data-target="#exampleModalLabel<?php echo $proprietor->proprietor_id;?>"></i></button>
+			<?php $this->load->view('proprietor/view_proprietor', $v_data)?>
 			</td>
-			<?php
-					
+		</tr>
+				<?php
+						
+					}
 				}
-			}
-		?>
+			?>
 
 	</tbody>
 
     </table>
-	<div class="p-3" id="pagination-links">
+	<div class="p-3" id="">
 	<?php if (isset($links)) { ?>
 		<?php echo $links ?>
 	<?php } ?>
