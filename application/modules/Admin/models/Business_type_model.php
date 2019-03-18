@@ -25,7 +25,7 @@ class Business_type_model extends CI_Model
             return FALSE;
         }
     }
-
+    
     public function all_business_types()
     {
         $this->db->select("*");
