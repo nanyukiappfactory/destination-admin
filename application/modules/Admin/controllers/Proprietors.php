@@ -13,7 +13,6 @@ class Proprietors extends admin
         parent::__construct();
         $this->load->model('proprietors_model');
     }
-    
     public function index($order = 'proprietor.created_on', $order_method = 'DESC')
     {
 
@@ -47,10 +46,8 @@ class Proprietors extends admin
         $v_data['order_method'] = $order_method;
         $v_data['order'] = $order;
         $v_data['counter'] = $page * $limit_per_page;
-
         //Assign view as string with no data to var $content
         $data['content'] = $this->load->view('proprietor/all_proprietors', $v_data, true);
-        
         //check and change order method
         $data['route'] = 'proprietors';
         $first_name = array();
@@ -149,7 +146,6 @@ class Proprietors extends admin
 
         $this->load->view("layouts/layout", $data);
     }
-
     public function search_proprietor() 
     {
         $sql_search_condition = '';
