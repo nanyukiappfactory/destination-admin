@@ -1,5 +1,8 @@
 <?php echo anchor("/admin/activities/add_activity", "Add Activity", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'") ?>
-
+	<!-- <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+		<span data-feather="calendar"></span>
+		This week
+	</button> -->
 <div class="table-responsive">
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
