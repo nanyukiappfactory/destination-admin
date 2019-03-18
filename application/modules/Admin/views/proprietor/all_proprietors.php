@@ -1,4 +1,5 @@
-  <?php echo anchor("/admin/Proprietors/add_proprietor", "Add proprietor", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
+  <?php echo anchor("/admin/Proprietors/add_proprietor", "Add proprietor", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>            
+                
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
         <thead>

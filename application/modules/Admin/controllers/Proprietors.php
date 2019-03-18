@@ -18,7 +18,7 @@ class Proprietors extends admin
 
         $where = '';
         if ($this->session->userdata('proprietors_search_params')) {
-            $where = $this->session->userdata('proprietors_search_params');
+            $where .= $this->session->userdata('proprietors_search_params');
         }
 
         // init params
@@ -46,10 +46,8 @@ class Proprietors extends admin
         $v_data['order_method'] = $order_method;
         $v_data['order'] = $order;
         $v_data['counter'] = $page * $limit_per_page;
-
         //Assign view as string with no data to var $content
         $data['content'] = $this->load->view('proprietor/all_proprietors', $v_data, true);
-        
         //check and change order method
         $data['route'] = 'proprietors';
         $first_name = array();
