@@ -30,7 +30,14 @@
     
     </li>
   </ul>
+
   </nav>
   </div>    
 
+			</li>
+		</ul>
+	</nav>
+</div>
+
+</nav>
 
