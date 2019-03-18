@@ -1,4 +1,5 @@
 <?php echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
+<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
 <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
