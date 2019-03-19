@@ -94,7 +94,7 @@
 
         public function add_business_type()
         {
-            $this->form_validation->set_rules('business_types_name', 'Name', 'required');
+            $this->form_validation->set_rules('business_type_name', 'Name', 'required');
 
             if($this->form_validation->run() == TRUE)
             {
