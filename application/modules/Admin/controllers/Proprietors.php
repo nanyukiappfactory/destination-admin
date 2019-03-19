@@ -29,7 +29,7 @@ class Proprietors extends admin
         // get current page records
 
         $config['base_url'] = base_url() . 'proprietors/all-proprietors/' . $order . '/' . $order_method;
-        $config['total_rows'] = $this->proprietors_model->count_proprietors();
+        $config['total_rows'] = $this->proprietors_model->count_proprietors($where);
         $config['per_page'] = $limit_per_page;
         $config["uri_segment"] = 5;
 
