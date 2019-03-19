@@ -17,13 +17,13 @@
             <input type="text" class="form-control boxed" name="business_type_status" value="<?php echo $business_type_page->business_type_status == 0 ? "Inactive" : "Active";?>" disabled> 
             
             <label class="control-label">Created On</label>
-            <input type="text" class="form-control boxed" name="business_type_created_on" value="<?php echo $business_type_page->created_on;?>" disabled> 
+            <input type="text" class="form-control boxed" name="business_type_created_on" value="<?php echo date('D, M j, Y H:i:s', strtotime($business_type_page->created_on));?>" disabled> 
             
             <label class="control-label">Created By</label>
             <input type="text" class="form-control boxed" name="business_type_created_by" value="<?php echo $business_type_page->created_by == 0 ? "Admin" : "Admin";?>" disabled> 
             
             <label class="control-label">Last Modified</label>
-            <input type="text" class="form-control boxed" name="business_type_modified_on" value="<?php echo $business_type_page->modified_on;?>" disabled> 
+            <input type="text" class="form-control boxed" name="business_type_modified_on" value="<?php echo date('D, M j, Y H:i:s', strtotime($business_type_page->modified_on));?>" disabled> 
             
             <label class="control-label">Modified By</label>
             <input type="text" class="form-control boxed" name="business_type_modified_by" value="<?php echo $business_type_page->modified_by == 0 ? "Admin" : "Admin";?>" disabled>  

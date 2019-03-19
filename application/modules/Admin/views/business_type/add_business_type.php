@@ -6,8 +6,8 @@
 		</div>
 	</div>
 	<div class=''>
-    <?php echo anchor("/admin/business_types/", "Close", "class ='btn btn-info'")?>
-    <button type="submit" class="btn btn-info" >Save</button>    
+		<?php echo anchor("/admin/business_types/", "Close", "class ='btn btn-info'")?>
+		<button type="submit" class="btn btn-info" >Save</button>    
 	</div>
 <?php echo form_close(); ?>
 
