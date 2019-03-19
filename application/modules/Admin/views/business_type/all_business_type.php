@@ -54,7 +54,6 @@ echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "cla
     <?php
     echo form_open(base_url() . $route.'/search-' . $route, array("class" => "form-inline my-2 my-lg-0"));?>
       <input type="radio" name="radio_status" value="Active"> Active
-      <hr>
       <input type="radio" name="radio_status" value="Inactive"> Inactive
       <input type="text" name="Name" Placeholder="Search" />
       <button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
