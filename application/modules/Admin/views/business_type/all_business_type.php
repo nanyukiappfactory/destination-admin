@@ -53,8 +53,8 @@ echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "cla
     <li class="nav-item text-nowrap">
     <?php
     echo form_open("/admin/business_types/search_business_types", array("class" => "form-inline my-2 my-lg-0"));?>
-      <input type="radio" name="active_status" value="1" class ="m-2"> Active
-      <input type="radio" name="Inactive_status" value="2" class ="m-2"> Inactive
+      <input type="radio" name="status" value="1" class ="m-2"> Active
+      <input type="radio" name="status" value="0" class ="m-2"> Inactive
       <input type="text" name="business_type_name" Placeholder="Search Business Type" />
       <button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
 	  <?php if($this->session->userdata('search_business_types_params')){?>
