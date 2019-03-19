@@ -42,6 +42,7 @@ class Proprietors_model extends CI_Model
         $this->db->where('deleted = 0');
         return $this->db->get();
     }
+
     public function count_proprietors()
     {
         $this->db->where('deleted = 0');

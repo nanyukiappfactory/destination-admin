@@ -13,6 +13,10 @@
         public function index($order = 'business_type.created_on', $order_method = 'DESC')
         {
             $where = 'deleted = 0';
+            if ($this->session->userdata('business_types_search_params')) {
+                $where .= $this->session->userdata('business_types_search_params');
+            }
+
             $limit_per_page = 5;
             $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
 
@@ -84,7 +88,7 @@
             $data['title'] = 'Business Types';
 
             $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
-            
+
             $this->load->view('admin/layouts/layout', $data); 
         }
 
@@ -121,6 +125,13 @@
             $this->load->view("layouts/layout", $data);
         }
 
+        public function search_keyword()
+        {
+            $key = $this->input->post('Name');
+            $data['results'] = $this->business_types_model->search($key);
+            $this->load->view('business_type/all_business_type/', $data); 
+        }
+        
         public function search_business_types() 
         {
             $sql_search_condition = '';
