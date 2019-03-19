@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Created By</label>
-                <input type="text" class="form-control boxed" name="last_name" value='<?php echo $prop->created_by; ?>' disabled>
+                <input type="text" class="form-control boxed" name="last_name" value='<?php echo $prop->created_by == 0 ? "Admin" : "Admin"; ?>' disabled>
             </div>
             <div class="form-group">
                 <label class="control-label">Created On</label>
@@ -52,7 +52,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Modified By</label>
-                <input type="text" class="form-control boxed" value='<?php echo $prop->modified_by; ?>' disabled>
+                <input type="text" class="form-control boxed" value='<?php echo $prop->modified_by == 0 ? "Admin" : "Admin"; ?>' disabled>
             </div>
             <div class="form-group">
                 <label class="control-label">Last Modified</label>
