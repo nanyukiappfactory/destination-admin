@@ -21,6 +21,7 @@
 
 		<label class="control-label">Description</label>
 		<textarea rows="5" class="textarea_editor form-control border-radius-0" name="activity_description" placeholder="Enter text ..."><?php echo set_value('activity_description')?></textarea>
+		
 	</div>
 </div>
 <div class="">

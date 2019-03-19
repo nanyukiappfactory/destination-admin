@@ -15,13 +15,10 @@ class Activities extends admin
     public function all_activities($order = 'activity.created_on', $order_method = 'DESC')
     {
          $where = 'deleted = 0 ';
-
          // init params
          $limit_per_page = 5;
          $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
-
-         // get current page records
-              
+         // get current page records          
          $config['base_url'] = base_url() . 'activities/all-activities/'.$order . '/'.$order_method;
          $config['total_rows'] = $this->activities_model->countAll();
          $config['per_page'] = $limit_per_page;

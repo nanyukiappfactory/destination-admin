@@ -1,3 +1,4 @@
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal<?php echo $activity_modal->activity_id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -39,7 +40,7 @@
             
             <label class="control-label">Modified By</label>
             <input type="text" class="form-control boxed" name="activity_modified_by" value="<?php echo $activity_modal->modified_by == 0 ? "Admin" : "Admin";?>" disabled>
-             
+
             <label class="control-label">Description</label>
             <textarea name="text" rows="5" class="form-control boxed" name="activity_description" disabled><?php echo strip_tags($activity_modal->activity_description);?></textarea>  
         </div>
