@@ -84,10 +84,9 @@
             $this->load->view("layouts/layout", $data);
         }
         
-        public function search_business_types() 
+        public function search_business_type() 
         {
-            $active_status = $this->input->post('active_status');
-            $inactive_status = $this->input->post('inactive_status');
+            $status = $this->input->post('status');
             $business_type_name = $this->input->post('business_type_name');
             $where = '';
 
@@ -96,14 +95,9 @@
                 $where .= ' AND business_type_name="'. $business_type_name .'"';
             }
 
-            if($active_status)
+            if($status)
             {
-                $where .= ' AND business_type_status="'. $active_status . '"';
-            }
-
-            if($inactive_status)
-            {
-                $where .= ' AND business_type_status="'. $inactive_status . '"';
+                $where .= ' AND business_type_status="'. $status . '"';
             }
 
             $this->session->set_userdata('search_business_type_params', $where);
