@@ -11,8 +11,8 @@ class Business_types_model extends CI_Model
             'deleted' => 0,
             'modified_by' => 0,
             'deleted_by' => 0,
-            'modified_on' => date('Y/m/d'),
-            'created_on' => date('Y/m/d')
+            'modified_on' => date('Y/m/d H:i:s'),
+            'created_on' => date('Y/m/d H:i:s')
         );
         
         if($this->db->insert('business_type', $data))
@@ -43,7 +43,7 @@ class Business_types_model extends CI_Model
         $this->db->where($where);
         return $this->db->get();
     }
-
+  
     public function countAll()
     {
         $this->db->where('deleted = 0');

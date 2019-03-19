@@ -1,4 +1,18 @@
-<?php echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'" )?>
+<?php echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
+
+<ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+    <?php
+    echo form_open(base_url() . $route.'/search-' . $route, array("class" => "form-inline my-2 my-lg-0"));?>
+      <input type="radio" name="radio_status" value="Active"> Active
+      <input type="radio" name="radio_status" value="Inactive"> Inactive
+      <input type="text" name="Name" Placeholder="Search" />
+      <button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
+  <?php echo  form_close();?>
+    
+    </li>
+  </ul>
+
 <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -19,7 +33,7 @@
                 <?php }
                 else{ ?>
                     <a href="<?php echo base_url();?>business-types/all-business-types/business_type.business_type_status/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
-                <?php }?>
+              <?php }?>
               </th>
               <th>Action</th>
             </tr>
