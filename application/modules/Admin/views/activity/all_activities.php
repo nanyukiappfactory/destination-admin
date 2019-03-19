@@ -1,3 +1,16 @@
+<?php
+if($order_method == "ASC")
+{
+	$new_order_method = "DESC";
+	$order_method_icon = '<i class="far fa-arrow-alt-circle-down"></i>';
+}
+if($order_method == "DESC")
+{
+	$new_order_method = "ASC";
+	$order_method_icon = '<i class="far fa-arrow-alt-circle-up"></i>';
+}
+?>
+
 <?php echo anchor("/admin/activities/add_activity", "Add Activity", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'") ?>
 <div class="table-responsive">
 	<table class="table table-striped table-bordered table-hover">
@@ -5,61 +18,15 @@
 			<tr>
 				<th>No.</th>
 				<th>Name
-					<?php
-            if($order_method == "ASC")
-            {?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_name/DESC" style="color:#000"><i
-						 class="far fa-arrow-alt-circle-down"></i></a>
-					<?php }
-            else{?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_name/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
-					<?php }?>
-				</th>
-				<th>Date
-					<?php
-                if($order_method == "ASC"){?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_date/DESC" style="color:#000"><i
-						 class="far fa-arrow-alt-circle-down"></i></a>
-					<?php }
-                else{ ?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_date/ASC" style="color:#000"><i class="far fa-arrow-alt-circle-up"></i></a>
-					<?php }?>
-				</th>
-				<th>Status
-					<?php
-            if($order_method == "ASC"){?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_status/DESC" style="color:#000"><i
-						 class="far fa-arrow-alt-circle-down"></i></a>
-					<?php }
-            else{ ?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_status/ASC" style="color:#000"><i
-						 class="far fa-arrow-alt-circle-up"></i></a>
-					<?php }?>
-				</th>
+				<a href="<?php echo base_url();?>activities/all-activities/activity.activity_name/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></a></th>							      			
+				<th>Date				              
+				<a href="<?php echo base_url();?>activities/all-activities/activity.activity_date/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></a></th>							      									   					</th>
+				<th>Status	
+				<a href="<?php echo base_url();?>activities/all-activities/activity.activity_status/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></a></th>
 				<th>Longitude</th>
 				<th>Latitude</th>
-				<th>Phone
-					<?php
-            if($order_method == "ASC"){?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_phone/DESC" style="color:#000"><i
-						 class="far fa-arrow-alt-circle-down"></i></a>
-					<?php }
-            else{ ?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_phone/ASC" style="color:#000"><i
-						 class="far fa-arrow-alt-circle-up"></i></a>
-					<?php }?>
-				</th>
-				<th>Email
-					<?php
-            if($order_method == "ASC"){?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_email/DESC" style="color:#000"><i
-						 class="far fa-arrow-alt-circle-down"></i></a>
-					<?php }
-            else{ ?>
-					<a href="<?php echo base_url();?>activities/all-activities/activity.activity_email/ASC" style="color:#000"><i
-						 class="far fa-arrow-alt-circle-up"></i></a>
-					<?php }?>
-				</th>
+				<th>Phone<a href="<?php echo base_url();?>activities/all-activities/activity.activity_status/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></a></th>									
+				<th>Email<a href="<?php echo base_url();?>activities/all-activities/activity.activity_status/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></a></th>
 				<th>Actions</th>
 			</tr>
 		</thead>

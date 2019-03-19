@@ -88,8 +88,7 @@ class Proprietors extends admin
     }
     public function search_proprietor()
     {
-        $inactive_status = $this->input->post('inactive_status');
-        $active_status = $this->input->post('active_status');
+        $status = $this->input->post('status');
         $business_id = $this->input->post('businessreg');
         $national_id = $this->input->post('nationalid');
         $proprietor_name  = $this->input->post('proprietor_name');
@@ -107,17 +106,13 @@ class Proprietors extends admin
         {
             $where .= ' AND business_reg_id="'.$business_id.'"';
         }
-        if($active_status)
+        if($status)
         {
-            $where .= ' AND proprietor_status="'. $active_status.'"';
-        }
-        if($inactive_status)
-        {
-            $where .= ' AND proprietor_status="'. $inactive_status.'"';
+            $where .= ' AND proprietor_status="'. $status.'"';
         }
 
         $this->session->set_userdata('search_proprietor_params', $where);
-       redirect('proprietors/all-proprietors');
+        redirect('proprietors/all-proprietors');
        
     }
     

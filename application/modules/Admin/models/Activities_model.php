@@ -1,5 +1,5 @@
 <?php 
-class Activity_Model extends CI_Model
+class Activities_Model extends CI_Model
 {   
     protected $table = "activity";
 
