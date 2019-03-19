@@ -11,11 +11,7 @@
       <div class="modal-body" id="">
         <div class="form-group">
             <label class="control-label">Name</label>
-            <input type="text" class="form-control boxed" name="activity_name" value="<?php echo $activity_modal->activity_name;?>" disabled>
-            
-            <label class="control-label">Description</label>
-            <input type="text" class="form-control boxed" name="activity_description" value="<?php echo strip_tags($activity_modal->activity_description);?>" disabled> 
-            
+            <input type="text" class="form-control boxed" name="activity_name" value="<?php echo $activity_modal->activity_name;?>" disabled>           
             <label class="control-label">Date</label>
             <input type="text" class="form-control boxed" data-date="" data-date-format="DD MMMM YYYY" value="<?php $originalDate = $activity_modal->activity_date;
             $newDate = date("Y-m-d", strtotime($originalDate)); echo $newDate;?>" name="activity_date" disabled>
@@ -42,7 +38,10 @@
             <input type="text" class="form-control boxed" name="activity_modified_on" value="<?php echo $activity_modal->modified_on;?>" disabled> 
             
             <label class="control-label">Modified By</label>
-            <input type="text" class="form-control boxed" name="activity_modified_by" value="<?php echo $activity_modal->modified_by == 0 ? "Admin" : "Admin";?>" disabled>  
+            <input type="text" class="form-control boxed" name="activity_modified_by" value="<?php echo $activity_modal->modified_by == 0 ? "Admin" : "Admin";?>" disabled>
+             
+            <label class="control-label">Description</label>
+            <textarea name="text" rows="5" class="form-control boxed" name="activity_description" disabled><?php echo strip_tags($activity_modal->activity_description);?></textarea>  
         </div>
       </div>
       <div class="modal-footer">
