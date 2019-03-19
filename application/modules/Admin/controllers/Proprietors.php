@@ -80,8 +80,6 @@ class Proprietors extends admin
         }
 
         $data = array(
-            "route" => 'null',
-            "search_options" => NULL,
             "title" => "add proprietor",
             "content" => $this->load->view('proprietor/add_proprietor', null, true),
         );
@@ -90,12 +88,14 @@ class Proprietors extends admin
     }
     public function search_proprietor()
     {
-       $business_id = $this->input->post('businessreg');
-       $national_id = $this->input->post('nationalid');
-       $proprietor_name  = $this->input->post('proprietor_name');
+        $inactive_status = $this->input->post('inactive_status');
+        $active_status = $this->input->post('active_status');
+        $business_id = $this->input->post('businessreg');
+        $national_id = $this->input->post('nationalid');
+        $proprietor_name  = $this->input->post('proprietor_name');
         $where = '';
-
-       if ($proprietor_name)
+        
+        if ($proprietor_name)
         {
             $where .= ' AND (first_name="'.$proprietor_name.'") OR (last_name ="'.$proprietor_name.'")';
         }
@@ -106,6 +106,14 @@ class Proprietors extends admin
         if($business_id)
         {
             $where .= ' AND business_reg_id="'.$business_id.'"';
+        }
+        if($active_status)
+        {
+            $where .= ' AND proprietor_status="'. $active_status.'"';
+        }
+        if($inactive_status)
+        {
+            $where .= ' AND proprietor_status="'. $inactive_status.'"';
         }
 
         $this->session->set_userdata('search_proprietor_params', $where);
