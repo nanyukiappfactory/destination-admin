@@ -117,7 +117,7 @@ class Proprietors extends admin
         }
 
         $this->session->set_userdata('search_proprietor_params', $where);
-       redirect('proprietors/all-proprietors');
+        redirect('proprietors/all-proprietors');
        
     }
     

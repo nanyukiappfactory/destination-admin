@@ -13,8 +13,11 @@
         public function index($order = 'business_type.created_on', $order_method = 'DESC')
         {
             $where = 'deleted = 0';
-            if ($this->session->userdata('business_types_search_params')) {
-                $where .= $this->session->userdata('business_types_search_params');
+            
+            $search_business_type_params = $this->session->userdata('search_business_type_params');
+            if($search_business_type_params)
+            {
+                $where .= $search_business_type_params;
             }
 
             $limit_per_page = 5;
@@ -42,51 +45,7 @@
             $v_data['counter'] = $page * $limit_per_page;
             $v_data['route'] = 'business-types';
 
-            $data['title'] = 'Business Type';
-
-            foreach ($this->business_types_model->all_business_types()->result() as $value) {
-
-                $status_value = '';
-    
-                if ($value->business_type_status == 1) {
-                    $status_value = 'Active';
-    
-                } else if ($value->business_type_status == 0) {
-                    $status_value = 'Inactive';
-    
-                }
-    
-                if (count($check_duplicate) > 0) {
-                    if (!in_array($status_value, $check_duplicate)) {
-                        array_push($status_array, array(
-                            'id' => $value->business_type_status,
-                            'name' => $status_value)
-                        );
-                        array_push($check_duplicate, $status_value);
-                    }
-                } 
-                else {
-                    array_push($status_array, array(
-                        'id' => $value->business_type_status,
-                        'name' => $status_value)
-                    );
-    
-                    array_push($check_duplicate, $status_value);
-                }
-    
-                array_push($business_type_name, array(
-                    'id' => $value->business_type_name,
-                    'name' => $value->business_type_name,
-                ));
-            }
-    
-            array_push($search_options, array('status_array_search_params', $status_array, 'Status'));
-            array_push($search_options, array('business_types_name_search_params', $business_type_name, 'Business Type Name'));
-                      
-            $v_data['search_options'] = $search_options;
-
             $data['title'] = 'Business Types';
-
             $data['content'] = $this->load->view('business_type/all_business_type', $v_data, TRUE);
 
             $this->load->view('admin/layouts/layout', $data); 
@@ -124,39 +83,36 @@
 
             $this->load->view("layouts/layout", $data);
         }
-
-        public function search_keyword()
-        {
-            $key = $this->input->post('Name');
-            $data['results'] = $this->business_types_model->search($key);
-            $this->load->view('business_type/all_business_type/', $data); 
-        }
         
         public function search_business_types() 
         {
-            $sql_search_condition = '';
+            $active_status = $this->input->post('active_status');
+            $inactive_status = $this->input->post('inactive_status');
+            $business_type_name = $this->input->post('business_type_name');
+            $where = '';
 
-            $business_type_name = $this->input->post('business_types_name_search_params');
-            $status_array = $this->input->post('status_array_search_params') == NULL ? 'null' : $this->input->post('status_array_search_params');
-
-            if($business_type_name != NULL && !empty($business_type_name))
+            if($business_type_name)
             {
-                $sql_search_condition .= ' AND business_type.business_type_name = "'. $business_type_name . '"';
+                $where .= ' AND business_type_name="'. $business_type_name .'"';
             }
 
-            if($status_array != 'null' )
+            if($active_status)
             {
-                $sql_search_condition .= ' AND business_type.business_type_status = '. $status_array;
+                $where .= ' AND business_type_status="'. $active_status . '"';
             }
-        
-            //set serach sessions
-            $this->session->set_userdata('business_types_search_params', $sql_search_condition);
+
+            if($inactive_status)
+            {
+                $where .= ' AND business_type_status="'. $inactive_status . '"';
+            }
+
+            $this->session->set_userdata('search_business_type_params', $where);
             redirect('business-types/all-business-types');
         }
 
         public function close_search()
         {
-            $this->session->unset_userdata('business_types_search_params');
+            $this->session->unset_userdata('search_business_type_params');
             redirect('business-types/all-business-types');
         }
     }
