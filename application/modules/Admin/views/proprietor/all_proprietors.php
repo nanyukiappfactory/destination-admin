@@ -1,11 +1,19 @@
-  <?php echo anchor("/admin/Proprietors/add_proprietor", "Add proprietor", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>            
-                
+ <div>
+  	<?php echo anchor("/admin/Proprietors/add_proprietor", "Add proprietor", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>          
+	  <?php 
+	  echo form_open("/admin/proprietors/search_proprietor", array("class" => "form-inline my-2 my-lg-0 "))?>
+ 		<input type="text" name="proprietor_name" placeholder=" search Name" class =" ml-2">
+		 <input type="text" name="nationalid" placeholder=" search national id" class =" ml-2" >
+		 <input type="text" name="businessreg" placeholder=" search business id" class =" ml-2">
+		<button type="submit" class="btn btn-sm mt-2 mb-2 btn-outline-secondary  ml-2" value ="Search"> Search</button> 
+	  
+	  <?php echo form_close() ?>
+</div>            
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
-
-                <th>No.</th>
+			 <th>No.</th>
 				<th>First Name
 					<?php if($order_method == "ASC"){?>
 						<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/DESC" style="color:#000"><i class="far fa-arrow-alt-circle-down"></i></a>
