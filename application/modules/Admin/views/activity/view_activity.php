@@ -14,7 +14,7 @@
             <input type="text" class="form-control boxed" name="activity_name" value="<?php echo $activity_modal->activity_name;?>" disabled>
             
             <label class="control-label">Description</label>
-            <input type="text" class="form-control boxed" name="activity_description" value="<?php echo $activity_modal->activity_description;?>" disabled> 
+            <input type="text" class="form-control boxed" name="activity_description" value="<?php echo strip_tags($activity_modal->activity_description);?>" disabled> 
             
             <label class="control-label">Date</label>
             <input type="text" class="form-control boxed" data-date="" data-date-format="DD MMMM YYYY" value="<?php $originalDate = $activity_modal->activity_date;
