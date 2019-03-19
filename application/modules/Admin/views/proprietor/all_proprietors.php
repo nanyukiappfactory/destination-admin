@@ -17,7 +17,6 @@ if (is_array($proprietors->result()))
 		{
 			$v_data['prop'] =  $proprietor;
 			$count++;
-		}
 	if($proprietor->proprietor_status == 1)
 		{
 			$badge_class="badge badge-pill badge-success";
@@ -58,6 +57,7 @@ if (is_array($proprietors->result()))
 	</tr>';
 	$this->load->view('proprietor/view_proprietor', $v_data);
 
+	}
 	}
 		
 	
