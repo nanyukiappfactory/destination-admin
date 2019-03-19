@@ -9,16 +9,17 @@ class Proprietors extends admin
 {
     public function __construct()
     {
-
         parent::__construct();
         $this->load->model('proprietors_model');
     }
     public function index($order = 'proprietor.created_on', $order_method = 'DESC')
     {
+        $where = 'deleted = 0';
 
-        $where = '';
-        if ($this->session->userdata('proprietors_search_params')) {
-            $where .= $this->session->userdata('proprietors_search_params');
+        $search_proprietor_params = $this->session->userdata('search_proprietor_params');
+        if ($search_proprietor_params)
+        {
+            $where .= $search_proprietor_params;
         }
 
         // init params
@@ -46,72 +47,11 @@ class Proprietors extends admin
         $v_data['order_method'] = $order_method;
         $v_data['order'] = $order;
         $v_data['counter'] = $page * $limit_per_page;
+        $v_data['title'] = 'Proprietors';
         //Assign view as string with no data to var $content
         $data['content'] = $this->load->view('proprietor/all_proprietors', $v_data, true);
-        //check and change order method
-        $data['route'] = 'proprietors';
-        $first_name = array();
-        $status_array = array();
-        $business_reg_id = array();
-        $national_id_array = array();
-        $check_duplicate = array();
-        $search_options = array();
-
-        foreach ($this->proprietors_model->all_proprietors()->result() as $value) {
-
-            $status_value = '';
-
-            if ($value->proprietor_status == 1) {
-                $status_value = 'Active';
-
-            } else if ($value->proprietor_status == 0) {
-                $status_value = 'Inactive';
-
-            }
-
-            if (count($check_duplicate) > 0) {
-                if (!in_array($status_value, $check_duplicate)) {
-                    array_push($status_array, array(
-                        'id' => $value->proprietor_status,
-                        'name' => $status_value)
-                    );
-                    array_push($check_duplicate, $status_value);
-                }
-            } else {
-                array_push($status_array, array(
-                    'id' => $value->proprietor_status,
-                    'name' => $status_value)
-                );
-
-                array_push($check_duplicate, $status_value);
-                // array_push($check_duplicate, $first_name);
-            }
-
-            array_push($first_name, array(
-                'id' => $value->first_name,
-                'name' => $value->first_name,
-            ));
-
-            array_push($national_id_array, array(
-                'id' => $value->national_id,
-                'name' => $value->national_id,
-            ));
-
-            array_push($business_reg_id, array(
-                'id' => $value->business_reg_id,
-                'name' => $value->business_reg_id,
-            ));
-        }
-
-        array_push($search_options, array('status_search_param', $status_array, 'Status'));
-        array_push($search_options, array('name_search_param', $first_name, 'First Name'));
-        array_push($search_options, array('national_id_search_param', $national_id_array, 'National ID'));
-        array_push($search_options, array('business_id_search_param', $business_reg_id, 'Business Reg ID'));
-
-        $data['title'] = 'Proprietors';
-        $data['search_options'] = $search_options;
+        
         $this->load->view('admin/layouts/layout', $data);
-
     }
 
     public function add_proprietor()
@@ -140,42 +80,43 @@ class Proprietors extends admin
         }
 
         $data = array(
+            "route" => 'null',
+            "search_options" => NULL,
             "title" => "add proprietor",
             "content" => $this->load->view('proprietor/add_proprietor', null, true),
         );
 
         $this->load->view("layouts/layout", $data);
     }
-    public function search_proprietor() 
+    public function search_proprietor()
     {
-        $sql_search_condition = '';
-        $national_id = $this->input->post('national_id_search_param');
-        $name = $this->input->post('name_search_param');
-        $business_id = $this->input->post('business_id_search_param');
-        $status = $this->input->post('status_search_param') == NULL ? 'null' : $this->input->post('status_search_param');
+       $business_id = $this->input->post('businessreg');
+       $national_id = $this->input->post('nationalid');
+       $proprietor_name  = $this->input->post('proprietor_name');
+        $where = '';
 
-        if($national_id != NULL && !empty($national_id))
+       if ($proprietor_name)
         {
-            $sql_search_condition .= ' AND proprietor.national_id = "'. $national_id . '"';
+            $where .= ' AND (first_name="'.$proprietor_name.'") OR (last_name ="'.$proprietor_name.'")';
         }
-        if($name != NULL && !empty($name))
+        if ($national_id)
         {
-            $sql_search_condition .= ' AND proprietor.first_name = "'. $name . '"';
-        
+            $where .= ' AND national_id="'.$national_id.'"';
         }
-        if($business_id != NULL && !empty($business_id))
+        if($business_id)
         {
-            $sql_search_condition .= ' AND proprietor.business_reg_id = "'. $business_id . '"';
-        } 
-        if($status != 'null' )
-        {
-            $sql_search_condition .= ' AND proprietor.proprietor_status = '. $status;
+            $where .= ' AND business_reg_id="'.$business_id.'"';
         }
+
+        $this->session->set_userdata('search_proprietor_params', $where);
+       redirect('proprietors/all-proprietors');
        
-		//set serach sessions
-        $this->session->set_userdata('proprietors_search_params', $sql_search_condition);
-        // echo($sql_search_condition);die();
-        redirect('proprietors/all-proprietors');
-        
+    }
+    
+	public function close_search() {
+		$this->session->unset_userdata('search_proprietor_params');
+		redirect('proprietors/all-proprietors');
 	}
+    
+    
 }

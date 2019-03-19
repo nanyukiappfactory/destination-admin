@@ -79,7 +79,7 @@ $route['business-types/all-business-types'] = 'admin/business_types/index';
 $route['business-types/add-business-types'] = 'admin/business_types/add_business_type';
 $route['business-types/all-business-types/(:any)/(:any)'] = 'admin/business_types/index/$1/$2';
 $route['business-types/all-business-types/(:any)/(:any)/(:num)'] = 'admin/business_types/index/$1/$2/$3';
-$route['business-types/search-proprietors'] = 'admin/business_types/index';
+$route['business-types/search-business-types'] = 'admin/business_types/search_business_types';
 $route['business-types/business-types/close-search'] = 'admin/business_types/close_search';
 /*
  * propietors routes
@@ -88,4 +88,5 @@ $route['proprietors/all-proprietors'] = 'admin/proprietors/index';
 $route['proprietors/all-proprietors/(:any)/(:any)'] = 'admin/proprietors/index/$1/$2';
 $route['proprietors/all-proprietors/(:any)/(:any)/(:num)'] = 'admin/proprietors/index/$1/$2/$3';
 $route['proprietors/add-proprietors'] = 'admin/proprietors/add_proprietor';
-$route['proprietors/search-proprietors'] = 'admin/proprietors/index';
+$route['proprietors/search-proprietors'] = 'admin/proprietors/search_proprietor';
+$route['proprietors/close-search'] = 'admin/proprietors/close_search';
