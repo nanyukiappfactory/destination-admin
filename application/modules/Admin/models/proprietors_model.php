@@ -30,7 +30,7 @@ class Proprietors_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('proprietor');
-        $this->db->where('deleted = 0' . $where );
+        $this->db->where($where );
         $this->db->limit($limit, $start);
         $this->db->order_by($order, $order_method);
         return $this->db->get();

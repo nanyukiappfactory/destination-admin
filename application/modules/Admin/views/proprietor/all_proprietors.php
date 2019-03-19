@@ -6,7 +6,9 @@
 		 <input type="text" name="nationalid" placeholder=" search national id" class =" ml-2" >
 		 <input type="text" name="businessreg" placeholder=" search business id" class =" ml-2">
 		<button type="submit" class="btn btn-sm mt-2 mb-2 btn-outline-secondary  ml-2" value ="Search"> Search</button> 
-	  
+		<?php if($this->session->userdata('search_proprietor_params')){?>
+		<a href="<?php echo base_url();?>proprietors/close-search" class="btn btn-outline-danger my-2 my-sm-0 ml-sm-2"><i class="fas fa-times"></i></a>
+		<?php }?>
 	  <?php echo form_close() ?>
 </div>            
 <div class="table-responsive">

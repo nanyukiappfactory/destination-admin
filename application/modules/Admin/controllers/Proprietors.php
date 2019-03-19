@@ -14,13 +14,13 @@ class Proprietors extends admin
     }
     public function index($order = 'proprietor.created_on', $order_method = 'DESC')
     {
-        $where = '';
-        $proprietor_name = $this->session->userdata('proprietor_name');
-        if ($proprietor_name)
+        $where = 'deleted = 0';
+
+        $search_proprietor_params = $this->session->userdata('search_proprietor_params');
+        if ($search_proprietor_params)
         {
-            $where.=' AND (first_name="'.$proprietor_name.'") OR (last_name ="'.$proprietor_name.'")';
+            $where .= $search_proprietor_params;
         }
-        
 
         // init params
         $limit_per_page = 4;
@@ -90,17 +90,31 @@ class Proprietors extends admin
     }
     public function search_proprietor()
     {
+       $business_id = $this->input->post('businessreg');
+       $national_id = $this->input->post('nationalid');
        $proprietor_name  = $this->input->post('proprietor_name');
-       if(!empty($proprietor_name) && $proprietor_name != NULL)
-       {
-           $this->session->set_userdata('proprietor_name', $proprietor_name);
-       }
+        $where = '';
+
+       if ($proprietor_name)
+        {
+            $where .= ' AND (first_name="'.$proprietor_name.'") OR (last_name ="'.$proprietor_name.'")';
+        }
+        if ($national_id)
+        {
+            $where .= ' AND national_id="'.$national_id.'"';
+        }
+        if($business_id)
+        {
+            $where .= ' AND business_reg_id="'.$business_id.'"';
+        }
+
+        $this->session->set_userdata('search_proprietor_params', $where);
        redirect('proprietors/all-proprietors');
        
     }
     
 	public function close_search() {
-		$this->session->unset_userdata('proprietors_search_params');
+		$this->session->unset_userdata('search_proprietor_params');
 		redirect('proprietors/all-proprietors');
 	}
     
