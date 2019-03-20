@@ -9,6 +9,46 @@ if($order_method == "DESC")
 	$new_order_method = "ASC";
 	$order_method_icon = '<i class="far fa-arrow-alt-circle-up"></i>';
 }
+$tr_activities = "";
+
+if($activities->num_rows() > 0)
+{
+  $count = $counter;
+  foreach($activities->result() as $activity)
+  {
+	$v_data['activity_modal'] = $activity;
+	$count++;
+
+	if($activity->activity_status == 1)
+	{
+		$badge_class = 'badge badge-pill badge-success';
+		$status = 'Active';
+	}
+	else
+	{
+		$badge_class = 'badge badge-pill badge-warning';
+		$status = 'Inactive';
+	}
+
+	$tr_activities .= '<tr>
+		<td>' . $count . '</td>
+		<td>' . $activity->activity_name . '</td>
+		<td>' . $activity->activity_date . '</td>
+		<td>
+			<span class="' . $badge_class . '">'. $status . '</span>
+		</td>
+		<td>' . $activity->activity_longitude . '</td>
+		<td>' . $activity->activity_latitude . '</td>
+		<td>' . $activity->activity_phone . '</td>
+		<td>' . $activity->activity_email . '</td>
+		<td>
+		<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#exampleModal' . $activity->activity_id . '"><i class="fa fa-eye"></i></button>
+		</td>
+	</tr>';
+
+  	$this->load->view('activity/view_activity', $v_data);
+  }
+}
 ?>
 
 <?php echo anchor("/admin/activities/add_activity", "Add Activity", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'") ?>
@@ -31,54 +71,13 @@ if($order_method == "DESC")
 			</tr>
 		</thead>
 		<tbody>
-
-			<?php
-          if (is_array($activities->result())) {
-              $count = $counter;
-              foreach ($activities->result() as $activity) {
-                  $v_data['activity_modal'] = $activity;
-                  $count++;
-                  ?>
-			<tr>
-				<td>
-					<?php echo $count; ?>
-				</td>
-				<td>
-					<?php echo $activity->activity_name; ?>
-				</td>
-				<td>
-					<?php echo $activity->activity_date; ?>
-				</td>
-
-				<td>
-					<?php
-                        if ($activity->activity_status == 1) {?>
-					<span class="badge badge-pill badge-success">Active</span>
-					<?php } else {?>
-					<span class="badge badge-pill badge-warning">Inactive</span>
-					<?php }?>
-				</td>
-				<td>
-					<?php echo $activity->activity_longitude; ?>
-				</td>
-				<td>
-					<?php echo $activity->activity_latitude; ?>
-				</td>
-				<td>
-					<?php echo $activity->activity_phone; ?>
-				</td>
-				<td>
-					<?php echo $activity->activity_email; ?>
-				</td>
-				<td>
-					<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#exampleModal<?php echo $activity->activity_id;?>"><i
-						 class="fa fa-eye"></i></button>
-					<?php $this->load->view('activity/view_activity', $v_data)?>
-				</td>
-			</tr>
-			<?php }
-              }?>
-		</tbody>
+		<?php
+         echo $tr_activities;
+        ?>
+          </tbody>          
+        </table>
+       </div>
+			
 	</table>
 	<div class="p-3" id="pagination-links">
 		<?php if (isset($links)) { ?>
