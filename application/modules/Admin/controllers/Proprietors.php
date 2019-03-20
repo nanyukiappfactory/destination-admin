@@ -86,6 +86,70 @@ class Proprietors extends admin
 
         $this->load->view("layouts/layout", $data);
     }
+    
+    public function edit_proprietor($proprietor_id)
+    {
+        $this->form_validation->set_rules('first_name', 'First Name', 'required');
+        $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+        $this->form_validation->set_rules('proprietor_phone', 'Phone Number', 'required');
+        $this->form_validation->set_rules('national_id', 'National Id', 'required');
+        $this->form_validation->set_rules('business_reg_id', 'Business Reg Id', 'required');
+
+        if ($this->form_validation->run()) 
+        {
+            $edit_proprietor = $this->proprietors_model->edit_proprietor($proprietor_id);
+
+            if ($edit_proprietor) {
+                $this->session->set_flashdata('success', 'Proprietor Id' . '' . $proprietor_id . '' . 'Edited');
+
+            } else {
+                $this->session->set_flashdata('error', 'edit not successful');
+            }
+            
+            redirect('proprietors/all-proprietors');
+        }
+        else
+        {
+            if(validation_errors())
+            {
+                $this->session->set_flashdata('error', validation_errors());
+            }
+            
+        }
+
+        $proprietor_detail = $this->proprietors_model->single_proprietor($proprietor_id);
+
+        if($proprietor_detail)
+        {
+            $first_name = $proprietor_detail->first_name;
+            $last_name = $proprietor_detail->last_name;
+            $proprietor_phone = $proprietor_detail->proprietor_phone;
+            $national_id = $proprietor_detail->national_id;
+            $business_reg_id = $proprietor_detail->business_reg_id;
+
+            $v_data = array(
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'proprietor_phone' => $proprietor_phone,
+                'national_id' => $national_id,
+                'business_reg_id' => $business_reg_id,
+                'proprietor_id' => $proprietor_id
+
+            );
+
+            $data = array(
+                'title' => 'edit proprietor',
+                'content'=> $this->load->view('proprietor/edit_proprietor', $v_data, true)
+            );
+            $this->load->view('layouts/layout',$data);
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Unable to get proprietor of ID: ' . $proprietor_id . ' details');
+            redirect('proprietors/all-proprietors');
+        }
+        
+    }
     public function search_proprietor()
     {
         $status = $this->input->post('status');

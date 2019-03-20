@@ -70,6 +70,7 @@ $route['activities/add-activity'] = 'admin/activities/add_activity';
 $route['activities/all-activities/(:any)/(:any)'] = 'admin/activities/all_activities/$1/$2';
 $route['activities/all-activities/(:any)/(:any)/(:num)'] = 'admin/activities/all_activities/$1/$2/$3';
 $route['activities/search-activities'] = 'admin/activities/all_activities';
+$route['activities/close-search'] = 'admin/activities/close_search';
 
 
 /*
@@ -90,3 +91,4 @@ $route['proprietors/all-proprietors/(:any)/(:any)/(:num)'] = 'admin/proprietors/
 $route['proprietors/add-proprietors'] = 'admin/proprietors/add_proprietor';
 $route['proprietors/search-proprietors'] = 'admin/proprietors/search_proprietor';
 $route['proprietors/close-search'] = 'admin/proprietors/close_search';
+$route['proprietors/edit-proprietor/(:num)'] = 'admin/proprietors/edit_proprietor/$1';
