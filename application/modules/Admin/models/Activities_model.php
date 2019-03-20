@@ -19,9 +19,9 @@ class Activities_Model extends CI_Model
         $this->db->where($where);
         return $this->db->get();
     }
-    public function countAll()
+    public function countAll($where)
     {   
-        $this->db->where('deleted = 0');
+        $this->db->where($where);
         return $this->db->get($this->table)->num_rows(); 
     }
 
