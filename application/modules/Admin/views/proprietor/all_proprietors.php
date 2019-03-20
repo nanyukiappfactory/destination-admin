@@ -27,6 +27,9 @@ if (is_array($proprietors->result()))
 			$status = "Inactive";
 		}
 
+		$edit_url = "/proprietors/edit-proprietor/$proprietor->proprietor_id";
+		$edit_btn = anchor($edit_url , "<i class='fa fa-edit'></i>", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'");
+
 		$str_proprietor .= ' <tr>
 		<td>
 			'. $count.'
@@ -52,19 +55,16 @@ if (is_array($proprietors->result()))
 		</td>
 	
 		<td>
-		<button type="button" class="btn btn-sm btn-info"><i class="fa fa-eye" data-toggle="modal" data-target="#exampleModalLabel'. $proprietor->proprietor_id.'"></i></button>
-		</td>
+		<button type="button" class="btn btn-sm btn-info"><i class="fa fa-eye" data-toggle="modal" data-target="#exampleModalLabel'. $proprietor->proprietor_id.'"></i></button>' .
+		$edit_btn . 
+		'</td>
 	</tr>';
 	$this->load->view('proprietor/view_proprietor', $v_data);
 
 	}
-	}
-		
-	
+	}	
 ?>
-
-
- <div>
+<div>
   	<?php echo anchor("/admin/Proprietors/add_proprietor", "Add proprietor", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>          
 	  <?php 
 	  echo form_open("/admin/proprietors/search_proprietor", array("class" => "form-inline my-2 my-lg-0 "))?>

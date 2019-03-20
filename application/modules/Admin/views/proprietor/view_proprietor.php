@@ -48,7 +48,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Created On</label>
-                <input type="text" class="form-control boxed" name="national_id" value='<?php echo $prop->created_on; ?>' disabled>
+                <input type="text" class="form-control boxed" name="national_id" value='<?php echo date('D, M j, Y H:i:s', strtotime( $prop->created_on)); ?>' disabled>
             </div>
             <div class="form-group">
                 <label class="control-label">Modified By</label>
@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Last Modified</label>
-                <input type="text" class="form-control boxed" value='<?php echo $prop->modified_on; ?>' disabled>
+                <input type="text" class="form-control boxed" value='<?php echo date('D, M j, Y H:i:s', strtotime($prop->modified_on)); ?>' disabled>
             </div>
 
         </div>

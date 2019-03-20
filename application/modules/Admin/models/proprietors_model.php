@@ -42,6 +42,38 @@ class Proprietors_model extends CI_Model
         $this->db->where('deleted = 0');
         return $this->db->get();
     }
+    public function single_proprietor($proprietor_id)
+    {
+        $this->db->where('proprietor_id', $proprietor_id);
+        $query = $this->db->get('proprietor');
+
+        if($query->num_rows() > 0)
+        {
+            return $query->row();
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+    public function edit_proprietor($proprietor_id)
+    {
+        $data = array(
+            'first_name' => $this->input->post('first_name'),
+            'last_name' => $this->input->post('last_name'),
+            'proprietor_phone'=>$this->input->post('proprietor_phone'),
+            'national_id' =>$this->input->post('national_id'),
+            'business_reg_id' =>$this->input->post('business_reg_id')
+        );
+        $this->db->set($data);
+        $this->db->where('proprietor_id', $proprietor_id);
+        if($this->db->update('proprietor'))
+        {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
 
     public function count_proprietors($where)
     {
