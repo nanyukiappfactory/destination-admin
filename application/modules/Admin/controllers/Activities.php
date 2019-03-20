@@ -14,14 +14,16 @@ class Activities extends admin
 
     public function all_activities($order = 'activity.created_on', $order_method = 'DESC')
     {
-         $where = 'deleted = 0 ';
-
+        $where = 'deleted = 0 ';
+        $search_activity_params = $this->session->userdata('search_activity_params');
+        if ($search_activity_params)
+        {
+            $where .= $search_activity_params;
+        }
          // init params
          $limit_per_page = 5;
          $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
-
-         // get current page records
-              
+         // get current page records          
          $config['base_url'] = base_url() . 'activities/all-activities/'.$order . '/'.$order_method;
          $config['total_rows'] = $this->activities_model->countAll();
          $config['per_page'] = $limit_per_page;
@@ -40,15 +42,17 @@ class Activities extends admin
          $v_data['counter'] = $page * $limit_per_page;
          $v_data['route'] = 'activities';       
          $data['title'] = 'activities';
-        //  $status_array =array();
-        //  $activity_name = array();
-        //  $activity_phone = array();
-        //  $activity_email = array();
-        //  $activity_date = array();
-        //  $check_duplicate = array();
-         $data['content'] = $this->load->view('activity/all_activities', $v_data, TRUE); 
+         //initialize search
+         $status_array = array();
+         $activity_name = array();
+         $activity_phone = array();
+         $activity_email = array();
+         $activity_date = array();
+         $check_duplicate = array();
+         $search_options = array();
 
-         ///$search_options = array();
+         $data['content'] = $this->load->view('activity/all_activities', $v_data, TRUE); 
+         $this->load->view('layouts/layout', $data);
          foreach ($this->activities_model->all_activities()->result() as $value) 
             {
                 // $status_value='';
@@ -104,7 +108,7 @@ class Activities extends admin
             // array_push($search_options, array('phone_search_param', $activity_phone ,'Phone'));
         //Load the main view with the data  
         // $data['search_options'] = $search_options; 
-         $this->load->view('layouts/layout', $data);
+         
     }
     public function add_activity()
     {
@@ -136,36 +140,43 @@ class Activities extends admin
         );
         $this->load->view("layouts/layout", $data);
     }
-    // public function search_proprietor() 
-    // {
-    //     $sql_search_condition = '';
-    //     $email = $this->input->post('email_search_param');
-    //     $name = $this->input->post('name_search_param');
-    //     $date = $this->input->post('date_search_param');
-    //     $status = $this->input->post('status_search_param') == NULL ? 'null' : $this->input->post('status_search_param');
-    //     $phone = $this->input->post('phone_search_param');
-
-    //     if($email != NULL && !empty($email))
-    //     {
-    //         $sql_search_condition .= ' AND activity.activity_email = "'. $email . '"';
-    //     }
-    //     if($name != NULL && !empty($name))
-    //     {
-    //         $sql_search_condition .= ' AND activity.activity_name = "'. $name . '"'; 
-    //     }
-    //     if($date != NULL && !empty($date))
-    //     {
-    //         $sql_search_condition .= ' AND activity.activity_date= "'. $date . '"';
-    //     } 
-    //     if($status != 'null' )
-    //     {
-    //         $sql_search_condition .= ' AND activity.activity_status = '. $status;
-    //     }
-       
-	// 	//set serach sessions
-    //     $this->session->set_userdata('activities_search_params', $sql_search_condition);
-    //     // echo($sql_search_condition);die();
-    //     redirect('activities/all-activities');
+    public function search_activity() 
+    {
+        //$sql_search_condition = '';
+        $activity_status = $this->input->post('activity_status');
+        $activity_email = $this->input->post('activity_email');
+        $activity_name = $this->input->post('activity_name');
+        $activity_date = $this->input->post('activity_date');
+        $activity_phone = $this->input->post('activity_phone');
+        $where = '';
+        if($activity_status)
+        {
+            $where .= ' AND activity_status="'. $activity_status.'"';
+        }
+        if($activity_email)
+        {
+            $where .= ' AND activity_email="'. $activity_email.'"';
+        }
+        if($activity_name)
+        {
+            $where .= ' AND activity_name="'. $activity_name.'"'; 
+        }
+        if($activity_date)
+        {
+            $where .= ' AND activity_date="'. $activity_date.'"'; 
+        } 
+        if($activity_phone)
+        {
+            $where .= ' AND activity_phone="'. $activity_phone.'"'; 
+        }      
+		//set search sessions
+        $this->session->set_userdata('search_activity_params', $where);
+        redirect('activities/all-activities');
         
-	// }
+    }
+    public function close_search() {
+		$this->session->unset_userdata('search_activity_params');
+		redirect('activities/all-activities');
+	}
+    
 }

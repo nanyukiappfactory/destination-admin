@@ -11,6 +11,8 @@ if($order_method == "DESC")
 	$order_method_icon = '<i class="far fa-arrow-alt-circle-up"></i>';
 }
 
+$check_active =  $this->session->userdata('checked_status') == 'active' ? 'checked' : '';
+$check_inactive =  $this->session->userdata('checked_status') == 'inactive' ? 'checked' : '';
 $tr_business_types = "";
 
 if($business_types->num_rows() > 0)
@@ -49,21 +51,18 @@ if($business_types->num_rows() > 0)
 
 echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
 
-<ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
+<div>
     <?php
     echo form_open("/admin/business_types/search_business_type", array("class" => "form-inline my-2 my-lg-0"));?>
-		<input type="radio" name="status" value="1" class ="m-2"> Active
-		<input type="radio" name="status" value="0" class ="m-2"> Inactive
+		<input type="radio" name="status" value="active" class ="m-2" <?php echo $check_active;?> > Active
+		<input type="radio" name="status" value="inactive" class ="m-2" <?php echo $check_inactive;?> > Inactive
 		<input type="text" name="business_type_name" Placeholder="Search Business Type" />
 		<button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
 		<?php if($this->session->userdata('search_business_type_params')){?>
 		<a href="<?php echo base_url();?>business-types/close-search" class="btn btn-outline-danger my-2 my-sm-0 ml-sm-2"><i class="fas fa-times"></i></a>
 		<?php }?>
 	<?php echo  form_close();?>
-		
-	</li>
-  </ul>
+</div>
 
 <div class="table-responsive">
         <table class="table table-striped table-sm">

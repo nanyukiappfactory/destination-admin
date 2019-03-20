@@ -24,7 +24,7 @@
             $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
 
             $config['base_url'] = base_url(). 'business-types/all-business-types/'.$order . '/'.$order_method;
-            $config['total_rows'] = $this->business_types_model->countAll();
+            $config['total_rows'] = $this->business_types_model->countAll($where);
             $config['per_page'] = $limit_per_page;
             $config['uri_segment'] = 5;
             $config['numlinks'] = 2;
@@ -86,7 +86,8 @@
         
         public function search_business_type() 
         {
-            $status = $this->input->post('status');
+            $status_str = $this->input->post('status');
+            
             $business_type_name = $this->input->post('business_type_name');
             $where = '';
 
@@ -95,9 +96,11 @@
                 $where .= ' AND business_type_name="'. $business_type_name .'"';
             }
 
-            if($status)
+            if($status_str)
             {
-                $where .= ' AND business_type_status="'. $status . '"';
+                $status = $status_str == 'active' ? 1 : 0;
+                $where .= ' AND business_type_status='. $status ;
+                $this->session->set_userdata('checked_status', $status_str);
             }
 
             $this->session->set_userdata('search_business_type_params', $where);
@@ -107,6 +110,7 @@
         public function close_search()
         {
             $this->session->unset_userdata('search_business_type_params');
+            $this->session->unset_userdata('checked_status');
             redirect('business-types/all-business-types');
         }
     }

@@ -72,7 +72,7 @@
                 'null' => false
             ),
             'modified_on' => array(
-                'type' => 'TIMESTAMP',
+                'type' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
                 'null'=>false,
                 'onupdate'=>'CURRENT_TIMESTAMP'
             ),

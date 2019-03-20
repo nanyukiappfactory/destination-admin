@@ -39,8 +39,8 @@ class Activities_Model extends CI_Model
             'deleted' => 0,
             'modified_by' => 0,
             'deleted' => 0,
-            'modified_on' => date('Y/m/d'),
-            'created_on' => date('Y/m/d')
+            'modified_on' => date('Y/m/d H:i:s'),
+            'created_on' => date('Y/m/d H:i:s')
         );
 
         if($this->db->insert('activity', $data))
