@@ -86,14 +86,15 @@
         
         public function search_business_type() 
         {
-            $status_str = $this->input->post('status');
-            
+            $status_str = $this->input->post('status');     
             $business_type_name = $this->input->post('business_type_name');
+           
             $where = '';
 
             if($business_type_name)
             {
-                $where .= ' AND business_type_name="'. $business_type_name .'"';
+                $where .= ' AND business_type_name="'. $business_type_name .'"';            
+                $this->session->set_userdata('search_business_type_name', $business_type_name);
             }
 
             if($status_str)
@@ -111,6 +112,7 @@
         {
             $this->session->unset_userdata('search_business_type_params');
             $this->session->unset_userdata('checked_status');
+            $this->session->unset_userdata('search_business_type_name');
             redirect('business-types/all-business-types');
         }
     }

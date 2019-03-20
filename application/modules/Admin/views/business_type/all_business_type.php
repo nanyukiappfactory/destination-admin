@@ -13,6 +13,8 @@ if($order_method == "DESC")
 
 $check_active =  $this->session->userdata('checked_status') == 'active' ? 'checked' : '';
 $check_inactive =  $this->session->userdata('checked_status') == 'inactive' ? 'checked' : '';
+$search_business_type_name = $this->session->userdata('search_business_type_name');
+
 $tr_business_types = "";
 
 if($business_types->num_rows() > 0)
@@ -56,7 +58,8 @@ echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "cla
     echo form_open("/admin/business_types/search_business_type", array("class" => "form-inline my-2 my-lg-0"));?>
 		<input type="radio" name="status" value="active" class ="m-2" <?php echo $check_active;?> > Active
 		<input type="radio" name="status" value="inactive" class ="m-2" <?php echo $check_inactive;?> > Inactive
-		<input type="text" name="business_type_name" Placeholder="Search Business Type" />
+		<input type="text" name="business_type_name" value="<?php echo $search_business_type_name;?>" Placeholder="Search Business Type" />
+		
 		<button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
 		<?php if($this->session->userdata('search_business_type_params')){?>
 		<a href="<?php echo base_url();?>business-types/close-search" class="btn btn-outline-danger my-2 my-sm-0 ml-sm-2"><i class="fas fa-times"></i></a>
