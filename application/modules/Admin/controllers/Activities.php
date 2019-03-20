@@ -159,22 +159,22 @@ class Activities extends admin
         if($activity_email)
         {
             $where .= ' AND activity_email="'. $activity_email.'"';
-            $this->session->set_userdata('search_activity_email');
+            $this->session->set_userdata('search_activity_email', $activity_email);
         }
         if($activity_name)
         {
             $where .= ' AND activity_name="'. $activity_name.'"'; 
-            $this->session->set_userdata('search_activity_name');
+            $this->session->set_userdata('search_activity_name', $activity_name);
         }
         if($activity_date)
         {
             $where .= ' AND activity_date="'. $activity_date.'"'; 
-            $this->session->set_userdata('search_activity_date');
+            $this->session->set_userdata('search_activity_date', $activity_date);
         } 
         if($activity_phone)
         {
             $where .= ' AND activity_phone="'. $activity_phone.'"';
-            $this->session->set_userdata('search_activity_phone'); 
+            $this->session->set_userdata('search_activity_phone', $activity_phone); 
         }      
 		//set search sessions
         $this->session->set_userdata('search_activity_params', $where);
