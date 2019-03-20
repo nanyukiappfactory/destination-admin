@@ -17,13 +17,6 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $('#datetimepicker').datetimepicker();
-      });
-       
-    </script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#datetimepicker2').datetimepicker();
-      });
-       
+      });    
     </script>
     <!-- <script src="../bootstrap/js/bootstrap.min.js"></script> -->
