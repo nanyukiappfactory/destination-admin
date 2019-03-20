@@ -44,9 +44,9 @@ class Business_types_model extends CI_Model
         return $this->db->get();
     }
   
-    public function countAll()
+    public function countAll($where)
     {
-        $this->db->where('deleted = 0');
+        $this->db->where($where);
         return $this->db->get("business_type")->num_rows();
     }
 
