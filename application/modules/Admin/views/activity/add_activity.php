@@ -4,8 +4,8 @@
 		<label class="control-label">Name</label>
 		<input type="text" class="form-control boxed" name="activity_name" value="<?php echo set_value('activity_name')?>" />
 
-		<label class="control-label">Date</label>
-		<input type="date" class="form-control boxed" data-date="" data-date-format="DD MMMM YYYY" name="activity_date" value="<?php echo set_value('activity_date')?>">
+		<label for="text" class="labelstaff">Date</label>
+        <input type="text" class="form-control boxed" id="datetimepicker" name="activity_date" value="<?php echo set_value('activity_date')?>">
 
 		<label class="control-label">Longitude</label>
 		<input type="text" class="form-control boxed" name="activity_longitude" value="<?php echo set_value('activity_longitude')?>">
@@ -18,7 +18,7 @@
 
 		<label class="control-label">Phone</label>
 		<input type="text" class="form-control boxed" name="activity_phone" value="<?php echo set_value('activity_phone')?>">
-
+		
 		<label class="control-label">Description</label>
 		<textarea rows="5" class="textarea_editor form-control border-radius-0" name="activity_description" placeholder="Enter text ..."><?php echo set_value('activity_description')?></textarea>
 		

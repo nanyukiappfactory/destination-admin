@@ -72,9 +72,10 @@
                 'null' => false
             ),
             'modified_on' => array(
-                'type' => 'TIMESTAMP',
-                'null'=>false,
-                'onupdate'=>'CURRENT_TIMESTAMP'
+                'type' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
+                'null'=>false,             
+                'onupdate'=>'CURRENT_TIMESTAMP',
+                
             ),
             'modified_by' => array(
                 'type' => 'INT',
@@ -82,8 +83,14 @@
                 'null' => false
             )
         ));
+            
         $this->dbforge->add_key('activity_id', true);
-        $this->dbforge->create_table('activities');
+        
+        if($this->db->table_exists('activities'))
+        {    
+            $this->down();
+        }
+          
     }
     public function down()
     {
