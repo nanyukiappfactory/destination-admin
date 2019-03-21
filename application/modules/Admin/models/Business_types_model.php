@@ -26,6 +26,24 @@ class Business_types_model extends CI_Model
         }
     }
     
+    public function edit_business_type($id)
+    {
+        $data = array(
+            'business_type_name' => $this->input->post('business_type_name')
+        );
+
+        $this->db->set($data);
+        $this->db->where('business_type_id', $id);
+        if($this->db->update('business_type'))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
     public function all_business_types()
     {
         $this->db->select("*");
@@ -43,7 +61,21 @@ class Business_types_model extends CI_Model
         $this->db->where($where);
         return $this->db->get();
     }
-  
+    
+    public function activate($business_type_id, $new_status)
+    {
+        $this->db->set("business_type_status", $new_status);
+        $this->db->where("business_type_id", $business_type_id);
+        return $this->db->update("business_type");
+    }
+
+    public function deactivate($business_type_id, $new_status)
+    {
+        $this->db->set("business_type_status", $new_status);
+        $this->db->where("business_type_id", $business_type_id);
+        return $this->db->update("business_type");
+    }
+
     public function countAll($where)
     {
         $this->db->where($where);

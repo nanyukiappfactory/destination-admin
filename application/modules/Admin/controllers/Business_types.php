@@ -84,6 +84,83 @@
             $this->load->view("layouts/layout", $data);
         }
         
+        public function edit_business_type($business_type_id)
+        {
+            $this->form_validation->set_rules('business_type_name', 'Business Type Name', 'required');
+
+            if($this->form_validation->run() == TRUE)
+            {
+                if($this->business_types_model->edit_business_type($business_type_id))
+                {
+                    $this->session->set_flashdata('success', 'Successfully updated');
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Unable to update');
+                }
+            }
+            else
+            {
+                if(validation_errors())
+                {
+                    $this->session->set_flashdata('error', validation_errors());
+                }
+            }
+            redirect('business-types/all-business-types');
+        }
+
+        public function activate_business_type($business_type_id, $business_type_status)
+        {
+            if($business_type_status == 0)
+            {
+                $new_business_type_status = 1;
+                $message = ' Activated successfully';
+                $error_message = 'Unable to activate. Try again!';
+            }
+            else
+            {
+                $new_business_type_status = 0;
+                $message = ' Deactivated successfully';
+                $error_message = 'Unable to deactivate. Try again!';
+            }
+
+            if($this->business_types_model->deactivate($business_type_id, $new_business_type_status))
+            {
+                $this->session->set_flashdata('success', 'Business ID: ' . $business_type_id . $message);
+            }
+            else
+            {
+                $this->session->set_flashdata('error', $error_message);
+            }
+            redirect("business-types/all-business-types");
+        }
+
+        public function deactivate_business_type($business_type_id, $business_type_status)
+        {
+            if($business_type_status == 0)
+            {
+                $new_business_type_status = 1;
+                $message = ' Activated successfully';
+                $error_message = 'Unable to activate. Try again!';
+            }
+            else
+            {
+                $new_business_type_status = 0;
+                $message = ' Deactivated successfully';
+                $error_message = 'Unable to deactivate. Try again!';
+            }
+
+            if($this->business_types_model->deactivate($business_type_id, $new_business_type_status))
+            {
+                $this->session->set_flashdata('success', 'Business ID: ' . $business_type_id . $message);
+            }
+            else
+            {
+                $this->session->set_flashdata('error', $error_message);
+            }
+            redirect("business-types/all-business-types");
+        }
+
         public function search_business_type() 
         {
             $status_str = $this->input->post('status');     

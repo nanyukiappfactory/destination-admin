@@ -78,7 +78,10 @@ $route['activities/close-search'] = 'admin/activities/close_search';
  */
 $route['business-types/all-business-types'] = 'admin/business_types/index';
 $route['business-types/add-business-types'] = 'admin/business_types/add_business_type';
-$route['business-types/all-business-types/(:any)/(:any)'] = 'admin/business_types/index/$1/$2';
+$route['business-types/edit-business-types/(:num)'] = 'admin/business_types/edit_business_type/$1';
+$route['business-types/deactivate-business-types/(:num)/(:num)'] = 'admin/business_types/deactivate_business_type/$1/$2';
+$route['business-types/activate-business-types/(:num)/(:num)'] = 'admin/business_types/activate_business_type/$1/$2';
+$route['business-types/all-business-types/(:num)/(:num)'] = 'admin/business_types/index/$1/$2';
 $route['business-types/all-business-types/(:any)/(:any)/(:num)'] = 'admin/business_types/index/$1/$2/$3';
 $route['business-types/search-business-types'] = 'admin/business_types/search_business_type';
 $route['business-types/close-search'] = 'admin/business_types/close_search';
