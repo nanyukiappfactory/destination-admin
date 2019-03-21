@@ -29,11 +29,26 @@ if($business_types->num_rows() > 0)
 		{
 			$badge_class = 'badge badge-pill badge-success';
 			$status = 'Active';
+			$status_active_class = 'btn btn-sm btn-warning';
+			$base_url = base_url();
+			$business_type_route = 'business-types/deactivate-business-types';
+			$id_param = $business_type->business_type_id .'/'; 
+			$status_param = $business_type->business_type_status;
+			$link_status = 'btn btn-sm btn-success';
+			$onclick = 'return confirm("Are you sure you want to Deactivate")';
+			$i_status = 'fas fa-thumbs-down';
 		}
 		else
 		{
 			$badge_class = 'badge badge-pill badge-warning';
 			$status = 'Inactive';
+			$base_url = base_url();
+			$business_type_route = 'business-types/activate-business-types';
+			$id_param = $business_type->business_type_id .'/'; 
+			$status_param = $business_type->business_type_status;
+			$link_status = 'btn btn-sm btn-warning';
+			$onclick = 'return confirm("Are you sure you want to Activate")';
+			$i_status = 'fas fa-thumbs-up';
 		}
 
 		$tr_business_types .= '<tr>
@@ -43,11 +58,18 @@ if($business_types->num_rows() > 0)
 				<span class="' . $badge_class . '">'. $status . '</span>
 			</td>
 			<td>
-			<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#viewPage' . $business_type->business_type_id . '"><i class="fa fa-eye"></i></button>
+				<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#viewModal' . $business_type->business_type_id . '"><i class="fa fa-eye"></i></button>
+			</td>
+			<td>
+				<button type="button" class="btn btn-sm btn-oval btn-primary" data-toggle="modal" data-target="#editModal' . $business_type->business_type_id . '"><i class="fa fa-edit"></i></button>
+			</td>
+			<td>
+				<a href="'. $base_url . $business_type_route.'/'. $id_param. $status_param.'" class="'. $link_status .'" onclick="'. $onclick .'"><i class="'. $i_status.'"></i></a>
 			</td>
 		</tr>';
 
 		$this->load->view('business_type/view_business_type', $v_data);
+		$this->load->view('business_type/edit_business_type', $v_data);
 	}
 }
 
