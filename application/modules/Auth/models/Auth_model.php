@@ -6,7 +6,13 @@ if (!defined('BASEPATH')) { exit('No direct access script allowed'); }
         {
             if($username == "admin" && $password == md5(123456))
             {
+                if($username == 'admin')
+                {
+                    $admin_id = 0;
+                }
+
                 $sess_array = array(
+                    'id' => $admin_id,
                     'username' => $username,
                     'login_status' => TRUE
                 );

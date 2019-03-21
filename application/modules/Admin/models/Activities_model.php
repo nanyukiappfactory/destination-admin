@@ -25,8 +25,10 @@ class Activities_Model extends CI_Model
         return $this->db->get($this->table)->num_rows(); 
     }
 
-    public function save_activity()
+    public function save_activity($file_name, $thumb_name)
     {   
+        $user_id = $this->session->userdata('login_status')['id'];
+       
         $data = array(
             'activity_name' => $this->input->post('activity_name'),    
             'activity_date' => $this->input->post('activity_date'),
@@ -35,9 +37,11 @@ class Activities_Model extends CI_Model
             'activity_phone' => $this->input->post('activity_phone'),
             'activity_email' => $this->input->post('activity_email'),
             'activity_description' => $this->input->post('activity_description'),
-            'created_by' => 1 ,
+            'activity_image_name' => $file_name,
+            'activity_thumb_name' => $thumb_name,
+            'created_by' => $user_id ,
             'deleted' => 0,
-            'modified_by' => 0,
+            'modified_by' => $user_id,
             'deleted' => 0,
             'modified_on' => date('Y/m/d H:i:s'),
             'created_on' => date('Y/m/d H:i:s')

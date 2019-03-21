@@ -18,7 +18,10 @@
 
 		<label class="control-label">Phone</label>
 		<input type="text" class="form-control boxed" name="activity_phone" value="<?php echo set_value('activity_phone')?>">
-		
+		<div class="my-3">
+		<label class="control-label">Activity Image</label>
+		<input type="file" name="activity_image" id="activity_image" size="20"/>
+		</div>
 		<label class="control-label">Description</label>
 		<textarea rows="5" class="textarea_editor form-control border-radius-0" name="activity_description" placeholder="Enter text ..."><?php echo set_value('activity_description')?></textarea>
 		

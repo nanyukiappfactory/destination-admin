@@ -4,12 +4,19 @@ require_once "./application/modules/admin/controllers/Admin.php";
 
 class Activities extends admin
 {
+    public $upload_path;
+
+    public $upload_location;
 
     public function __construct()
     {
         parent::__construct();
-
+        $this->upload_path = realpath(APPPATH . '../assets/uploads');
+        //get the location to upload images
+        $this->upload_location = base_url() . 'assets/uploads';
         $this->load->model('activities_model');
+        $this->load->model('file_model');
+        $this->load->library('image_lib');
     }
 
     public function all_activities($order = 'activity.created_on', $order_method = 'DESC')
@@ -114,32 +121,67 @@ class Activities extends admin
     {
         $this->form_validation->set_rules('activity_name', 'Name', 'required');
         $this->form_validation->set_rules('activity_date', 'Date', 'required');
-        $this->form_validation->set_rules('activity_phone', 'Phone', 'required');
+        $this->form_validation->set_rules('activity_phone', 'Phone', 'required');       
         $this->form_validation->set_rules('activity_email', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('activity_longitude', 'Longitude', 'required');
         $this->form_validation->set_rules('activity_latitude', 'Latitude', 'required');
         $this->form_validation->set_rules('activity_description', 'Description', 'required');
-
-        if ($this->form_validation->run() == true) {
-            $activity_id = $this->activities_model->save_activity();
+        
+        if ($this->form_validation->run()) {
+        $resize = array(
+        "width" => 600,
+        "height" => 600,
+        );
+        // Image Upload Response
+        // if (isset($_FILES['activity_image']) && $_FILES['activity_image']['size'] > 0) {
+        $upload_response = $this->file_model->upload_image($this->upload_path, "activity_image", $resize);
+       // var_dump($upload_response); die();
+        if ($upload_response['check'] == false) {
+        $this->session->set_flashdata('error', $upload_response['message']);
+        redirect('activities/all-activities');
+        } else {
+       
+        if ($this->activities_model->save_activity($upload_response['file_name'], $upload_response['thumb_name'])) {
+       
+        $this->session->set_flashdata('success', 'Activity Added successfully!!');
+       
+        redirect('activities/all-activities');
+       
+        } else {
+       
+        $this->session->flashdata("error", "Unable to add school");
+        redirect('activities/all-activities');
+       
+        }
+    }
+       
+            $activity_id = $this->activities_model->save_activity($upload_response['file_name'], $upload_response['thumb_name']);
 
             if ($activity_id) {
                 $this->session->set_flashdata('success', 'Activity ID: ' . $activity_id . ' saved.');
+                redirect('activities/all-activities');
             } else {
                 $this->session->set_flashdata('error', 'Unable to save. Try again!!');
+                redirect('activities/all-activities');
             }
-            redirect('activities/all-activities');
-        } else {
+        
+    }
+            
+         else {
             if (validation_errors()) {
                 $this->session->set_flashdata('error', validation_errors());
+                redirect('activities/all-activities');
             }
-        }
-        $data = array(
+                 $data = array(
             "title" => "add activity",
             "content" => $this->load->view('activity/add_activity', null, true),
         );
         $this->load->view("layouts/layout", $data);
-    }
+            
+        }
+       
+        }
+    
     public function search_activity() 
     {
         //$sql_search_condition = '';
