@@ -9,8 +9,12 @@ if($order_method == "DESC")
 	$new_order_method = "ASC";
 	$order_method_icon = '<i class="far fa-arrow-alt-circle-up"></i>';
 }
-$check_active =  $this->session->userdata('checked_status') == 'active' ? 'checked' : '';
-$check_inactive =  $this->session->userdata('checked_status') == 'inactive' ? 'checked' : '';
+$check_active =  $this->session->userdata('search_activity_status') == 'active' ? 'checked' : '';
+$check_inactive =  $this->session->userdata('search_activity_status') == 'inactive' ? 'checked' : '';
+$search_email = $this->session->userdata('search_activity_email');
+$search_name = $this->session->userdata('search_activity_name');
+$search_date = $this->session->userdata('search_activity_date');
+$search_phone = $this->session->userdata('search_activity_phone');
 $tr_activities = "";
 
 if($activities->num_rows() > 0)
@@ -60,13 +64,13 @@ if($activities->num_rows() > 0)
 <div class="my-2">
     <?php
     echo form_open("/admin/activities/search_activity", array("class" => "form-inline my-2 my-lg-0"));?>
-		<input type="radio" name="activity_status" value="active" class ="m-2" <?php echo $check_active;?> > Active
-		<input type="radio" name="activity_status" value="inactive" class ="m-2" <?php echo $check_inactive;?> > Inactive
-		<input type="text" name="activity_email" Placeholder="search email" />
-		<input type="text" name="activity_name" Placeholder="search name" />
-		<input type="text" name="activity_date" Placeholder="search date" />
-		<input type="text" name="activity_phone" Placeholder="search phone" />
-		<button class="btn btn-outline-success my-2 my-sm-0 ml-sm-2" type="submit"><i class="fas fa-search"></i></button>
+		<input type="radio" name="activity_status" value="active" class ="ml-2" <?php echo $check_active;?> > Active
+		<input type="radio" name="activity_status" value="inactive" class ="ml-2" <?php echo $check_inactive;?> > Inactive
+		<input type="text" name="activity_email" value="<?php echo $search_email;?>" Placeholder="search email" class ="ml-1" />
+		<input type="text" name="activity_name" value="<?php echo $search_name;?>"Placeholder="search name" class ="ml-1"/>
+		<input type="text" name="activity_date" value="<?php echo $search_date;?>"Placeholder="search date" class ="ml-1"/>
+		<input type="text" name="activity_phone" value="<?php echo $search_phone;?>"Placeholder="search phone" class ="ml-1"/>
+		<button class="btn btn-outline-success my-2 my-sm-0 ml-sm-1" type="submit"><i class="fas fa-search"></i></button>
 		<?php if($this->session->userdata('search_activity_params')){?>
 		<a href="<?php echo base_url();?>activities/close-search" class="btn btn-outline-danger my-2 my-sm-0 ml-sm-2"><i class="fas fa-times"></i></a>
 		<?php }?>

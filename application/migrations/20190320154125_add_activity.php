@@ -53,6 +53,16 @@
                 'null' => false,
                 'default' => 1
             ),
+            'activity_image_name' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+                'null' => true
+            ),
+            'activity_thumb_name' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+                'null' => true
+            ),
             'deleted' => array(
                 'type' => 'TINYINT',
                 'constraint' => '1',
