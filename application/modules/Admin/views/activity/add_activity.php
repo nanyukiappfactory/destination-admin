@@ -1,4 +1,4 @@
-<?php echo form_open(base_url()."activities/add-activity"); ?>
+<?php echo form_open_multipart(base_url()."activities/add-activity"); ?>
 <div class="">
 	<div class="form-group">
 		<label class="control-label">Name</label>

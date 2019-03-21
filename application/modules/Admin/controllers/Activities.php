@@ -153,8 +153,8 @@ class Activities extends admin
         redirect('activities/all-activities');
        
         }
-    }
-       
+    } 
+// }
             $activity_id = $this->activities_model->save_activity($upload_response['file_name'], $upload_response['thumb_name']);
 
             if ($activity_id) {
@@ -221,7 +221,6 @@ class Activities extends admin
 		//set search sessions
         $this->session->set_userdata('search_activity_params', $where);
         redirect('activities/all-activities');
-        
     }
     public function close_search() {
 		$this->session->unset_userdata('search_activity_params');
