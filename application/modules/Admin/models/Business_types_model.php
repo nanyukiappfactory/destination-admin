@@ -76,6 +76,13 @@ class Business_types_model extends CI_Model
         return $this->db->update("business_type");
     }
 
+    public function delete($id)
+    {
+        $this->db->set("deleted", 1);
+        $this->db->where("business_type_id", $id);
+        return $this->db->update("business_type");
+    }
+
     public function countAll($where)
     {
         $this->db->where($where);

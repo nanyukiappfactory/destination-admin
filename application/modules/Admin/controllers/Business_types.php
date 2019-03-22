@@ -161,6 +161,19 @@
             redirect("business-types/all-business-types");
         }
 
+        public function delete_business_type($business_type_id)
+        {
+            if ($this->business_types_model->delete($business_type_id)) 
+            {
+                $this->session->set_flashdata('success', 'Successfully deleted');
+            }
+            else 
+            {
+                $this->session->set_flashdata('error', 'Unable to delete');
+            }
+            redirect('business-types/all-business-types');
+        }
+
         public function search_business_type() 
         {
             $status_str = $this->input->post('status');     
