@@ -43,6 +43,7 @@ if ($activities->num_rows() > 0) {
 		<td>
 		<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#exampleModal' . $activity->activity_id . '"><i class="fa fa-eye"></i></button>
 		<button type="button" class="btn btn-sm btn-oval btn-primary" data-toggle="modal" data-target="#editModal' . $activity->activity_id . '"><i class="fa fa-edit"></i></button>
+
 		</td>
 	</tr>';
 
@@ -77,15 +78,15 @@ echo form_open("/admin/activities/search_activity", array("class" => "form-inlin
 			<tr>
 				<th>No.</th>
 				<th>
-				<a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_name/<?php echo $new_order_method; ?>" style="color:#000"><?php echo 'Name' ?></a></th>
+				<a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_name/<?php echo $new_order_method; ?>" style="color:#000">Name</a></th>
 				<th>
-				<a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_date/<?php echo $new_order_method; ?>" style="color:#000"><?php echo 'Date'?></a></th>							      									   					</th>
+				<a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_date/<?php echo $new_order_method; ?>" style="color:#000">Date</a></th>							      									   					</th>
 				<th>
-				<a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_status/<?php echo $new_order_method; ?>" style="color:#000"><?php echo 'Status' ?></a></th>
+				<a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_status/<?php echo $new_order_method; ?>" style="color:#000">Status</a></th>
 				<th>Longitude</th>
 				<th>Latitude</th>
-				<th><a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_phone/<?php echo $new_order_method; ?>" style="color:#000"><?php echo 'Phone'?></a></th>
-				<th><a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_email/<?php echo $new_order_method; ?>" style="color:#000"><?php echo 'Email'?></a></th>
+				<th><a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_phone/<?php echo $new_order_method; ?>" style="color:#000">Phone</a></th>
+				<th><a href="<?php echo base_url(); ?>activities/all-activities/activity.activity_email/<?php echo $new_order_method; ?>" style="color:#000">Email</a></th>
 				<th>Actions</th>
 			</tr>
 		</thead>
