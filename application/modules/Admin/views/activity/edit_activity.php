@@ -13,25 +13,10 @@
       <?php echo form_open(base_url()."activities/edit-activity/". $activity_modal->activity_id); ?>
       <div class="modal-body">
         <div class="form-group">
-          <?php
-            $success = $this->session->flashdata('success');
-            $error = $this->session->flashdata('error');
-
-            if($success){?>
-                <div class="alert alert-success" role="alert">
-                    <?php echo $success;?>
-                </div>
-            <?php }
-            if($error){?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $error;?>
-                </div>
-            <?php }
-          ?>
           <label class="control-label">Name</label>
           <input type="text" class="form-control boxed" name="activity_name" value="<?php echo $activity_modal->activity_name;?>">   
           <label class="control-label">Date</label>
-          <input type="text" class="form-control" id="datetimepicker" name="activity_date" >
+          <input type="text" class="form-control" id="datetimepicker" name="activity_date" value="<?php echo date($activity_modal->activity_date); ?>" >
           <label class="control-label boxed">Longitude</label>
           <input type="text" class="form-control boxed" name="activity_longitude" value="<?php echo $activity_modal->activity_longitude;?>">    
           <label class="control-label">Latitude</label>
@@ -41,7 +26,7 @@
           <label class="control-label">Phone</label>
           <input type="text" class="form-control boxed" name="activity_phone" value="<?php echo $activity_modal->activity_phone;?>"> 
           <label class="control-label">Description</label>
-          <textarea name="text" rows="5" class="textarea_editor form-control border-radius-0" name="activity_description"><?php echo strip_tags($activity_modal->activity_description);?></textarea>  
+          <textarea rows="5" class="textarea_editor form-control border-radius-0" name="activity_description"><?php echo strip_tags($activity_modal->activity_description);?></textarea>  
         </div>
       </div>
       <div class="modal-footer">

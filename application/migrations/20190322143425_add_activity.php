@@ -82,9 +82,8 @@
                 'null' => false
             ),
             'modified_on' => array(
-                'type' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
-                'null'=>false,
-                'onupdate'=>'CURRENT_TIMESTAMP'
+                'type' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
+                'null'=>false               
             ),
             'modified_by' => array(
                 'type' => 'INT',

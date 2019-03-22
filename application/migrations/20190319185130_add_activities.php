@@ -6,7 +6,7 @@
     public function up()
     {
         $this->dbforge->add_field(array(
-            'activity_id' =>array(
+            'activities_id' =>array(
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => TRUE,
@@ -72,10 +72,9 @@
                 'null' => false
             ),
             'modified_on' => array(
-                'type' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
+                'type' => 'TIMESTAMP',
                 'null'=>false,             
-                'onupdate'=>'CURRENT_TIMESTAMP',
-                
+                'onupdate'=>'CURRENT_TIMESTAMP'    
             ),
             'modified_by' => array(
                 'type' => 'INT',

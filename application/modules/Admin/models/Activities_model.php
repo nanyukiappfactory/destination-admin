@@ -56,7 +56,7 @@ class Activities_Model extends CI_Model
             return FALSE;
         }
     }
-    public function update($activity_id)
+    public function update($id)
     {
         $data = array(
             'activity_name' => $this->input->post('activity_name'),
@@ -68,8 +68,8 @@ class Activities_Model extends CI_Model
             'activity_email' => $this->input->post('activity_email')
         );
         $this->db->set($data);
-        $this->db->where('activity_id', $activity_id);
-        if($this->db->update == TRUE)
+        $this->db->where('activity_id', $id);
+        if($this->db->update('activity'))
         {
             return TRUE;
         }
