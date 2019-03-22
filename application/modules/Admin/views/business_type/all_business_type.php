@@ -15,6 +15,12 @@ $check_active =  $this->session->userdata('checked_status') == 'active' ? 'check
 $check_inactive =  $this->session->userdata('checked_status') == 'inactive' ? 'checked' : '';
 $search_business_type_name = $this->session->userdata('search_business_type_name');
 
+$business_type_delete_route = 'business-types/delete-business-types';
+$i_status = 'fas fa-thumbs-up';
+$link_delete = "btn btn-sm btn-oval btn-danger";
+$onclick_delete = "return confirm('Are you sure you want to Delete?')";
+$i_delete = 'fa fa-trash';
+
 $tr_business_types = "";
 
 if($business_types->num_rows() > 0)
@@ -44,15 +50,10 @@ if($business_types->num_rows() > 0)
 			$status = 'Inactive';
 			$base_url = base_url();
 			$business_type_route = 'business-types/activate-business-types';
-			$business_type_delete_route = 'business-types/delete-business-types';
 			$id_param = $business_type->business_type_id .'/'; 
 			$status_param = $business_type->business_type_status;
 			$link_status = 'btn btn-sm btn-warning';
-			$onclick = "return confirm('Are you sure you want to Activate?')";
-			$i_status = 'fas fa-thumbs-up';
-			$link_delete = "btn btn-sm btn-oval btn-danger";
-			$onclick_delete = "return confirm('Are you sure you want to Delete?')";
-			$i_delete = 'fa fa-trash';
+			$onclick = "return confirm('Are you sure you want to Activate?')";			
 		}
 
 		$tr_business_types .= '<tr>
