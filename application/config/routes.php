@@ -71,6 +71,7 @@ $route['activities/all-activities/(:any)/(:any)'] = 'admin/activities/all_activi
 $route['activities/all-activities/(:any)/(:any)/(:num)'] = 'admin/activities/all_activities/$1/$2/$3';
 $route['activities/search-activities'] = 'admin/activities/all_activities';
 $route['activities/close-search'] = 'admin/activities/close_search';
+$route['activities/edit-activity/(:num)'] = 'admin/activities/edit_activity/$1';
 
 
 /*
