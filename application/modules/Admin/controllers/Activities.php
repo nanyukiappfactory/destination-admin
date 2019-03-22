@@ -17,7 +17,7 @@ class Activities extends admin
         $this->load->library('image_lib');
     }
 
-    public function all_activities($order = 'activity.created_on', $order_method = 'DESC')
+    public function index($order = 'activity.created_on', $order_method = 'DESC')
     {
         $where = 'deleted = 0 ';
         $search_activity_params = $this->session->userdata('search_activity_params');

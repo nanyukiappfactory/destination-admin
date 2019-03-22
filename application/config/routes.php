@@ -65,11 +65,11 @@ $route['admin/logout'] = 'admin/admin/admin_logout';
 /*
  * activities routes
  */
-$route['activities/all-activities'] = 'admin/activities/all_activities';
+$route['activities/all-activities'] = 'admin/activities/index';
 $route['activities/add-activity'] = 'admin/activities/add_activity';
-$route['activities/all-activities/(:any)/(:any)'] = 'admin/activities/all_activities/$1/$2';
-$route['activities/all-activities/(:any)/(:any)/(:num)'] = 'admin/activities/all_activities/$1/$2/$3';
-$route['activities/search-activities'] = 'admin/activities/all_activities';
+$route['activities/all-activities/(:any)/(:any)'] = 'admin/activities/index/$1/$2';
+$route['activities/all-activities/(:any)/(:any)/(:num)'] = 'admin/activities/index/$1/$2/$3';
+$route['activities/search-activities'] = 'admin/activities/index';
 $route['activities/close-search'] = 'admin/activities/close_search';
 $route['activities/edit-activity/(:num)'] = 'admin/activities/edit_activity/$1';
 
