@@ -44,11 +44,15 @@ if($business_types->num_rows() > 0)
 			$status = 'Inactive';
 			$base_url = base_url();
 			$business_type_route = 'business-types/activate-business-types';
+			$business_type_delete_route = 'business-types/delete-business-types';
 			$id_param = $business_type->business_type_id .'/'; 
 			$status_param = $business_type->business_type_status;
 			$link_status = 'btn btn-sm btn-warning';
 			$onclick = "return confirm('Are you sure you want to Activate?')";
 			$i_status = 'fas fa-thumbs-up';
+			$link_delete = "btn btn-sm btn-oval btn-danger";
+			$onclick_delete = "return confirm('Are you sure you want to Delete?')";
+			$i_delete = 'fa fa-trash';
 		}
 
 		$tr_business_types .= '<tr>
@@ -59,12 +63,9 @@ if($business_types->num_rows() > 0)
 			</td>
 			<td>
 				<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#viewModal' . $business_type->business_type_id . '"><i class="fa fa-eye"></i></button>
-			</td>
-			<td>
 				<button type="button" class="btn btn-sm btn-oval btn-primary" data-toggle="modal" data-target="#editModal' . $business_type->business_type_id . '"><i class="fa fa-edit"></i></button>
-			</td>
-			<td>
 				<a href="'. $base_url . $business_type_route.'/'. $id_param. $status_param.'" class="'. $link_status .'" onclick="'. $onclick .'"><i class="'. $i_status.'"></i></a>
+				<a href="'. $base_url . $business_type_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="'. $i_delete.'"></i></a>
 			</td>
 		</tr>';
 
