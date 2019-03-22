@@ -172,7 +172,73 @@ class Activities extends admin
 			}	
 		}
 		redirect('activities/all-activities');
-	}
+    }
+    public function deactivate_activity($activity_id, $activity_status)
+    {
+        if($activity_status == 0)
+        {
+            $new_activity_status = 1;
+            $message = ' activated successfully';
+            $error_message = 'Unable to activate. Try again';
+        }
+        else
+        {
+            $new_activity_status = 0;
+            $message = ' deactivated successfully';
+            $error_message = 'Unable to deactivate. Try again';
+        }
+
+        if($this->activity_model->deactivate($activity_id, $new_activity_status))
+        {
+            $this->session->set_flashdata('success', 'activity ID: ' . $activity_id . $message);
+        }
+        else
+        {
+            $this->session->set_flashdata('error', $error_message);
+            
+        }
+        redirect('activities/all-activities');
+    }
+    public function activate_activity($activity_id, $activity_status)
+    {
+        if($activity_status == 0)
+        {
+            $new_activity_status = 1;
+            $message = ' activated successfully';
+            $error_message = 'Unable to activate. Try again';
+        }
+        else
+        {
+            $new_activity_status = 0;
+            $message = ' deactivated successfully';
+            $error_message = 'Unable to deactivate. Try again';
+        }
+
+        if($this->activity_model->deactivate($activity_id, $new_activity_status))
+        {
+            $this->session->set_flashdata('success', 'activity ID: ' . $activity_id . $message);
+        }
+        else
+        {
+            $this->session->set_flashdata('error', $error_message);
+            
+        }
+        redirect('activities/all-activities');
+    }
+    public function delete_activity($activity_id) 
+    {   
+        //Returns to the same page if succeeds
+        if($this->activity_model->delete($activity_id))
+        {
+            $this->session->set_flashdata('success', 'Successfully deleted');
+        }
+        else
+        {
+            $this->session->set_flashdata('error', 'Unable to delete');
+        }        
+        redirect('activities/all-activities');
+    }
+
     public function close_search()
     {
         $this->session->unset_userdata('search_activity_params');
