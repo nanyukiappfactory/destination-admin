@@ -14,9 +14,7 @@
             <label class="control-label">Name</label>
             <input type="text" class="form-control boxed" name="activity_name" value="<?php echo $activity_modal->activity_name;?>" disabled>           
             <label class="control-label">Date</label>
-            <input type="text" class="form-control boxed" data-date="" data-date-format="DD MMMM YYYY" value="<?php $originalDate = $activity_modal->activity_date;
-            $newDate = date("Y-m-d", strtotime($originalDate)); echo $newDate;?>" name="activity_date" disabled>
-            
+            <input type="text" class="form-control boxed" name="activity_name" value="<?php echo date('D, M j, Y H:i:s', strtotime($activity_modal->created_on)); ?>" disabled>      
             <label class="control-label">Longitude</label>
             <input type="text" class="form-control boxed" name="activity_longitude" value="<?php echo $activity_modal->activity_longitude;?>" disabled> 
             

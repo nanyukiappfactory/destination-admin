@@ -2,7 +2,6 @@
 class Activities_Model extends CI_Model
 {   
     protected $table = "activity";
-
     public function all_activities()
     {
         $this->db->select('*');
@@ -56,6 +55,29 @@ class Activities_Model extends CI_Model
         {
             return FALSE;
         }
+    }
+    public function update($activity_id)
+    {
+        $data = array(
+            'activity_name' => $this->input->post('activity_name'),
+            'activity_description' => $this->input->post('activity_description'),
+            'activity_date' => $this->input->post('activity_date'),
+            'activity_longitude' => $this->input->post('activity_longitude'),
+            'activity_latitude' => $this->input->post('activity_latitude'),
+            'activity_phone' => $this->input->post('activity_phone'),
+            'activity_email' => $this->input->post('activity_email')
+        );
+        $this->db->set($data);
+        $this->db->where('activity_id', $activity_id);
+        if($this->db->update == TRUE)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+        
     }
   
 }
