@@ -84,10 +84,10 @@ class Activities_Model extends CI_Model
         $this->db->where("activity_id", $activity_id);
         return $this->db->update("activity");
     }
-    public function delete($id)
+    public function delete($activity_id)
     {
         $this->db->set("deleted", 1);
-        $this->db->where("activity_id", $id);
+        $this->db->where("activity_id", $activity_id);
         return $this->db->update("activity");
     }
 }

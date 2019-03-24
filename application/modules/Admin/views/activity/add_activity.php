@@ -6,7 +6,7 @@
 
 		<label for="text" >Date</label>
         <input type="text" class="form-control boxed" id="datetimepicker" name="activity_date" value="<?php echo set_value('activity_date')?>">
-z
+
 		<label class="control-label">Longitude</label>
 		<input type="text" class="form-control boxed" name="activity_longitude" value="<?php echo set_value('activity_longitude')?>">
 

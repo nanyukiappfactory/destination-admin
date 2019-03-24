@@ -14,6 +14,11 @@ $search_name = $this->session->userdata('search_activity_name');
 $search_date = $this->session->userdata('search_activity_date');
 $search_phone = $this->session->userdata('search_activity_phone');
 
+$activity_delete_route = 'activities/delete-activity';
+$link_delete = "btn btn-sm btn-oval btn-danger";
+$onclick_delete = "return confirm('Are you sure you want to Delete?')";
+$i_delete = 'fa fa-trash';
+
 $tr_activities = "";
 if ($activities->num_rows() > 0) {
     $count = $counter;
@@ -36,7 +41,7 @@ if ($activities->num_rows() > 0) {
 			$status = 'Inactive';
 			$base_url = base_url();
 			$activity_route = 'activities/activate-activity';
-			$id_param = $activity->activity_id . '/';
+			$id_param = $activity->activity_id;
 			$status_param = $activity->activity_status;
 			$link_status = 'btn btn-sm btn-success';
 			$onclick = "return confirm('Are you sure you want to Activate?')";
@@ -57,7 +62,8 @@ if ($activities->num_rows() > 0) {
 		<td>
 		<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#exampleModal' . $activity->activity_id . '"><i class="fa fa-eye"></i></button>
 		<button type="button" class="btn btn-sm btn-oval btn-primary" data-toggle="modal" data-target="#editModal' . $activity->activity_id . '"><i class="fa fa-edit"></i></button>
-		<a href="' . $base_url . $activity_route . '/' . $id_param . $status_param . '" class="' . $link_status . '" onclick="' . $onclick . '"><i class="' . $i_status . '"></i></a>
+		<a href="' . $base_url . $activity_route . '/' . $id_param . '/' . $status_param . '" class="' . $link_status . '" onclick="' . $onclick . '"><i class="' . $i_status . '"></i></a>
+		<a href="'. $base_url . $activity_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="'. $i_delete.'"></i></a>
 		</td>
 	</tr>';
         $this->load->view('activity/view_activity', $v_data);

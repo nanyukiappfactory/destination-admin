@@ -86,11 +86,11 @@ class Activities extends admin
                     $this->session->flashdata("error", "Unable to add school");
                 }
             }
-            redirect('activities/all-activities');
+            redirect('activities/add-activity');
         } else {
             if (validation_errors()) {
                 $this->session->set_flashdata('error', validation_errors());
-                redirect('activities/all-activities');
+                redirect('activities/add-activity');
             }
         }
         $data = array(
@@ -208,8 +208,7 @@ class Activities extends admin
     }
     public function delete_activity($activity_id)
     {
-        //Returns to the same page if succeeds
-        if ($this->activity_model->delete($activity_id)) {
+        if ($this->activities_model->delete($activity_id)) {
             $this->session->set_flashdata('success', 'Successfully deleted');
         } else {
             $this->session->set_flashdata('error', 'Unable to delete');
