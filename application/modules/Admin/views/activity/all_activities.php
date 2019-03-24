@@ -13,22 +13,36 @@ $search_email = $this->session->userdata('search_activity_email');
 $search_name = $this->session->userdata('search_activity_name');
 $search_date = $this->session->userdata('search_activity_date');
 $search_phone = $this->session->userdata('search_activity_phone');
-$tr_activities = "";
 
+$tr_activities = "";
 if ($activities->num_rows() > 0) {
     $count = $counter;
     foreach ($activities->result() as $activity) {
         $v_data['activity_modal'] = $activity;
         $count++;
+		if ($activity->activity_status == 1) {
+			$badge_class = 'badge badge-pill badge-success';
+			$status = 'Active';
+			$status_active_class = 'btn btn-sm btn-warning';
+			$base_url = base_url();
+			$activity_route = 'activities/deactivate-activity';
+			$id_param = $activity->activity_id . '/';
+			$status_param = $activity->activity_status;
+			$link_status = 'btn btn-sm btn-warning';
+			$onclick = "return confirm('Are you sure you want to Deactivate?')";
+			$i_status = 'fas fa-thumbs-down';
+		} else {
+			$badge_class = 'badge badge-pill badge-warning';
+			$status = 'Inactive';
+			$base_url = base_url();
+			$activity_route = 'activities/activate-activity';
+			$id_param = $activity->activity_id . '/';
+			$status_param = $activity->activity_status;
+			$link_status = 'btn btn-sm btn-success';
+			$onclick = "return confirm('Are you sure you want to Activate?')";
+			$i_status = 'fas fa-thumbs-up';
 
-        if ($activity->activity_status == 1) {
-            $badge_class = 'badge badge-pill badge-success';
-            $status = 'Active';
-        } else {
-            $badge_class = 'badge badge-pill badge-warning';
-            $status = 'Inactive';
-        }
-
+		}
         $tr_activities .= '<tr>
 		<td>' . $count . '</td>
 		<td>' . $activity->activity_name . '</td>
@@ -42,11 +56,10 @@ if ($activities->num_rows() > 0) {
 		<td>' . $activity->activity_email . '</td>
 		<td>
 		<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#exampleModal' . $activity->activity_id . '"><i class="fa fa-eye"></i></button>
-		<button type="button" class="btn btn-sm btn-oval btn-primary data-toggle="modal" data-target="#editModal" ' . $activity->activity_id . '"><i class="fa fa-edit"></i></button>
-		
+		<button type="button" class="btn btn-sm btn-oval btn-primary" data-toggle="modal" data-target="#editModal' . $activity->activity_id . '"><i class="fa fa-edit"></i></button>
+		<a href="' . $base_url . $activity_route . '/' . $id_param . $status_param . '" class="' . $link_status . '" onclick="' . $onclick . '"><i class="' . $i_status . '"></i></a>
 		</td>
 	</tr>';
-
         $this->load->view('activity/view_activity', $v_data);
         $this->load->view('activity/edit_activity', $v_data);
     }
@@ -92,8 +105,8 @@ echo form_open("/admin/activities/search_activity", array("class" => "form-inlin
 		</thead>
 		<tbody>
 		<?php
-		echo $tr_activities;
-		?>
+echo $tr_activities;
+?>
           </tbody>
         </table>
        </div>

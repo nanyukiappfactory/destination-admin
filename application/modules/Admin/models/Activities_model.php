@@ -72,6 +72,18 @@ class Activities_Model extends CI_Model
             return false;
         }
     }
+    public function activate_status($activity_id, $new_activity_status)
+    {
+        $this->db->set("activity_status", $new_activity_status);
+        $this->db->where("activity_id", $activity_id);
+        return $this->db->update("activity");
+    }
+    public function deactivate_status($activity_id, $new_activity_status)
+    {
+        $this->db->set("activity_status", $new_activity_status);
+        $this->db->where("activity_id", $activity_id);
+        return $this->db->update("activity");
+    }
     public function delete($id)
     {
         $this->db->set("deleted", 1);
