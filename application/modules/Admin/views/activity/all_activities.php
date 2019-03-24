@@ -42,8 +42,8 @@ if ($activities->num_rows() > 0) {
 		<td>' . $activity->activity_email . '</td>
 		<td>
 		<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#exampleModal' . $activity->activity_id . '"><i class="fa fa-eye"></i></button>
-		<button type="button" class="btn btn-sm btn-oval btn-primary" data-toggle="modal" data-target="#editModal' . $activity->activity_id . '"><i class="fa fa-edit"></i></button>
-
+		<button type="button" class="btn btn-sm btn-oval btn-primary data-toggle="modal" data-target="#editModal" ' . $activity->activity_id . '"><i class="fa fa-edit"></i></button>
+		
 		</td>
 	</tr>';
 
