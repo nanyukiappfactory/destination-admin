@@ -25,8 +25,8 @@ class Activities extends admin
             $where .= $search_activity_params;
         }
         // init params
-        $limit_per_page = 5;
-        $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
+        $limit_per_page = 2;
+        $page = ($this->uri->segment(5)) ? ($this->uri->segment(5)) : 0;//echo $page; die();
         // get current page records
         $config['base_url'] = base_url() . 'activities/all-activities/' . $order . '/' . $order_method;
         $config['total_rows'] = $this->activities_model->countAll($where);
@@ -39,11 +39,14 @@ class Activities extends admin
         $config['reuse_query_string'] = true;
         $this->pagination->initialize($config);
 
+        $items = $page;
+
         // build paging links
         $v_data["links"] = $this->pagination->create_links();
-        $v_data["activities"] = $this->activities_model->get_activities($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);
+        $v_data["activities"] = $this->activities_model->get_activities($where, $order, $order_method, $limit_per_page, $items);
         $v_data['order_method'] = $order_method;
-        $v_data['counter'] = $page * $limit_per_page;
+        $v_data['counter'] = $items;
+        $v_data['page'] = $page;
         $v_data['route'] = 'activities';
         $data['title'] = 'activities';
         //initialize search
@@ -107,31 +110,32 @@ class Activities extends admin
         $activity_name = $this->input->post('activity_name');
         $activity_date = $this->input->post('activity_date');
         $activity_phone = $this->input->post('activity_phone');
-        $where = '';
+        $where = $title = '';
         if ($activity_status_str) {
             $status = $activity_status_str == 'active' ? 1 : 0;
             $where .= ' AND activity_status=' . $status;
-            $this->session->set_userdata('search_activity_status', $activity_status_str);
+            $title .= ' Status = '.$activity_status_str;
         }
 
         if ($activity_email) {
             $where .= ' AND activity_email="' . $activity_email . '"';
-            $this->session->set_userdata('search_activity_email', $activity_email);
+            $title .= ' Email = '.$activity_email;
         }
         if ($activity_name) {
-            $where .= ' AND activity_name="' . $activity_name . '"';
-            $this->session->set_userdata('search_activity_name', $activity_name);
+            $where .= ' AND activity_name LIKE "%' . $activity_name . '%"';
+            $title .= ' Activity = '.$activity_name;
         }
         if ($activity_date) {
             $where .= ' AND activity_date="' . $activity_date . '"';
-            $this->session->set_userdata('search_activity_date', $activity_date);
+            $title .= ' Date = '.$activity_date;
         }
         if ($activity_phone) {
             $where .= ' AND activity_phone="' . $activity_phone . '"';
-            $this->session->set_userdata('search_activity_phone', $activity_phone);
+            $title .= ' Phone = '.$activity_phone;
         }
         //set search sessions
         $this->session->set_userdata('search_activity_params', $where);
+        $this->session->set_userdata('search_activity_title', $title);
         redirect('activities/all-activities');
     }
     public function edit_activity($activity_id)
@@ -161,11 +165,7 @@ class Activities extends admin
     public function close_search()
     {
         $this->session->unset_userdata('search_activity_params');
-        $this->session->unset_userdata('search_activity_status');
-        $this->session->unset_userdata('search_activity_email');
-        $this->session->unset_userdata('search_activity_name');
-        $this->session->unset_userdata('search_activity_date');
-        $this->session->unset_userdata('search_activity_phone');
+        $this->session->unset_userdata('search_activity_title');
 
         redirect('activities/all-activities');
     }
