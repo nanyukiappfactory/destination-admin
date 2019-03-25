@@ -145,17 +145,26 @@ class Activities extends admin
         $this->form_validation->set_rules('activity_latitude', 'Latitude', 'required');
         //Returns to the same page if succeeds
         if ($this->form_validation->run() == true) {
-            if ($this->activities_model->update($activity_id)) {
+            if ($this->activities_model->edit_activity($activity_id)) 
+            {
                 $this->session->set_flashdata('success', 'successfully updated');
-            } else {
+            } 
+            else
+            {
                 $this->session->set_flashdata('error', 'Unable to update');
             }
-        } else {
+        } 
+        else 
+        {
             if (validation_errors()) {
                 $this->session->set_flashdata('error', validation_errors());
             }
         }
-        redirect('activities/all-activities');
+        $data = array(
+            "title" => "Edit Activity",
+            "content" => $this->load->view('activity/edit_activity', NULL, TRUE)          
+        );
+        $this->load->view("layouts/layout", $data);      
     }
 
     public function close_search()

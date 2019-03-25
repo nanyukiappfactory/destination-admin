@@ -53,7 +53,7 @@ class Activities_Model extends CI_Model
             return false;
         }
     }
-    public function update($id)
+    public function edit_activity($activity_id)
     {
         $data = array(
             'activity_name' => $this->input->post('activity_name'),
@@ -62,10 +62,10 @@ class Activities_Model extends CI_Model
             'activity_longitude' => $this->input->post('activity_longitude'),
             'activity_latitude' => $this->input->post('activity_latitude'),
             'activity_phone' => $this->input->post('activity_phone'),
-            'activity_email' => $this->input->post('activity_email'),
+            'activity_email' => $this->input->post('activity_email')
         );
         $this->db->set($data);
-        $this->db->where('activity_id', $id);
+        $this->db->where('activity_id', $activity_id);
         if ($this->db->update('activity')) {
             return true;
         } else {
