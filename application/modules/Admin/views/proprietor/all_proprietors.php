@@ -91,18 +91,18 @@
             <tr>
 			 <th>No.</th>
 				<th>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/<?php echo $new_order_method;?>" style="color:#000"><?php echo 'First Name';?></i></a>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'First Name';?></i></a>
 				</th>
 				<th>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/<?php echo $new_order_method;?>" style="color:#000"><?php echo 'Last Name';?></i></a>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'Last Name';?></i></a>
 				</th>
 				<th>Phone Number</th>
 				<th>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/<?php echo $new_order_method;?>" style="color:#000"><?php echo 'National ID';?></i></a>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'National ID';?></i></a>
 				</th>
 				<th>Business Reg ID</th>
 				<th>
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/<?php echo $new_order_method;?>" style="color:#000"><?php echo 'Status';?></i></a>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'Status';?></i></a>
 				<th>
 				<th colspan="4">Actions</th>
 			<tr>
