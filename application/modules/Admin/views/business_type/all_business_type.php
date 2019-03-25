@@ -47,7 +47,7 @@ if($business_types->num_rows() > 0)
 			$badge_class = 'badge badge-pill badge-warning';
 			$status = 'Inactive';
 			$base_url = base_url();
-			$business_type_route = 'z';
+			$business_type_route = 'business-types/activate-business-types';
 			$id_param = $business_type->business_type_id .'/'; 
 			$status_param = $business_type->business_type_status;
 			$link_status = 'btn btn-sm btn-warning';
