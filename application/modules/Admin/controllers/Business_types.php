@@ -1,4 +1,5 @@
-<?php if( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+    if( ! defined('BASEPATH')) exit('No direct script access allowed');
     require_once "./application/modules/admin/controllers/Admin.php";
 
     class Business_types extends admin
@@ -197,22 +198,23 @@
 
         public function search_business_type() 
         {
-            $status_str = $this->input->post('status');     
+            $business_type_status_str = $this->input->post('status');     
             $business_type_name = $this->input->post('business_type_name');
            
             $where = '';
-
+            $title = $where = '';
             if($business_type_name)
             {
-                $where .= ' AND business_type_name="'. $business_type_name .'"';            
+                $where .= ' AND business_type_name LIKE "%'. $business_type_name .'%"';     
+                $title .= ' Status = '.$business_type_status_str;       
                 $this->session->set_userdata('search_business_type_name', $business_type_name);
             }
 
-            if($status_str)
+            if($business_type_status_str)
             {
-                $status = $status_str == 'active' ? 1 : 0;
+                $status = $business_type_status_str == 'active' ? 1 : 0;
                 $where .= ' AND business_type_status='. $status ;
-                $this->session->set_userdata('checked_status', $status_str);
+                $this->session->set_userdata('checked_status', $business_type_status_str);
             }
 
             $this->session->set_userdata('search_business_type_params', $where);
