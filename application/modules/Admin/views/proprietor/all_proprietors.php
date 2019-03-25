@@ -12,6 +12,11 @@
 	$check_active =  $this->session->userdata('checked_status') == 'active' ? 'checked' : '';
 	$check_inactive =  $this->session->userdata('checked_status') == 'inactive' ? 'checked' : '';
 	$search_name = $this->session->userdata('search_business_type_name');
+	$base_url = base_url();
+	$proprietor_delete_route = "proprietors/delete-proprietors";
+	$link_delete = "btn btn-sm btn-oval btn-danger";
+	$onclick_delete = "return confirm('Are you sure you want to Delete?')";
+	$i_delete = 'fa fa-trash';
 	$str_proprietor = "";
 	if (is_array($proprietors->result())) 
 		{
@@ -20,18 +25,28 @@
 			{
 				$v_data['prop'] =  $proprietor;
 				$count++;
-		if($proprietor->proprietor_status == 1)
+			if($proprietor->proprietor_status == 1)
 			{
 				$badge_class="badge badge-pill badge-success";
+				$proprietor_route = "proprietors/deactivate-proprietors";
 				$status = "Active";
+				$status_active_class = 'btn btn-sm btn-warning';
+				$link_status = 'btn btn-sm btn-success';
+				$onclick = "return confirm('Are you sure you want to Deactivate?')";
+				$i_status = 'fas fa-thumbs-down';
 			}else
 			{
+				$proprietor_route = "proprietors/activate-proprietors";
 				$badge_class="badge badge-pill badge-warning";
 				$status = "Inactive";
-			}
-
-			$edit_url = "/proprietors/edit-proprietor/$proprietor->proprietor_id";
-			$edit_btn = anchor($edit_url , "<i class='fa fa-edit'></i>", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'");
+				$link_status = 'btn btn-sm btn-warning';
+				$onclick = "return confirm('Are you sure you want to Activate?')";
+				$i_status = 'fas fa-thumbs-up';			
+			}		
+			$status_param = $proprietor->proprietor_status;
+			$id_param = $proprietor->proprietor_id .'/'; 	
+			$edit_url = "/proprietors/edit-proprietors/$proprietor->proprietor_id";
+			$edit_btn = anchor($edit_url , "<i class='fa fa-edit'></i>", "class='btn btn-sm btn-oval btn-primary'");
 
 			$str_proprietor .= ' <tr>
 			<td>'. $count.'</td>
@@ -44,7 +59,9 @@
 			<td>
 			<button type="button" class="btn btn-sm btn-info"><i class="fa fa-eye" data-toggle="modal" data-target="#exampleModalLabel'. $proprietor->proprietor_id.'"></i></button>' .
 			$edit_btn . 
-			'</td>
+			'<a href="'. $base_url . $proprietor_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="'. $i_delete.'"></i></a>
+			<a href="'. $base_url . $proprietor_route.'/'. $id_param. $status_param.'" class="'. $link_status .'" onclick="'. $onclick .'"><i class="'. $i_status.'"></i></a>
+			</td>
 			</tr>';
 			$this->load->view('proprietor/view_proprietor', $v_data);
 
