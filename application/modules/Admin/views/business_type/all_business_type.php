@@ -3,12 +3,10 @@
 if($order_method == "ASC")
 {
 	$new_order_method = "DESC";
-	$order_method_icon = '<i class="far fa-arrow-alt-circle-down"></i>';
 }
 if($order_method == "DESC")
 {
 	$new_order_method = "ASC";
-	$order_method_icon = '<i class="far fa-arrow-alt-circle-up"></i>';
 }
 
 $check_active =  $this->session->userdata('checked_status') == 'active' ? 'checked' : '';
@@ -65,17 +63,18 @@ if($business_types->num_rows() > 0)
 			<td>
 				<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#viewModal' . $business_type->business_type_id . '"><i class="fa fa-eye"></i></button>
 				<button type="button" class="btn btn-sm btn-oval btn-primary" data-toggle="modal" data-target="#editModal' . $business_type->business_type_id . '"><i class="fa fa-edit"></i></button>
+				'. anchor("/admin/business_types/edit_business_type"."/".$business_type->business_type_id, NULL, "class ='btn btn-sm btn-oval btn-primary fa fa-edit'").'
 				<a href="'. $base_url . $business_type_route.'/'. $id_param. $status_param.'" class="'. $link_status .'" onclick="'. $onclick .'"><i class="'. $i_status.'"></i></a>
-				<a href="'. $base_url . $business_type_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="'. $i_delete.'"></i></a>
+				<a href="'. $base_url . 'business_types/edit_business_type/'. $business_type->business_type_id .'" id="editPage" class="btn btn-sm btn-oval btn-primary"><i class="fa fa-edit"></i></a>
+				<a href="'. $base_url . $business_type_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>';
 
 		$this->load->view('business_type/view_business_type', $v_data);
-		$this->load->view('business_type/edit_business_type', $v_data);
 	}
 }
 
-echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
+echo anchor("/admin/business_types/add_business_type", "Add Business Type", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>
 
 <div>
     <?php
@@ -96,10 +95,10 @@ echo anchor("/admin/Business_types/add_business_type", "Add Business Type", "cla
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Business Type Name
-							<a href="<?php echo base_url();?>business-types/all-business-types/business_type.business_type_name/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></a></th>
-					<th>Business Status
-							<a href="<?php echo base_url();?>business-types/all-business-types/business_type.business_type_status/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></a>
+					<th>
+							<a href="<?php echo base_url();?>business-types/all-business-types/business_type.business_type_name/<?php echo $new_order_method;?>" style="color:#000"><?php echo 'Business Type Name';?></a></th>
+					<th>
+							<a href="<?php echo base_url();?>business-types/all-business-types/business_type.business_type_status/<?php echo $new_order_method;?>" style="color:#000"><?php echo 'Business Status';?></a>
 					</th>
 				<th>Action</th>
 				</tr>

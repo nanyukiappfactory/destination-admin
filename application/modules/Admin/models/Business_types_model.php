@@ -43,14 +43,6 @@ class Business_types_model extends CI_Model
             return FALSE;
         }
     }
-
-    public function all_business_types()
-    {
-        $this->db->select("*");
-        $this->db->from("business_type");
-        $this->db->where("deleted = 0");
-        return $this->db->get();
-    }
     
     public function get_business_types($where, $order, $order_method, $limit, $start)
     {
@@ -62,18 +54,16 @@ class Business_types_model extends CI_Model
         return $this->db->get();
     }
     
-    public function activate($business_type_id, $new_status)
+    public function activate_status($business_type_id, $new_status)
     {
         $this->db->set("business_type_status", $new_status);
         $this->db->where("business_type_id", $business_type_id);
         return $this->db->update("business_type");
     }
 
-    public function deactivate($business_type_id, $new_status)
+    public function deactivate_status($business_type_id, $new_status)
     {
-        $this->db->set("business_type_status", $new_status);
-        $this->db->where("business_type_id", $business_type_id);
-        return $this->db->update("business_type");
+        $this->activate($business_type_id, $new_status);
     }
 
     public function delete($id)
