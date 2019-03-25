@@ -72,6 +72,19 @@ class Activities_Model extends CI_Model
             return false;
         }
     }
+    public function single_activity($activity_id)
+    {
+        $this->db->where('activity_id', $activity_id);
+        $query = $this->db->get('activity');
+        if($query->num_rows() > 0)
+        {
+            return $query->row();
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
     public function activate_status($activity_id, $new_activity_status)
     {
         $this->db->set("activity_status", $new_activity_status);

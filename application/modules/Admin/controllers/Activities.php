@@ -148,7 +148,7 @@ class Activities extends admin
         $this->form_validation->set_rules('activity_longitude', 'Longitude', 'required');
         $this->form_validation->set_rules('activity_latitude', 'Latitude', 'required');
         //Returns to the same page if succeeds
-        if ($this->form_validation->run() == true) {
+        if ($this->form_validation->run()) {
             if ($this->activities_model->edit_activity($activity_id)) 
             {
                 $this->session->set_flashdata('success', 'successfully updated');
@@ -164,11 +164,38 @@ class Activities extends admin
                 $this->session->set_flashdata('error', validation_errors());
             }
         }
-        $data = array(
-            "title" => "Edit Activity",
-            "content" => $this->load->view('activity/edit_activity', NULL, TRUE)          
-        );
-        $this->load->view("layouts/layout", $data);      
+        $activity_detail = $this->activities_model->single_activity($activity_id);
+        if($activity_detail)
+        {
+            $activity_name = $activity_detail->activity_name;
+            $activity_date = $activity_detail->activity_date;
+            $activity_latitude = $activity_detail->activity_latitude;
+            $activity_longitude= $activity_detail->activity_longitude;
+            $activity_email = $activity_detail->activity_email;
+            $activity_phone = $activity_detail->activity_phone;
+            $activity_description = $activity_detail->activity_description;
+
+            $v_data = array(
+                'activity_name' => $activity_name,
+                'activity_date' => $activity_date,
+                'activity_latitude' => $activity_latitude,
+                'activity_longitude' => $activity_longitude,
+                'activity_email' => $activity_email,
+                'activity_phone' => $activity_phone,
+                'activity_description' => $activity_description
+            );
+            $data = array(
+                "title" => "Edit Activity",
+                "content" => $this->load->view('activity/edit_activity', $v_data, TRUE)          
+            );
+            $this->load->view("layouts/layout", $data); 
+        }   
+        else
+        {
+            $this->session->set_flashdata('error', 'Unable to get activity ID: ' . $activity_id . ' details');
+            redirect('activities/all-activities');
+        }
+             
     }
 
     public function close_search()
