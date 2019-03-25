@@ -161,6 +161,38 @@ class Proprietors extends admin
 		}
         redirect('proprietors/all-proprietors');
     }
+    public function activate_proprietor($proprietor_id, $proprietor_status)
+     {
+            $new_status=1;
+            $message='Activated Succesfully';
+            $error_message='Activation Failed';
+        
+        if($this->proprietors_model->activate_proprietor($proprietor_id, $new_status)) {
+            $this->session->set_flashdata('success', 'proprietors ID:'.$proprietor_id . $message);
+        }
+        else {
+            $this->session->set_flashdata('error', $error_message);
+        }
+
+        redirect('proprietors/all-proprietors');
+    }
+
+    public function deactivate_proprietor($proprietor_id, $proprietor_status) 
+    {
+
+        $new_status=0;
+        $message='DeActivated Succesfully';
+        $error_message='DeActivation Failed';
+        
+        if($this->proprietors_model->deactivate_proprietor($proprietor_id, $new_status)) {
+            $this->session->set_flashdata('success', 'proprietors ID:'.$proprietor_id . $message);
+        }
+        else {
+            $this->session->set_flashdata('error', $error_message);
+        }
+
+        redirect('proprietors/all-proprietors');
+    }
     public function search_proprietor()
     {
         $status = $this->input->post('status');

@@ -51,7 +51,8 @@ if($business_types->num_rows() > 0)
 			$id_param = $business_type->business_type_id .'/'; 
 			$status_param = $business_type->business_type_status;
 			$link_status = 'btn btn-sm btn-warning';
-			$onclick = "return confirm('Are you sure you want to Activate?')";			
+			$onclick = "return confirm('Are you sure you want to Activate?')";
+			$i_status = 'fas fa-thumbs-up';			
 		}
 
 		$tr_business_types .= '<tr>

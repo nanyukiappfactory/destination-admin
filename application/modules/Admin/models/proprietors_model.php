@@ -80,7 +80,21 @@ class Proprietors_model extends CI_Model
         $this->db->where('proprietor_id', $proprietor_id);
         return $this->db->update('proprietor');
     }
+    public function activate_proprietor($proprietor_id, $new_status)
+    {
+        $this->db->set('proprietor_status', $new_status);
+        $this->db->where('proprietor_id', $proprietor_id);
+        return $this->db->update('proprietor');
 
+    }
+
+    public function deactivate_proprietor($proprietor_id, $new_status)
+    {
+        $this->db->set('proprietor_status', $new_status);
+        $this->db->where('proprietor_id', $proprietor_id);
+        return $this->db->update('proprietor');
+
+    }
 
     public function count_proprietors($where)
     {
