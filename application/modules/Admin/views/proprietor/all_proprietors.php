@@ -74,8 +74,8 @@
   	<?php echo anchor("/admin/Proprietors/add_proprietor", "Add proprietor", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>          
 	  <?php 
 	  	echo form_open("/admin/proprietors/search_proprietor", array("class" => "form-inline my-2 my-lg-0 "))?>
-		<input type="radio" name="status" value="1" class ="m-2" > Active
-		<input type="radio" name="status" value="'0'" class="m-2"> Inactive
+		<input type="radio" name="status" value="active" class ="m-2" > Active
+		<input type="radio" name="status" value="inactive" class="m-2"> Inactive
  		<input type="text" name="proprietor_name" placeholder=" search Name" class =" ml-2">
 		<input type="text" name="nationalid" placeholder=" search national id" class =" ml-2" >
 		<input type="text" name="businessreg" placeholder=" search business id" class =" ml-2">
@@ -90,19 +90,19 @@
         <thead>
             <tr>
 			 <th>No.</th>
-				<th>First Name
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></i></a>
+				<th>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.first_name/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'First Name';?></i></a>
 				</th>
-				<th>Last Name
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></i></a>
+				<th>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.last_name/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'Last Name';?></i></a>
 				</th>
 				<th>Phone Number</th>
-				<th>National ID
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></i></a>
+				<th>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.national_id/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'National ID';?></i></a>
 				</th>
 				<th>Business Reg ID</th>
-				<th>Status
-					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/<?php echo $new_order_method;?>" style="color:#000"><?php echo $order_method_icon;?></i></a>
+				<th>
+					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'Status';?></i></a>
 				<th>
 				<th colspan="4">Actions</th>
 			<tr>

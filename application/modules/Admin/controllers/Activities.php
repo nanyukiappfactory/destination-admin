@@ -49,6 +49,10 @@ class Activities extends admin
         $v_data['page'] = $page;
         $v_data['route'] = 'activities';
         $data['title'] = 'activities';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 779cc3c53ab45fa1b81bc502fdacc63dc7708374
         $data['content'] = $this->load->view('activity/all_activities', $v_data, true);
         $this->load->view('layouts/layout', $data);
 

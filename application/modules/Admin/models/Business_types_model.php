@@ -26,6 +26,21 @@ class Business_types_model extends CI_Model
         }
     }
     
+    public function single_business_type($business_type_id)
+    {
+        $this->db->where('business_type_id', $business_type_id);
+        $query = $this->db->get('business_type');
+
+        if($query->num_rows() > 0)
+        {
+            return $query->row();
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
     public function edit_business_type($id)
     {
         $data = array(
@@ -63,7 +78,9 @@ class Business_types_model extends CI_Model
 
     public function deactivate_status($business_type_id, $new_status)
     {
-        $this->activate($business_type_id, $new_status);
+        $this->db->set("business_type_status", $new_status);
+        $this->db->where("business_type_id", $business_type_id);
+        return $this->db->update("business_type");
     }
 
     public function delete($id)
@@ -72,21 +89,7 @@ class Business_types_model extends CI_Model
         $this->db->where("business_type_id", $id);
         return $this->db->update("business_type");
     }
-    public function activate_proprietor($proprietor_id, $new_status)
-    {
-        $this->db->set('proprietor_status', $new_status);
-        $this->db->where('proprietor_id', $proprietor_id);
-        return $this->db->update('proprietor');
-
-    }
-
-    public function deactivate_proprietor($proprietor_id, $new_status)
-    {
-        $this->db->set('proprietor_status', $new_status);
-        $this->db->where('proprietor_id', $proprietor_id);
-        return $this->db->update('proprietor');
-
-    }
+    
 
     public function countAll($where)
     {
