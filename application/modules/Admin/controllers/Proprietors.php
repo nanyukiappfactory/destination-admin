@@ -150,6 +150,17 @@ class Proprietors extends admin
         }
         
     }
+    public function delete_proprietor($proprietor_id) 
+    {
+		if($this->proprietors_model->delete_proprietor($proprietor_id)) {
+			$this->session->set_flashdata('success', 'Successfully deleted');
+		}
+
+		else {
+			$this->session->set_flashdata('error', 'Unable to delete');
+		}
+        redirect('proprietors/all-proprietors');
+    }
     public function search_proprietor()
     {
         $status = $this->input->post('status');
