@@ -70,6 +70,9 @@ $route['activities/add-activity'] = 'admin/activities/add_activity';
 $route['activities/all-activities/(:any)/(:any)'] = 'admin/activities/index/$1/$2';
 $route['activities/all-activities/(:any)/(:any)/(:num)'] = 'admin/activities/index/$1/$2/$3';
 $route['activities/search-activities'] = 'admin/activities/index';
+$route['activities/delete-activity/(:num)'] = 'admin/activities/delete_activity/$1';
+$route['activities/deactivate-activity/(:num)/(:num)'] = 'admin/activities/deactivate_activity/$1/$2';
+$route['activities/activate-activity/(:num)/(:num)'] = 'admin/activities/activate_activity/$1/$2';
 $route['activities/close-search'] = 'admin/activities/close_search';
 $route['activities/edit-activity/(:num)'] = 'admin/activities/edit_activity/$1';
 

@@ -57,9 +57,7 @@ class Activities extends admin
 
         $data['content'] = $this->load->view('activity/all_activities', $v_data, true);
         $this->load->view('layouts/layout', $data);
-        foreach ($this->activities_model->all_activities()->result() as $value) {
-           
-        }
+
     }
     public function add_activity()
     {
@@ -79,34 +77,28 @@ class Activities extends admin
             $upload_response = $this->file_model->upload_image($this->upload_path, "activity_image", $resize);
             if ($upload_response['check'] == false) {
                 $this->session->set_flashdata('error', $upload_response['message']);
-                redirect('activities/all-activities');
             } else {
-                if ($this->activities_model->save_activity($upload_response['file_name'], $upload_response['thumb_name'])) {
+				$activity_id = $this->activities_model->save_activity($upload_response['file_name'], $upload_response['thumb_name']);
+                if ($activity_id) {
                     $this->session->set_flashdata('success', 'Activity Added successfully!!');
-                    redirect('activities/all-activities');
+
                 } else {
                     $this->session->flashdata("error", "Unable to add school");
-                    redirect('activities/all-activities');
                 }
             }
-            if ($activity_id) {
-                $this->session->set_flashdata('success', 'Activity ID: ' . $activity_id . ' saved.');
-                redirect('activities/all-activities');
-            } else {
-                $this->session->set_flashdata('error', 'Unable to save. Try again!!');
-                redirect('activities/all-activities');
-            }
+            redirect('activities/add-activity');
         } else {
             if (validation_errors()) {
                 $this->session->set_flashdata('error', validation_errors());
-                redirect('activities/all-activities');
+                redirect('activities/add-activity');
             }
-            $data = array(
-                "title" => "add activity",
-                "content" => $this->load->view('activity/add_activity', null, true),
-            );
-            $this->load->view("layouts/layout", $data);
         }
+        $data = array(
+            "title" => "add activity",
+            "content" => $this->load->view('activity/add_activity', null, true),
+        );
+        $this->load->view("layouts/layout", $data);
+
     }
     public function search_activity()
     {
@@ -142,37 +134,31 @@ class Activities extends admin
         //set search sessions
         $this->session->set_userdata('search_activity_params', $where);
         redirect('activities/all-activities');
-	}
-	public function edit_activity($activity_id)
-	{		
-		$this->form_validation->set_rules('activity_name', 'Name', 'required');
-		$this->form_validation->set_rules('activity_description', 'Description', 'required');
-		$this->form_validation->set_rules('activity_date', 'Date', 'required');
-		$this->form_validation->set_rules('activity_phone', 'Phone', 'required');
-		$this->form_validation->set_rules('activity_email', 'Email', 'required');
-		$this->form_validation->set_rules('activity_longitude', 'Longitude', 'required');
-		$this->form_validation->set_rules('activity_latitude', 'Latitude', 'required');
-		//Returns to the same page if succeeds 		
-		if ($this->form_validation->run() == TRUE) 
-		{
-			if($this->activities_model->update($activity_id))
-			{
-				$this->session->set_flashdata('success', 'successfully updated');				
-			}
-			else 
-		    {
-				$this->session->set_flashdata('error', 'Unable to update');		
-		    }
-		}
-		else 
-		{
-			if(validation_errors())
-			{
-				$this->session->set_flashdata('error', validation_errors());
-			}	
-		}
-		redirect('activities/all-activities');
-	}
+    }
+    public function edit_activity($activity_id)
+    {
+        $this->form_validation->set_rules('activity_name', 'Name', 'required');
+        $this->form_validation->set_rules('activity_description', 'Description', 'required');
+        $this->form_validation->set_rules('activity_date', 'Date', 'required');
+        $this->form_validation->set_rules('activity_phone', 'Phone', 'required');
+        $this->form_validation->set_rules('activity_email', 'Email', 'required');
+        $this->form_validation->set_rules('activity_longitude', 'Longitude', 'required');
+        $this->form_validation->set_rules('activity_latitude', 'Latitude', 'required');
+        //Returns to the same page if succeeds
+        if ($this->form_validation->run() == true) {
+            if ($this->activities_model->update($activity_id)) {
+                $this->session->set_flashdata('success', 'successfully updated');
+            } else {
+                $this->session->set_flashdata('error', 'Unable to update');
+            }
+        } else {
+            if (validation_errors()) {
+                $this->session->set_flashdata('error', validation_errors());
+            }
+        }
+        redirect('activities/all-activities');
+    }
+
     public function close_search()
     {
         $this->session->unset_userdata('search_activity_params');
@@ -182,6 +168,51 @@ class Activities extends admin
         $this->session->unset_userdata('search_activity_date');
         $this->session->unset_userdata('search_activity_phone');
 
+        redirect('activities/all-activities');
+    }
+    public function deactivate_activity($activity_id, $activity_status)
+    {
+        if ($activity_status == 0) {
+            $new_activity_status = 1;
+            $message = ' activated successfully';
+            $error_message = 'Unable to activate. Try again';
+        } else {
+            $new_activity_status = 0;
+            $message = ' deactivated successfully';
+            $error_message = 'Unable to deactivate. Try again';
+        }
+        if ($this->activities_model->deactivate_status($activity_id, $new_activity_status)) {
+            $this->session->set_flashdata('success', 'activity ID: ' . $activity_id . $message);
+        } else {
+            $this->session->set_flashdata('error', $error_message);
+        }
+        redirect('activities/all-activities');
+    }
+    public function activate_activity($activity_id, $activity_status)
+    {
+        if ($activity_status == 0) {
+            $new_activity_status = 1;
+            $message = ' activated successfully';
+            $error_message = 'Unable to activate. Try again';
+        } else {
+            $new_activity_status = 0;
+            $message = ' deactivated successfully';
+            $error_message = 'Unable to deactivate. Try again';
+        }
+        if ($this->activities_model->activate_status($activity_id, $new_activity_status)) {
+            $this->session->set_flashdata('success', 'activity ID: ' . $activity_id . $message);
+        } else {
+            $this->session->set_flashdata('error', $error_message);
+        }
+        redirect('activities/all-activities');
+    }
+    public function delete_activity($activity_id)
+    {
+        if ($this->activities_model->delete($activity_id)) {
+            $this->session->set_flashdata('success', 'Successfully deleted');
+        } else {
+            $this->session->set_flashdata('error', 'Unable to delete');
+        }
         redirect('activities/all-activities');
     }
 
