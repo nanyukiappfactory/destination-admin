@@ -100,3 +100,4 @@ $route['proprietors/add-proprietors'] = 'admin/proprietors/add_proprietor';
 $route['proprietors/search-proprietors'] = 'admin/proprietors/search_proprietor';
 $route['proprietors/close-search'] = 'admin/proprietors/close_search';
 $route['proprietors/edit-proprietor/(:num)'] = 'admin/proprietors/edit_proprietor/$1';
+$route['proprietors/delete-proprietor/(:num)'] = 'admin/proprietors/delete_proprietor/$1';
