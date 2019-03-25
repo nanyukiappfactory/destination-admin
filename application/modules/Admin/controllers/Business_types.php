@@ -21,28 +21,25 @@
             }
 
             $limit_per_page = 5;
-            $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
-
+            $page = ($this->uri->segment(5)) ? ($this->uri->segment(5)) : 0;
+            
             $config['base_url'] = base_url(). 'business-types/all-business-types/'.$order . '/'.$order_method;
             $config['total_rows'] = $this->business_types_model->countAll($where);
             $config['per_page'] = $limit_per_page;
             $config['uri_segment'] = 5;
-            $config['numlinks'] = 2;
+            $config['num_links'] = 2;
             $config['use_page_numbers'] = TRUE;
             $config['reuse_query_string'] = TRUE;
 
             $this->pagination->initialize($config);
             
-            $business_type_name = array();
-            $status_array = array();
-            $check_duplicate = array();
-            $search_options = array();
+            $items = $page;
 
-            $v_data['links'] = $this->pagination->create_links(); 
-
-            $v_data['business_types'] = $this->business_types_model->get_business_types($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);
+            $v_data['links'] = $this->pagination->create_links();       
+            $v_data['business_types'] = $this->business_types_model->get_business_types($where, $order, $order_method, $limit_per_page, $items);
             $v_data['order_method'] = $order_method;
-            $v_data['counter'] = $page * $limit_per_page;
+            $v_data['counter'] = $items;
+            $v_data['page'] = $page;
             $v_data['route'] = 'business-types';
 
             $data['title'] = 'Business Types';
@@ -98,6 +95,7 @@
                 {
                     $this->session->set_flashdata('error', 'Unable to update');
                 }
+                redirect("business-types/all-business-types");
             }
             else
             {
@@ -108,10 +106,29 @@
             }
             $data = array( 
                 'title' => 'Edit Business Type',
-                "content" => $this->load->view('business_type/edit_business_type', NULL, TRUE),
+                "content" => $this->load->view('business_type/edit_business_type', NULL, TRUE)
             );
+            $business_type_detail = $this->business_types_model->single_business_type($business_type_id);
 
-            $this->load->view("layouts/layout", $data);
+            if($business_type_detail)
+            {
+                $business_type_name = $business_type_detail->business_type_name;
+
+                $v_data = array(
+                    'business_type_name' => $business_type_name
+                );
+
+                $data = array(
+                    'title' => 'Edit Business Type',
+                    'content'=> $this->load->view('business_type/edit_business_type', $v_data, true)
+                );
+                $this->load->view('layouts/layout',$data);
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Unable to get business_type of ID: ' . $business_type_id . ' details');
+                redirect('business_types/all-business_types');
+            }
         }
 
         public function activate_business_type($business_type_id, $business_type_status)
@@ -161,7 +178,6 @@
             }
             else
             {
-                $this->session->set_flashdata('error', $error_message);
             }
             redirect("business-types/all-business-types");
         }

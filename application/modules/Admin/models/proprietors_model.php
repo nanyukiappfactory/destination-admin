@@ -65,6 +65,7 @@ class Proprietors_model extends CI_Model
             'national_id' =>$this->input->post('national_id'),
             'business_reg_id' =>$this->input->post('business_reg_id')
         );
+        
         $this->db->set($data);
         $this->db->where('proprietor_id', $proprietor_id);
         if($this->db->update('proprietor'))
