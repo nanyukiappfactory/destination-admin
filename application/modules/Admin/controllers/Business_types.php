@@ -106,7 +106,8 @@
                     $this->session->set_flashdata('error', validation_errors());
                 }
             }
-            $data = array(
+            $data = array( 
+                'title' => 'Edit Business Type',
                 "content" => $this->load->view('business_type/edit_business_type', NULL, TRUE),
             );
 
