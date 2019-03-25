@@ -1,4 +1,6 @@
-<?php echo form_open($this->uri->uri_string()); ?>
+<?php 
+$attributes = array( 'autocomplete' => 'off'); 
+echo form_open($this->uri->uri_string(), $attributes); ?>
 <div class="modal-body">
 	<div class="form-group">
 		<label class="control-label">Name</label>
@@ -21,7 +23,7 @@
 			value='<?php echo $activity_phone;?>'>
 		<label class="control-label">Description</label>
 		<textarea rows="5" class="textarea_editor form-control border-radius-0"
-			name="activity_description" value="<?php echo $activity_description?>"></textarea>
+			name="activity_description"><?php echo $activity_description?></textarea>
 	</div>
 </div>
 <div class=''>

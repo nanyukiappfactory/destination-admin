@@ -221,7 +221,7 @@ class Proprietors extends admin
         if($status_str)
         {
             $status = $status_str == 'active' ? 1 : 0;
-            $where .= ' AND proprietor_status LIKE "%'. $status_str.'%"';
+            $where .= ' AND proprietor_status = "'. $status.'"';
             $title .= ' Status = '.$status_str;
         }
 

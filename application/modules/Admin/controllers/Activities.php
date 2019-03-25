@@ -49,7 +49,10 @@ class Activities extends admin
         $v_data['page'] = $page;
         $v_data['route'] = 'activities';
         $data['title'] = 'activities';
+<<<<<<< HEAD
+=======
 
+>>>>>>> 779cc3c53ab45fa1b81bc502fdacc63dc7708374
         $data['content'] = $this->load->view('activity/all_activities', $v_data, true);
         $this->load->view('layouts/layout', $data);
 
@@ -77,7 +80,7 @@ class Activities extends admin
                 if ($activity_id) {
                     $this->session->set_flashdata('success', 'Activity Added successfully!!');
                 } else {
-                    $this->session->flashdata("error", "Unable to add school");
+                    $this->session->flashdata('error', 'Unable to add activity');
                 }
             }
             redirect('activities/all-activities');
@@ -143,12 +146,13 @@ class Activities extends admin
         if ($this->form_validation->run()) {
             if ($this->activities_model->edit_activity($activity_id)) 
             {
-                $this->session->set_flashdata('success', 'successfully updated');
+                $this->session->set_flashdata('success', 'successfully updated');          
             } 
             else
             {
                 $this->session->set_flashdata('error', 'Unable to update');
             }
+            redirect('activities/all-activities');
         } 
         else 
         {
