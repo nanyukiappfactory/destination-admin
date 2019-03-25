@@ -49,14 +49,6 @@ class Activities extends admin
         $v_data['page'] = $page;
         $v_data['route'] = 'activities';
         $data['title'] = 'activities';
-        //initialize search
-        $status_array = array();
-        $activity_name = array();
-        $activity_phone = array();
-        $activity_email = array();
-        $activity_date = array();
-        $check_duplicate = array();
-        $search_options = array();
 
         $data['content'] = $this->load->view('activity/all_activities', $v_data, true);
         $this->load->view('layouts/layout', $data);
