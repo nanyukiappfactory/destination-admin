@@ -17,6 +17,8 @@
 	$link_delete = "btn btn-sm btn-oval btn-danger";
 	$onclick_delete = "return confirm('Are you sure you want to Delete?')";
 	$i_delete = 'fa fa-trash';
+	$search_title = $this->session->userdata('search_proprietor_title');
+
 	$str_proprietor = "";
 	if (is_array($proprietors->result())) 
 		{

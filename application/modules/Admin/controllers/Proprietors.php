@@ -24,7 +24,7 @@ class Proprietors extends admin
 
         // init params
         $limit_per_page = 4;
-        $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) - 1) : 0;
+        $page = ($this->uri->segment(5)) ? ($this->uri->segment(5) ) : 0;
 
         // get current page records
 
@@ -39,14 +39,16 @@ class Proprietors extends admin
         $config['reuse_query_string'] = true;
 
         $this->pagination->initialize($config);
+        $items = $page;
 
         // build paging links
         $v_data["links"] = $this->pagination->create_links();
 
-        $v_data['proprietors'] = $this->proprietors_model->get_all_proprietors($where, $limit_per_page, $order, $order_method, $page * $limit_per_page);
+        $v_data['proprietors'] = $this->proprietors_model->get_all_proprietors($where, $limit_per_page, $order, $order_method, $items);
         $v_data['order_method'] = $order_method;
         $v_data['order'] = $order;
-        $v_data['counter'] = $page * $limit_per_page;
+        $v_data['page'] = $page;
+        $v_data['counter'] = $items;
         $v_data['title'] = 'Proprietors';
         //Assign view as string with no data to var $content
         $data['content'] = $this->load->view('proprietor/all_proprietors', $v_data, true);
@@ -195,30 +197,36 @@ class Proprietors extends admin
     }
     public function search_proprietor()
     {
-        $status = $this->input->post('status');
+        $status_str = $this->input->post('status');
         $business_id = $this->input->post('businessreg');
         $national_id = $this->input->post('nationalid');
         $proprietor_name  = $this->input->post('proprietor_name');
-        $where = '';
+        $where = $title = '';
         
         if ($proprietor_name)
         {
-            $where .= ' AND (first_name="'.$proprietor_name.'") OR (last_name ="'.$proprietor_name.'")';
+            $where .= ' AND (first_name LIKE "%'.$proprietor_name.'%") OR (last_name LIKE "%'.$proprietor_name.'%")';
+            $title .= ' Name = '.$proprietor_name;
         }
         if ($national_id)
         {
-            $where .= ' AND national_id="'.$national_id.'"';
+            $where .= ' AND national_id LIKE "%'.$national_id.'%"';
+            $title .= ' ID = '.$national_id;
         }
         if($business_id)
         {
-            $where .= ' AND business_reg_id="'.$business_id.'"';
+            $where .= ' AND business_reg_id LIKE "%'.$business_id.'%"';
+            $title .= ' Business = '.$business_id;
         }
-        if($status)
+        if($status_str)
         {
-            $where .= ' AND proprietor_status="'. $status.'"';
+            $status = $status_str == 'active' ? 1 : 0;
+            $where .= ' AND proprietor_status LIKE "%'. $status_str.'%"';
+            $title .= ' Status = '.$status_str;
         }
 
         $this->session->set_userdata('search_proprietor_params', $where);
+        $this->session->set_userdata('search_proprietor_title', $title);
         redirect('proprietors/all-proprietors');
        
     }
