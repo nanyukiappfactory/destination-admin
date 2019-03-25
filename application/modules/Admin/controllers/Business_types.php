@@ -33,11 +33,6 @@
 
             $this->pagination->initialize($config);
             
-            $business_type_name = array();
-            $status_array = array();
-            $check_duplicate = array();
-            $search_options = array();
-
             $v_data['links'] = $this->pagination->create_links(); 
 
             $v_data['business_types'] = $this->business_types_model->get_business_types($where, $order, $order_method, $limit_per_page, $page * $limit_per_page);

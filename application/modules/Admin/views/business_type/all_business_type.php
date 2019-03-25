@@ -13,9 +13,9 @@ $check_active =  $this->session->userdata('checked_status') == 'active' ? 'check
 $check_inactive =  $this->session->userdata('checked_status') == 'inactive' ? 'checked' : '';
 $search_business_type_name = $this->session->userdata('search_business_type_name');
 
-$business_type_delete_route = 'business-types/delete-business-types';
-$business_type_edit_route = 'business-types/edit-business-types';
-$i_status = 'fas fa-thumbs-up';
+$business_type_delete_route = 'business-types/delete-business-types'; 	
+$edit_url = "/business-types/edit-business-types/";
+$edit_btn = anchor($edit_url , "<i class='fa fa-edit'></i>", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'");
 $link_delete = "btn btn-sm btn-oval btn-danger";
 $onclick_delete = "return confirm('Are you sure you want to Delete?')";
 $i_delete = 'fa fa-trash';
@@ -41,7 +41,6 @@ if($business_types->num_rows() > 0)
 			$status_param = $business_type->business_type_status;
 			$link_status = 'btn btn-sm btn-success';
 			$onclick = "return confirm('Are you sure you want to Deactivate?')";
-			$i_status = 'fas fa-thumbs-down';
 		}
 		else
 		{
@@ -63,8 +62,7 @@ if($business_types->num_rows() > 0)
 			</td>
 			<td>
 				<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#viewModal' . $business_type->business_type_id . '"><i class="fa fa-eye"></i></button>
-				<a href="'. $base_url . $business_type_route.'/'. $id_param. $status_param.'" class="'. $link_status .'" onclick="'. $onclick .'"><i class="'. $i_status.'"></i></a>
-				<a href="'. $base_url . $business_type_edit_route.'/'. $id_param.'" class="btn btn-sm btn-oval btn-primary"><i class="fa fa-edit"></i></a>
+				<a href="'. $base_url . $business_type_route.'/'. $id_param. $status_param.'" class="'. $link_status .'" onclick="'. $onclick .'"><i class="fa fa-eye"></i></a>
 				<a href="'. $base_url . $business_type_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>';
