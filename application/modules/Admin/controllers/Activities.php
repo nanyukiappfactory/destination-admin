@@ -81,12 +81,11 @@ class Activities extends admin
 				$activity_id = $this->activities_model->save_activity($upload_response['file_name'], $upload_response['thumb_name']);
                 if ($activity_id) {
                     $this->session->set_flashdata('success', 'Activity Added successfully!!');
-
                 } else {
                     $this->session->flashdata("error", "Unable to add school");
                 }
             }
-            redirect('activities/add-activity');
+            redirect('activities/all-activities');
         } else {
             if (validation_errors()) {
                 $this->session->set_flashdata('error', validation_errors());
