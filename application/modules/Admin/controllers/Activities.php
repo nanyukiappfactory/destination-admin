@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 require_once "./application/modules/admin/controllers/Admin.php";
 
 class Activities extends admin
@@ -49,10 +49,6 @@ class Activities extends admin
         $v_data['page'] = $page;
         $v_data['route'] = 'activities';
         $data['title'] = 'activities';
-<<<<<<< HEAD
-=======
-
->>>>>>> 779cc3c53ab45fa1b81bc502fdacc63dc7708374
         $data['content'] = $this->load->view('activity/all_activities', $v_data, true);
         $this->load->view('layouts/layout', $data);
 
@@ -113,7 +109,7 @@ class Activities extends admin
         }
 
         if ($activity_email) {
-            $where .= ' AND activity_email="' . $activity_email . '"';
+            $where .= ' AND activity_email LIKE "%' . $activity_email . '%"';
             $title .= ' Email = '.$activity_email;
         }
         if ($activity_name) {
@@ -121,11 +117,11 @@ class Activities extends admin
             $title .= ' Activity = '.$activity_name;
         }
         if ($activity_date) {
-            $where .= ' AND activity_date="' . $activity_date . '"';
+            $where .= ' AND activity_date LIKE "%' . $activity_date . '%"';
             $title .= ' Date = '.$activity_date;
         }
         if ($activity_phone) {
-            $where .= ' AND activity_phone="' . $activity_phone . '"';
+            $where .= ' AND activity_phone LIKE "%' . $activity_phone . '%"';
             $title .= ' Phone = '.$activity_phone;
         }
         //set search sessions

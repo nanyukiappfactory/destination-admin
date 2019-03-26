@@ -35,12 +35,10 @@ echo form_open_multipart(base_url()."activities/add-activity", $attributes);
 	</div>
 	<div class="form-group">
 	</div>
-
-	<div class="my-3">
+	<div class="form-group my-3">
 		<label class="control-label">Activity Image</label>
 		<input type="file" name="activity_image" id="activity_image" size="20" />
 	</div>
-
 	<div class="form-group">
 		<label class="control-label">Description</label>
 		<textarea rows="5" class="textarea_editor form-control border-radius-0" name="activity_description"
@@ -51,6 +49,4 @@ echo form_open_multipart(base_url()."activities/add-activity", $attributes);
 		<button type="submit" class="btn btn-success">Save</button>
 	</div>
 	<?php echo form_close();?>
-</div>
-</div>
-</div>
+
