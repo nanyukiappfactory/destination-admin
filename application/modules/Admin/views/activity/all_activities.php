@@ -9,7 +9,7 @@ if ($order_method == "DESC") {
 }
 
 $activity_delete_route = 'activities/delete-activity';
-$link_delete = "btn btn-sm btn-oval btn-danger";
+$link_delete = "btn btn-xs btn-oval btn-danger";
 $onclick_delete = "return confirm('Are you sure you want to Delete?')";
 $i_delete = 'fa fa-trash';
 $search_title = $this->session->userdata('search_activity_title');
@@ -24,12 +24,12 @@ if ($activities->num_rows() > 0) {
 		if ($activity->activity_status == 1) {
 			$badge_class = 'badge badge-pill badge-success';
 			$status = 'Active';
-			$status_active_class = 'btn btn-sm btn-warning';
+			$status_active_class = 'btn btn-xs btn-warning';
 			$base_url = base_url();
 			$activity_route = 'activities/deactivate-activity';
 			$id_param = $activity->activity_id;
 			$status_param = $activity->activity_status;
-			$link_status = 'btn btn-sm btn-warning';
+			$link_status = 'btn btn-xs btn-warning';
 			$onclick = "return confirm('Are you sure you want to Deactivate?')";
 			$i_status = 'fas fa-thumbs-down';
 		} else {
@@ -39,13 +39,13 @@ if ($activities->num_rows() > 0) {
 			$activity_route = 'activities/activate-activity';
 			$id_param = $activity->activity_id;
 			$status_param = $activity->activity_status;
-			$link_status = 'btn btn-sm btn-success';
+			$link_status = 'btn btn-xs btn-success';
 			$onclick = "return confirm('Are you sure you want to Activate?')";
 			$i_status = 'fas fa-thumbs-up';
 
 		}
 		$edit_url = "/activities/edit-activity/$activity->activity_id";
-        $edit_btn = anchor($edit_url , "<i class='fa fa-edit'></i>", "class='btn btn-sm btn-oval btn-primary'");
+        $edit_btn = anchor($edit_url , "<i class='fa fa-edit'></i>", "class='btn btn-xs btn-oval btn-primary'");
         $tr_activities .= '<tr>
 		<td>' . $count . '</td>
 		<td>' . $activity->activity_name . '</td>
@@ -58,7 +58,7 @@ if ($activities->num_rows() > 0) {
 		<td>' . $activity->activity_phone . '</td>
 		<td>' . $activity->activity_email . '</td>
 		<td>
-		<button type="button" class="btn btn-sm btn-oval btn-info" data-toggle="modal" data-target="#viewModal' . $activity->activity_id . '"><i class="fa fa-eye"></i></button>' .
+		<button type="button" class="btn btn-xs btn-oval btn-info" data-toggle="modal" data-target="#viewModal' . $activity->activity_id . '"><i class="fa fa-eye"></i></button>' .
 		$edit_btn . 
 		'<a href="' . $base_url . $activity_route . '/' . $id_param . '/' . $status_param . '" class="' . $link_status . '" onclick="' . $onclick . '"><i class="' . $i_status . '"></i></a>
 		<a href="'. $base_url . $activity_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="'. $i_delete.'"></i></a>
@@ -71,7 +71,7 @@ if ($activities->num_rows() > 0) {
 ?>
 
 <div>
-<?php echo anchor("/admin/activities/add_activity", "Add Activity", "class ='btn btn-sm mt-2 mb-2 btn-outline-secondary'") ?>
+<?php echo anchor("/admin/activities/add_activity", "Add Activity", "class ='btn btn-xs mt-2 mb-2 btn-outline-secondary'") ?>
 </div>
 
 <?php
@@ -87,12 +87,12 @@ if(!empty($search_title))
 <div class="my-2">
     <?php
 echo form_open("/admin/activities/search_activity", array("class" => "form-inline my-2 my-lg-0")); ?>
-		<input type="radio" name="activity_status" value="active" class ="ml-2"> Active
-		<input type="radio" name="activity_status" value="inactive" class ="ml-2"> Inactive
-		<input type="text" name="activity_email" placeholder="search email" class ="ml-1" />
-		<input type="text" name="activity_name" placeholder="search name" class ="ml-1"/>
-		<input type="text" name="activity_date" placeholder="search date" class ="ml-1"/>
-		<input type="text" name="activity_phone" placeholder="search phone" class ="ml-1"/>
+		<input type="radio" name="activity_status" value="active" class ="ml-2" autocomplete="off"> Active
+		<input type="radio" name="activity_status" value="inactive" class ="ml-2" autocomplete="off"> Inactive
+		<input type="text" name="activity_email" placeholder="search email" class ="ml-1" autocomplete="off"/>
+		<input type="text" name="activity_name" placeholder="search name" class ="ml-1" autocomplete="off"/>
+		<input type="text" name="activity_date" id="datetimepicker" placeholder="search date" class ="ml-1" autocomplete="off"/>
+		<input type="text" name="activity_phone" placeholder="search phone" class ="ml-1" autocomplete="off"/>
 		<button class="btn btn-outline-success my-2 my-sm-0 ml-sm-1" type="submit"><i class="fas fa-search"></i></button>
 		<?php if ($this->session->userdata('search_activity_params')) {?>
 		<a href="<?php echo base_url(); ?>activities/close-search" class="btn btn-outline-danger my-2 my-sm-0 ml-sm-2"><i class="fas fa-times"></i></a>

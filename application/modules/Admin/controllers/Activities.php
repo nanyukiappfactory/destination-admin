@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 require_once "./application/modules/admin/controllers/Admin.php";
 
 class Activities extends admin
@@ -49,7 +49,6 @@ class Activities extends admin
         $v_data['page'] = $page;
         $v_data['route'] = 'activities';
         $data['title'] = 'activities';
-
         $data['content'] = $this->load->view('activity/all_activities', $v_data, true);
         $this->load->view('layouts/layout', $data);
 
@@ -77,7 +76,7 @@ class Activities extends admin
                 if ($activity_id) {
                     $this->session->set_flashdata('success', 'Activity Added successfully!!');
                 } else {
-                    $this->session->flashdata("error", "Unable to add school");
+                    $this->session->flashdata('error', 'Unable to add activity');
                 }
             }
             redirect('activities/all-activities');
@@ -110,7 +109,7 @@ class Activities extends admin
         }
 
         if ($activity_email) {
-            $where .= ' AND activity_email="' . $activity_email . '"';
+            $where .= ' AND activity_email LIKE "%' . $activity_email . '%"';
             $title .= ' Email = '.$activity_email;
         }
         if ($activity_name) {
@@ -118,11 +117,11 @@ class Activities extends admin
             $title .= ' Activity = '.$activity_name;
         }
         if ($activity_date) {
-            $where .= ' AND activity_date="' . $activity_date . '"';
+            $where .= ' AND activity_date LIKE "%' . $activity_date . '%"';
             $title .= ' Date = '.$activity_date;
         }
         if ($activity_phone) {
-            $where .= ' AND activity_phone="' . $activity_phone . '"';
+            $where .= ' AND activity_phone LIKE "%' . $activity_phone . '%"';
             $title .= ' Phone = '.$activity_phone;
         }
         //set search sessions
@@ -143,12 +142,13 @@ class Activities extends admin
         if ($this->form_validation->run()) {
             if ($this->activities_model->edit_activity($activity_id)) 
             {
-                $this->session->set_flashdata('success', 'successfully updated');
+                $this->session->set_flashdata('success', 'successfully updated');          
             } 
             else
             {
                 $this->session->set_flashdata('error', 'Unable to update');
             }
+            redirect('activities/all-activities');
         } 
         else 
         {
