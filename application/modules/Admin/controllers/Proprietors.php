@@ -223,6 +223,7 @@ class Proprietors extends admin
             $status = $status_str == 'active' ? 1 : 0;
             $where .= ' AND proprietor_status = "'. $status.'"';
             $title .= ' Status = '.$status_str;
+            $this->session->set_userdata('checked_status', $status_str);
         }
 
         $this->session->set_userdata('search_proprietor_params', $where);

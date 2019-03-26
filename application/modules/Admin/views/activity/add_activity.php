@@ -2,7 +2,7 @@
 <div class="">
 	<div class="form-group">
 		<label class="control-label">Name</label>
-		<input type="text" class="form-control boxed" name="activity_name" value="<?php echo set_value('activity_name')?>" />
+		<input type="text" class="form-control boxed" name="activity_name" value="<?=set_value('activity_name')?>" />
 
 		<label for="text" >Date</label>
         <input type="text" class="form-control boxed" id="datetimepicker" name="activity_date" value="<?php echo set_value('activity_date')?>">

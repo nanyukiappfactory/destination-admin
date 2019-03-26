@@ -81,12 +81,12 @@ class Activities extends admin
                 }
             }
             redirect('activities/all-activities');
-        } else {
+        }
             if (validation_errors()) {
                 $this->session->set_flashdata('error', validation_errors());
-                redirect('activities/add-activity');
+               
             }
-        }
+        
         $data = array(
             "title" => "add activity",
             "content" => $this->load->view('activity/add_activity', null, true),

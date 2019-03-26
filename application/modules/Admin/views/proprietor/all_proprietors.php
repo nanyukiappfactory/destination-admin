@@ -60,8 +60,7 @@
 			<td><span class="' . $badge_class . '">'. $status . '</span></td>
 			<td>
 			<button type="button" class="btn btn-sm btn-info"><i class="fa fa-eye" data-toggle="modal" data-target="#exampleModalLabel'. $proprietor->proprietor_id.'"></i></button>' .
-			$edit_btn . 
-			'<a href="'. $base_url . $proprietor_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="'. $i_delete.'"></i></a>
+			$edit_btn . '<a href="'. $base_url . $proprietor_delete_route.'/'. $id_param.'" class="'. $link_delete .'" onclick="'. $onclick_delete .'"><i class="'. $i_delete.'"></i></a>
 			<a href="'. $base_url . $proprietor_route.'/'. $id_param. $status_param.'" class="'. $link_status .'" onclick="'. $onclick .'"><i class="'. $i_status.'"></i></a>
 			</td>
 			</tr>';
@@ -74,8 +73,8 @@
   	<?php echo anchor("/admin/Proprietors/add_proprietor", "Add proprietor", "class='btn btn-sm mt-2 mb-2 btn-outline-secondary'")?>          
 	  <?php 
 	  	echo form_open("/admin/proprietors/search_proprietor", array("class" => "form-inline my-2 my-lg-0 "))?>
-		<input type="radio" name="status" value="active" class ="m-2" > Active
-		<input type="radio" name="status" value="inactive" class="m-2"> Inactive
+		<input type="radio" name="status" value="active" class ="m-2"<?php echo $check_active;?>  > Active
+		<input type="radio" name="status" value="inactive" class="m-2" <?php echo $check_inactive;?> > Inactive
  		<input type="text" name="proprietor_name" placeholder=" search Name" class =" ml-2">
 		<input type="text" name="nationalid" placeholder=" search national id" class =" ml-2" >
 		<input type="text" name="businessreg" placeholder=" search business id" class =" ml-2">
@@ -103,7 +102,7 @@
 				<th>Business Reg ID</th>
 				<th>
 					<a href="<?php echo base_url();?>proprietors/all-proprietors/proprietor.proprietor_status/<?php echo $new_order_method;?>/<?php echo $page;?>" style="color:#000"><?php echo 'Status';?></i></a>
-				<th>
+				</th>
 				<th colspan="4">Actions</th>
 			<tr>
         </thead>
